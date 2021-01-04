@@ -1,4 +1,4 @@
-# Problems and Solutions to prep for Amazon SDE Interview
+# Problems and Solutions to prep for SDE Interviews
 
 ## Topics
 
