@@ -1,39 +1,12 @@
 #include<vector>
 #include <iostream>
+#include <stdlib.h>
+#include <iomanip>
+
 using namespace std;
 
-class Point {
-  public:
-    float x;
-    float y;
-    
-    Point(float xx, float yy) :
-      x(xx), y(yy) {}
-};
+#define KERNEL_LEN 3
 
-class Computation {
-  public:
-    vector<float> A = { 1.5, 0.5, 0.5 , 1.5 };
-  
-    Point a_row1 = Point(1.5, 0.5);
-    Point a_row2 = Point(0.5, 1.5);
-  
-    vector<Point> findPoints(vector<Point> candidates){
-      
-      vector<Point> toReturn;
-
-      for (Point c :  candidates){
-          Point product(c.x * a_row1.x + c.y * a_row2.x, c.x * a_row1.y + c.y * a_row2.y);
-          float normL2 = product.x * product.x + product.y * product.y;
-          if(normL2 < 1) toReturn.push_back(c);
-        }
-
-        return toReturn;
-      
-    }
-};
-
-// To execute C++, please define "int main()"
 int main() {
 
   int n_rows, n_cols;
@@ -43,25 +16,57 @@ int main() {
   cout << "Number of Cols: ";
   cin >> n_cols;
 
-  cout << "Entered Dimensions: (" << n_rows << " x " << n_cols << ")" << endl;
+  cout << "Entered Dimensions: (" << n_rows;
+  cout << " x " << n_cols << ")" << endl;
 
-  Computation c;
+  uint8_t M[n_rows][n_cols];
   
-  vector<Point> candidates;
+  int Dx[n_rows][n_cols];
+  int Dy[n_rows][n_cols];  
   
-  /** 
-   * Cases to test: 
-   * L2 Norm < 1
-   * L2 Norm > 1
-   * L2 Norm = 1
-   */
-
-  candidates = {Point(0,0), Point(0,1)};
-  vector<Point> result = c.findPoints(candidates);
+  int K[3] = {-1, 0, 1};
   
-  cout << "Size of Result: " << result.size() << endl;
-  for (Point r : result)
-    cout << r.x << ", " << r.y << endl;
-    
+  
+  for(int i = 0; i < n_rows; ++i)
+    for(int j = 0; j < n_cols; ++j){
+      M[i][j] = rand() % 255;
+    }
+   
+  cout << "M: " << endl;
+  for (int i = 0; i < n_rows; ++i){
+    for (int j = 0; j < n_cols; ++j){
+      cout << setw(3) << unsigned(M[i][j]) << ' ';
+    }
+    cout << endl;
+  }
+   for(int i = 0; i < n_rows; ++i) 
+    for(int j = 0; j < n_cols; ++j) 
+      for(int k = 0; k < KERNEL_LEN; ++k) 
+        if(j-k >= 0 && j-k < n_cols)
+            Dx[i][j] += M[i][j-k] * K[k];
+  
+  cout << "Dx: " << endl;
+  for (int i = 0; i < n_rows; ++i){
+    for (int j = 0; j < n_cols; ++j){
+      cout << setw(5) << Dx[i][j] << ' ';
+    }
+    cout << endl;
+  }
+ 
+  for(int i = 0; i < n_rows; ++i) 
+    for(int j = 0; j < n_cols; ++j) 
+      for(int k = 0; k < KERNEL_LEN; ++k) 
+        if(j-k >= 0 && j-k < n_cols)
+            Dx[i][j] += M[i][j-k] * K[k];
+   
+   
+  cout << "Dx: " << endl;
+  for (int i = 0; i < n_rows; ++i){
+    for (int j = 0; j < n_cols; ++j){
+      cout << setw(5) << Dx[i][j] << ' ';
+    }
+    cout << endl;
+  }
+      
   return 0;
 }
