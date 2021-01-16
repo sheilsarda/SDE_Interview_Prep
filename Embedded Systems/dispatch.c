@@ -57,7 +57,7 @@ void dispatcher(uint8_t *packet){
     float fb_float, lr_float;
 
     memcpy(&fb_float, &forward_back, sizeof(float));
-    memcpy(&lr_float, &left_right,    sizeof(float));
+    memcpy(&lr_float, &left_right,   sizeof(float));
     
     update_motor(fb_float, lr_float); 
     
