@@ -30,7 +30,16 @@ int main() {
   int Dy[n_rows][n_cols];  
   
   int K[3] = {-1, 0, 1};
-  
+
+
+  for(int i = 0; i < n_rows; ++i)
+    for(int j = 0; j < n_cols; ++j){
+      M [i][j] = rand();
+      Dx[i][j] = 0;
+      Dy[i][j] = 0;
+
+    }
+
 #ifdef PRINT_RESULT
 
   cout << "M: " << endl;
