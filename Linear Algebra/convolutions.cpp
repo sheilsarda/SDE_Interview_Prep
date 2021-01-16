@@ -27,10 +27,10 @@ int main() {
   int K[3] = {-1, 0, 1};
   
   /**
-   * You are free to decide how you want to 
-   * deal with border conditions. Just 
-   * explicitly state your assumption 
-   * in a comment in the solution.
+   * For cells that are on the border
+   * of matrix M (i.e. first and last
+   * row / col), we apply a partial
+   * convolution.
    */
    
   cout << "M: " << endl;
@@ -76,3 +76,4 @@ int main() {
       
   return 0;
 }
+
