@@ -6,6 +6,7 @@
 using namespace std;
 
 #define KERNEL_LEN 3
+#define PRINT_RESULT 1
 
 int main() {
 
@@ -16,8 +17,12 @@ int main() {
   cout << "Number of Cols: ";
   cin >> n_cols;
 
+#ifdef PRINT_RESULT
+  
   cout << "Entered Dimensions: (" << n_rows;
   cout << " x " << n_cols << ")" << endl;
+
+#endif
 
   uint8_t M[n_rows][n_cols];
   
@@ -26,13 +31,8 @@ int main() {
   
   int K[3] = {-1, 0, 1};
   
-  /**
-   * For cells that are on the border
-   * of matrix M (i.e. first and last
-   * row / col), we apply a partial
-   * convolution.
-   */
-   
+#ifdef PRINT_RESULT
+
   cout << "M: " << endl;
   for (int i = 0; i < n_rows; ++i){
     for (int j = 0; j < n_cols; ++j){
@@ -40,6 +40,16 @@ int main() {
     }
     cout << endl;
   }
+
+#endif
+
+
+  /**
+   * For cells that are on the border
+   * of matrix M (i.e. first and last
+   * row / col), we apply a partial
+   * convolution.
+   */
 
   for(int i = 0; i < n_rows; ++i) 
     for(int j = 0; j < n_cols; ++j) 
@@ -49,13 +59,6 @@ int main() {
         Dy[i][j] += M[i][j+1] * K[2];
       }
   
-  cout << "Dy: " << endl;
-  for (int i = 0; i < n_rows; ++i){
-    for (int j = 0; j < n_cols; ++j){
-      cout << setw(4) << Dy[i][j] << ' ';
-    }
-    cout << endl;
-  }
  
   for(int i = 0; i < n_rows; ++i) 
     for(int j = 0; j < n_cols; ++j) 
@@ -65,7 +68,17 @@ int main() {
         Dx[i][j] += M[i+1][j] * K[2];
       }
   
-   
+
+#ifdef PRINT_RESULT
+
+  cout << "Dy: " << endl;
+  for (int i = 0; i < n_rows; ++i){
+    for (int j = 0; j < n_cols; ++j){
+      cout << setw(4) << Dy[i][j] << ' ';
+    }
+    cout << endl;
+  }
+
   cout << "Dx: " << endl;
   for (int i = 0; i < n_rows; ++i){
     for (int j = 0; j < n_cols; ++j){
@@ -73,7 +86,9 @@ int main() {
     }
     cout << endl;
   }
-      
+
+#endif
+
   return 0;
 }
 
