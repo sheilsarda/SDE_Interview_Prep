@@ -4,23 +4,30 @@
 
 #define DISPLAY_MESSAGE 0x34
 #define MOTOR_MESSAGE 0x80
-
+#define PRINT_PACKETS 1
 
 // Handle Display messages
 void display_message(uint8_t *m, uint16_t message_len){
+
+#ifdef PRINT_PACKETS
 
     for(int i = 0; i < message_len; ++i)
       printf("%c ", m[i]);
 
     printf("\r\n");
+
+#endif    
 }
 
 // Handle Motor messages
 void update_motor(float forward_back, float left_right){
 
+#ifdef PRINT_PACKETS
+
   printf("Forward/Back   %05.2f \r\n", forward_back);
   printf("Left/Right     %05.2f \r\n", left_right);
 
+#endif  
 }
 
 void dispatcher(uint8_t *packet){
@@ -29,23 +36,29 @@ void dispatcher(uint8_t *packet){
   uint8_t  message_type = packet[1];
   uint16_t message_len  = packet[2] || (packet[3] << sizeof(uint8_t));
 
+#ifdef PRINT_PACKETS
 
   printf("============================\r\n");
   printf("Packet ID      %d \r\n", packet_id);
+#endif
 
   if(message_type == DISPLAY_MESSAGE){
     uint8_t message[message_len];
     for(int i = 0; i < message_len; ++i)
       message[i] = packet[4 + i];
 
+#ifdef PRINT_PACKETS
     printf("Type           DISPLAY \r\n");
     printf("Length         %d \r\n", message_len);
+#endif
 
     display_message(message, message_len);
 
-  } else {
-    printf("Type           MOTOR \r\n");
+  } else if(message_type == MOTOR_MESSAGE) {
 
+#ifdef PRINT_PACKETS	  
+    printf("Type           MOTOR \r\n");
+#endif
     uint32_t forward_back = 0x0;
     uint32_t left_right   = 0x0;
     
