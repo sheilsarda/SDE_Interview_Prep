@@ -26,11 +26,12 @@ int main() {
   
   int K[3] = {-1, 0, 1};
   
-  
-  for(int i = 0; i < n_rows; ++i)
-    for(int j = 0; j < n_cols; ++j){
-      M[i][j] = rand() % 255;
-    }
+  /**
+   * You are free to decide how you want to 
+   * deal with border conditions. Just 
+   * explicitly state your assumption 
+   * in a comment in the solution.
+   */
    
   cout << "M: " << endl;
   for (int i = 0; i < n_rows; ++i){
@@ -39,31 +40,36 @@ int main() {
     }
     cout << endl;
   }
-   for(int i = 0; i < n_rows; ++i) 
+
+  for(int i = 0; i < n_rows; ++i) 
     for(int j = 0; j < n_cols; ++j) 
-      for(int k = 0; k < KERNEL_LEN; ++k) 
-        if(j-k >= 0 && j-k < n_cols)
-            Dx[i][j] += M[i][j-k] * K[k];
+      if(j > 0 && j < n_cols - 1){
+        Dy[i][j] += M[i][j-1] * K[0];
+        Dy[i][j] += M[i][j  ] * K[1];
+        Dy[i][j] += M[i][j+1] * K[2];
+      }
   
-  cout << "Dx: " << endl;
+  cout << "Dy: " << endl;
   for (int i = 0; i < n_rows; ++i){
     for (int j = 0; j < n_cols; ++j){
-      cout << setw(5) << Dx[i][j] << ' ';
+      cout << setw(4) << Dy[i][j] << ' ';
     }
     cout << endl;
   }
  
   for(int i = 0; i < n_rows; ++i) 
     for(int j = 0; j < n_cols; ++j) 
-      for(int k = 0; k < KERNEL_LEN; ++k) 
-        if(j-k >= 0 && j-k < n_cols)
-            Dx[i][j] += M[i][j-k] * K[k];
-   
+      if(i > 0 && i < n_rows - 1){
+        Dx[i][j] += M[i-1][j] * K[0];
+        Dx[i][j] += M[i  ][j] * K[1];
+        Dx[i][j] += M[i+1][j] * K[2];
+      }
+  
    
   cout << "Dx: " << endl;
   for (int i = 0; i < n_rows; ++i){
     for (int j = 0; j < n_cols; ++j){
-      cout << setw(5) << Dx[i][j] << ' ';
+      cout << setw(4) << Dx[i][j] << ' ';
     }
     cout << endl;
   }
