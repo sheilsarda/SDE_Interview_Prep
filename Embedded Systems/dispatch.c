@@ -54,13 +54,11 @@ void dispatcher(uint8_t *packet){
       left_right   |= (packet[8 + i] << (8 * sizeof(uint8_t) * i));
     }
 
-    printf("Forward Back   %x \r\n", forward_back);
-    printf("Left Right     %x \r\n", left_right);
-
     float fb_float, lr_float;
-    memcpy(&forward_back, &fb_float, sizeof(float));
-    memcpy(&left_right,   &lr_float, sizeof(float));
 
+    memcpy(&fb_float, &forward_back, sizeof(float));
+    memcpy(&lr_float, &left_right,    sizeof(float));
+    
     update_motor(fb_float, lr_float); 
     
   }
