@@ -3,25 +3,24 @@
 
 
 // Handle Display messages
-int display_message(Message m){
+int display_message(uint8_t *m, uint16_t message_len){
 
   return 1;
 }
 
 // Handle Motor messages
-int update_motor(Message m){
+int update_motor(float forward_back, float left_right){
 
   return 1;
 }
 
-int dispatcher(int packet){
+int dispatcher(uint8_t packet){
   
-  char packet_id;
-  char message_type;
-  short message_length;
+  uint8_t  packet_id      = packet[0];
+  uint8_t  message_type   = packet[1];
+  uint16_t message_length = packet[2] || (packet[3] << sizeof(uint8_t));
 
-  char message_data[message_length];
-
+  uint8_t message_data[message_length];
 
   return 0;
 }
