@@ -16,8 +16,8 @@ void display_message(uint8_t *m, uint16_t message_len){
 // Handle Motor messages
 void update_motor(float forward_back, float left_right){
 
-  printf("Forward Back %d \r\n", forward_back);
-  printf("Left Right   %d \r\n", left_right);
+  printf("Forward Back   %f \r\n", forward_back);
+  printf("Left Right     %f \r\n", left_right);
 
 }
 
@@ -28,27 +28,39 @@ void dispatcher(uint8_t *packet){
   uint16_t message_len  = packet[2] || (packet[3] << sizeof(uint8_t));
 
 
-  printf("Packet ID %d \r\n", packet_id);
-  printf("Type      %x \r\n", message_type);
-  printf("Length    %d \r\n", message_len);
+  printf("============================\r\n");
+  printf("Packet ID      %d \r\n", packet_id);
 
   if(message_type == DISPLAY_MESSAGE){
     uint8_t message[message_len];
     for(int i = 0; i < message_len; ++i)
       message[i] = packet[4 + i];
 
+    printf("Type           DISPLAY \r\n");
+    printf("Length         %d \r\n", message_len);
+
     display_message(message, message_len);
 
   } else {
-    float forward_back = (float) packet[4];
-    float left_right   = (float) packet[8];
+    printf("Type           MOTOR \r\n");
 
+    int forward_back = 0x0;
+    int left_right   = 0x0;
+    
+/*
+    forward_back |= packet[4];
+    left_right |= packet[8];
+    
     for(int i = 1; i < 4; ++i){
-      forward_back |= (float) (packet[4 + i] << sizeof(uint8_t) * i);
-      left_right   |= (float) (packet[8 + i] << sizeof(uint8_t) * i);
+      forward_back |= (packet[4 + i] << sizeof(uint8_t) * i);
+      left_right   |= (packet[8 + i] << sizeof(uint8_t) * i);
     }
+*/
 
-    update_motor(forward_back, left_right); 
+    printf("Forward Back   %x \r\n", forward_back);
+    printf("Left Right     %x \r\n", left_right);
+
+//    update_motor((float) forward_back, (float) left_right); 
     
   }
 }
@@ -61,7 +73,6 @@ int main(){
 
   dispatcher(display_packet);
 
-  printf("Done dispatcher \r\n");
-
+  dispatcher(motor_packet);
   return 0;
 }
