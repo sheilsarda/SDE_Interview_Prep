@@ -1,6 +1,6 @@
 #include <stdint.h>
 #include <stdio.h>
-#include <cstring>
+#include <string.h>
 
 #define DISPLAY_MESSAGE 0x34
 #define MOTOR_MESSAGE 0x80
