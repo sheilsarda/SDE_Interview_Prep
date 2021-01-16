@@ -18,8 +18,8 @@ void display_message(uint8_t *m, uint16_t message_len){
 // Handle Motor messages
 void update_motor(float forward_back, float left_right){
 
-  printf("Forward Back   %f \r\n", forward_back);
-  printf("Left Right     %f \r\n", left_right);
+  printf("Forward/Back   %05.2f \r\n", forward_back);
+  printf("Left/Right     %05.2f \r\n", left_right);
 
 }
 
