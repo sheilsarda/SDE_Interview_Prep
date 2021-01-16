@@ -61,21 +61,35 @@ int main() {
    */
 
   for(int i = 0; i < n_rows; ++i) 
-    for(int j = 0; j < n_cols; ++j) 
+    for(int j = 0; j < n_cols; ++j){ 
       if(j > 0 && j < n_cols - 1){
         Dy[i][j] += M[i][j-1] * K[0];
         Dy[i][j] += M[i][j  ] * K[1];
         Dy[i][j] += M[i][j+1] * K[2];
+      } else if (j == 0){
+        Dy[i][j] += M[i][j  ] * K[1];
+        Dy[i][j] += M[i][j+1] * K[2];
+      } else if (j == n_cols - 1){
+        Dy[i][j] += M[i][j-1] * K[0];
+        Dy[i][j] += M[i][j  ] * K[1];
       }
+    }
   
  
   for(int i = 0; i < n_rows; ++i) 
-    for(int j = 0; j < n_cols; ++j) 
+    for(int j = 0; j < n_cols; ++j){
       if(i > 0 && i < n_rows - 1){
         Dx[i][j] += M[i-1][j] * K[0];
         Dx[i][j] += M[i  ][j] * K[1];
         Dx[i][j] += M[i+1][j] * K[2];
+      } else if (i == 0){
+        Dx[i][j] += M[i  ][j] * K[1];
+        Dx[i][j] += M[i+1][j] * K[2];
+      } else if (i == n_rows - 1){
+        Dx[i][j] += M[i-1][j] * K[0];
+        Dx[i][j] += M[i  ][j] * K[1];
       }
+    }
   
 
 #ifdef PRINT_RESULT
