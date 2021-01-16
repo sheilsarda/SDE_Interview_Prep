@@ -1,3 +1,10 @@
+/**
+ * To build and run:
+ * - `g++ convolutions.cpp -o conv`
+ * - `./conv`
+ */
+
+
 #include<vector>
 #include <iostream>
 #include <stdlib.h>
