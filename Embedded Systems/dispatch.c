@@ -1,5 +1,7 @@
 #include <stdint.h>
 #include <stdio.h>
+#include <cstring>
+
 #define DISPLAY_MESSAGE 0x34
 #define MOTOR_MESSAGE 0x80
 
@@ -44,23 +46,22 @@ void dispatcher(uint8_t *packet){
   } else {
     printf("Type           MOTOR \r\n");
 
-    int forward_back = 0x0;
-    int left_right   = 0x0;
+    uint32_t forward_back = 0x0;
+    uint32_t left_right   = 0x0;
     
-/*
-    forward_back |= packet[4];
-    left_right |= packet[8];
-    
-    for(int i = 1; i < 4; ++i){
-      forward_back |= (packet[4 + i] << sizeof(uint8_t) * i);
-      left_right   |= (packet[8 + i] << sizeof(uint8_t) * i);
+    for(int i = 0; i < 4; ++i){
+      forward_back |= (packet[4 + i] << (8 * sizeof(uint8_t) * i));
+      left_right   |= (packet[8 + i] << (8 * sizeof(uint8_t) * i));
     }
-*/
 
     printf("Forward Back   %x \r\n", forward_back);
     printf("Left Right     %x \r\n", left_right);
 
-//    update_motor((float) forward_back, (float) left_right); 
+    float fb_float, lr_float;
+    memcpy(&forward_back, &fb_float, sizeof(float));
+    memcpy(&left_right,   &lr_float, sizeof(float));
+
+    update_motor(fb_float, lr_float); 
     
   }
 }
@@ -72,7 +73,7 @@ int main(){
   uint8_t motor_packet[] = {0x2, 0x80, 0x08, 0x0, 0x0, 0x0, 0x80, 0x3f, 0x0, 0x0, 0x0, 0xbf};
 
   dispatcher(display_packet);
-
   dispatcher(motor_packet);
+  
   return 0;
 }
