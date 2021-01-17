@@ -14,12 +14,14 @@ class Matrix {
     
     Matrix(int r, int c) : n_rows(r), n_cols(c) {
    
-      m = (int **) malloc(n_rows * n_cols * sizeof(int));
+      m = (int **) malloc(n_rows * sizeof(int *));
 
-      for(int i = 0; i < n_rows; ++i)
-        for(int j = 0; j < n_cols; ++j)
+      for(int i = 0; i < n_rows; ++i){
+        m[i] = (int *) malloc(n_cols * sizeof(int));
+
+	for(int j = 0; j < n_cols; ++j)
 	  m[i][j] = 0;
-
+      }
     }
 
     void print() {
@@ -52,16 +54,15 @@ int main() {
  
   MatrixOps ops;
   Matrix m1(2, 2);
+  
   m1.m[0][0] = 1;
   m1.m[1][1] = 1;
-/*
-
+  
   Matrix m3 = ops.transpose(m1);
   m3.print();
 
   Matrix m2(2, 2);
 
-*/
   return 0;
 }
 
