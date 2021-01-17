@@ -9,15 +9,17 @@ class Matrix {
   public:
     int n_rows;
     int n_cols;
-    int *m;
+    int **m;
     
     Matrix(int r, int c) :
       n_rows(r), n_cols(c) {
    
-      m = int[n_rows][n_cols];
+      m = (int **) malloc(n_rows * n_cols * sizeof(int));
+
       for(int i = 0; i < n_rows; ++i)
         for(int j = 0; j < n_cols; ++j)
 	  m[i][j] = 0;
+
     }
 };
 
