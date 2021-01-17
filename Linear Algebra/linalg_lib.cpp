@@ -2,15 +2,21 @@
 
 #include<vector>
 #include <iostream>
+
 using namespace std;
 
-class Point {
+class Matrix {
   public:
-    float x;
-    float y;
+    int n_rows;
+    int n_cols;
+    vector<vector<int>> m;
     
-    Point(float xx, float yy) :
-      x(xx), y(yy) {}
+    Matrix(int r, int c) :
+      n_rows(r), n_cols(c) {
+   
+      for(int i = 0; i < n_rows; ++i)
+	m.push_back()
+    }
 };
 
 class Computation {
