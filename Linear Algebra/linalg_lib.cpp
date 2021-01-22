@@ -71,7 +71,7 @@ int main() {
   MatrixOps ops;
 
   /**
-   * Test 1: Symmetric Matrix:
+   * Transpose Test 1: Symmetric Matrix:
    * transpose should be the same as original
    */
 
@@ -90,7 +90,7 @@ int main() {
 
 
   /**
-   * Test 2: Asymmetric Matrix:
+   * Transpose Test 2: Asymmetric Matrix:
    * transpose should not be the same as original
    */
 
@@ -106,7 +106,7 @@ int main() {
   m3.print();
   
   /**
-   * Test 3: Rectangular Matrix:
+   * Transpose Test 3: Rectangular Matrix:
    * transpose should not be the same as original
    */
 
@@ -124,7 +124,7 @@ int main() {
   m3.print();
 
   /**
-   * Test 4: Identity Matrix:
+   * Multiply Test 1: Identity Matrix:
    * Matrix multiplied by itself should be the same
    */
   
@@ -140,7 +140,7 @@ int main() {
   m3.print();
 
   /**
-   * Test 5: Rectangular Matrix:
+   * Multiply Test 2: Rectangular Matrix:
    * matrix multiplied by its transpose should be 
    * symmetric
    */
@@ -154,6 +154,18 @@ int main() {
   m3.print();
   m4.print();
 
+  /**
+   * Multiply Test 3: Invald Matrix Multiply:
+   * Rectuangular matrix multiplied by 
+   * itself should return empty matrix
+   */
+
+  m4 = ops.multiply(m2, m2);
+
+  cout << "Multiply Test 3: Invalid Matrix Multiply" << endl;
+  m2.print();
+  m4.print();
+  
   return 0;
 }
 
