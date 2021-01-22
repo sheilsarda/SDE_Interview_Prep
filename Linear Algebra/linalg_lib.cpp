@@ -70,6 +70,8 @@ int main() {
  
   MatrixOps ops;
 
+#ifdef PRINT_RESULT
+
   /**
    * Transpose Test 1: Symmetric Matrix:
    * transpose should be the same as original
@@ -166,6 +168,9 @@ int main() {
   m2.print();
   m4.print();
   
+
+#endif
+
   return 0;
 }
 
