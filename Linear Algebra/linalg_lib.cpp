@@ -51,8 +51,18 @@ class MatrixOps {
     }
 
     Matrix multiply(Matrix m, Matrix n){
-    
-      return n;
+      
+      Matrix res = Matrix(m.n_rows, n.n_cols);
+
+      // Return empty matrix if invalid calculation
+      if(m.n_cols != n.n_rows) return Matrix(0, 0);
+
+      for(int i = 0; i < m.n_rows; ++i)
+	for(int j = 0; j < n.n_cols; ++j)      
+          for(int k = 0; k < m.n_cols; ++k)
+            res.m[i][j] += m.m[i][k] * n.m[k][j];
+
+      return res;
     }	    
 };
 
@@ -68,13 +78,13 @@ int main() {
   Matrix m1(2, 2);
   
   m1.m[0][0] = 1;
-  m1.m[0][1] = 2;
-  m1.m[1][0] = 2;
+  m1.m[0][1] = 0;
+  m1.m[1][0] = 0;
   m1.m[1][1] = 1;
 
   Matrix m3 = ops.transpose(m1);
 
-  cout << "Test 1: Symmetric Matrix" << endl;
+  cout << "Transpose Test 1: Symmetric Matrix" << endl;
   m1.print();
   m3.print();
 
@@ -91,7 +101,7 @@ int main() {
 
   m3 = ops.transpose(m1);
   
-  cout << "Test 2: Asymmetric Matrix" << endl;
+  cout << "Transpose Test 2: Asymmetric Matrix" << endl;
   m1.print();
   m3.print();
   
@@ -109,11 +119,40 @@ int main() {
 
   m3 = ops.transpose(m2);
   
-  cout << "Test 3: Rectangular Matrix" << endl;
+  cout << "Transpose Test 3: Rectangular Matrix" << endl;
   m2.print();
   m3.print();
 
+  /**
+   * Test 4: Identity Matrix:
+   * Matrix multiplied by itself should be the same
+   */
+  
+  m1.m[0][0] = 1;
+  m1.m[0][1] = 0;
+  m1.m[1][0] = 0;
+  m1.m[1][1] = 1;
 
+  m3 = ops.multiply(m1, m1);
+
+  cout << "Multiply Test 1: Identity Matrix" << endl;
+  m1.print();
+  m3.print();
+
+  /**
+   * Test 5: Rectangular Matrix:
+   * matrix multiplied by its transpose should be 
+   * symmetric
+   */
+
+  m3 = ops.transpose(m2);
+
+  Matrix m4 = ops.multiply(m2, m3);
+
+  cout << "Multiply Test 2: Rectangular Matrix" << endl;
+  m2.print();
+  m3.print();
+  m4.print();
 
   return 0;
 }
