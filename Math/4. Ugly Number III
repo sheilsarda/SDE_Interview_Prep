@@ -1,0 +1,6 @@
+# Ugly Number III
+
+Given four integers `n`, `a`, `b`, and `c`, return the `nth` ugly number.
+
+Ugly numbers are positive integers that are divisible by `a`, `b`, or `c`.
+
