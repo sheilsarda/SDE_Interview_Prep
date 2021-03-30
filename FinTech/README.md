@@ -22,3 +22,9 @@ The attached file contains:
 ## Summary Plots
 
 ![](imgs/kpi_vs_time.png)
+
+![](imgs/alpha_vs_time.png)
+
+![](imgs/monthly_alpha.png)
+
+
