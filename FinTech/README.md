@@ -1,3 +1,5 @@
+# FinTech Analysis Challenge
+
 The attached file contains: 
 -	a daily KPI associated with a stock ticker
 -	daily alpha returns for that stock ticker
@@ -16,3 +18,7 @@ The attached file contains:
 3.	How else might you go about backtesting this KPI against alpha returns? 
 4.	Is there other information you would consider important?
 
+
+## Summary Plots
+
+![](imgs/kpi_vs_time.png)
