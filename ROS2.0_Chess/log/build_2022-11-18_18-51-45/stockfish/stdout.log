@@ -1,0 +1,30 @@
+-- The CXX compiler identification is GNU 11.3.0
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found ament_cmake: 1.3.2 (/opt/ros/humble/share/ament_cmake/cmake)
+-- Found Python3: /usr/bin/python3.10 (found version "3.10.6") found components: Interpreter 
+-- Found ament_lint_auto: 0.12.4 (/opt/ros/humble/share/ament_lint_auto/cmake)
+-- Added test 'lint_cmake' to check CMake code style
+-- Added test 'xmllint' to check XML markup files
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/build/stockfish
+-- Install configuration: ""
+-- Installing: /home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/install/stockfish/share/ament_index/resource_index/package_run_dependencies/stockfish
+-- Installing: /home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/install/stockfish/share/ament_index/resource_index/parent_prefix_path/stockfish
+-- Installing: /home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/install/stockfish/share/stockfish/environment/ament_prefix_path.sh
+-- Installing: /home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/install/stockfish/share/stockfish/environment/ament_prefix_path.dsv
+-- Installing: /home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/install/stockfish/share/stockfish/environment/path.sh
+-- Installing: /home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/install/stockfish/share/stockfish/environment/path.dsv
+-- Installing: /home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/install/stockfish/share/stockfish/local_setup.bash
+-- Installing: /home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/install/stockfish/share/stockfish/local_setup.sh
+-- Installing: /home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/install/stockfish/share/stockfish/local_setup.zsh
+-- Installing: /home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/install/stockfish/share/stockfish/local_setup.dsv
+-- Installing: /home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/install/stockfish/share/stockfish/package.dsv
+-- Installing: /home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/install/stockfish/share/ament_index/resource_index/packages/stockfish
+-- Installing: /home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/install/stockfish/share/stockfish/cmake/stockfishConfig.cmake
+-- Installing: /home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/install/stockfish/share/stockfish/cmake/stockfishConfig-version.cmake
+-- Installing: /home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/install/stockfish/share/stockfish/package.xml

@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/stockfish_node.dir/src/stockfish_node.cpp.o -o stockfish_node 

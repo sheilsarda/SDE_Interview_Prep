@@ -1,0 +1,8 @@
+source;share/stockfish/hook/cmake_prefix_path.ps1
+source;share/stockfish/hook/cmake_prefix_path.dsv
+source;share/stockfish/hook/cmake_prefix_path.sh
+source;share/stockfish/local_setup.bash
+source;share/stockfish/local_setup.dsv
+source;share/stockfish/local_setup.ps1
+source;share/stockfish/local_setup.sh
+source;share/stockfish/local_setup.zsh

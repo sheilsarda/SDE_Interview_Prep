@@ -1,0 +1,16 @@
+/home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/install/stockfish/lib/stockfish/stockfish_node
+/home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/install/stockfish/share/ament_index/resource_index/package_run_dependencies/stockfish
+/home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/install/stockfish/share/ament_index/resource_index/parent_prefix_path/stockfish
+/home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/install/stockfish/share/stockfish/environment/ament_prefix_path.sh
+/home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/install/stockfish/share/stockfish/environment/ament_prefix_path.dsv
+/home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/install/stockfish/share/stockfish/environment/path.sh
+/home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/install/stockfish/share/stockfish/environment/path.dsv
+/home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/install/stockfish/share/stockfish/local_setup.bash
+/home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/install/stockfish/share/stockfish/local_setup.sh
+/home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/install/stockfish/share/stockfish/local_setup.zsh
+/home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/install/stockfish/share/stockfish/local_setup.dsv
+/home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/install/stockfish/share/stockfish/package.dsv
+/home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/install/stockfish/share/ament_index/resource_index/packages/stockfish
+/home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/install/stockfish/share/stockfish/cmake/stockfishConfig.cmake
+/home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/install/stockfish/share/stockfish/cmake/stockfishConfig-version.cmake
+/home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/install/stockfish/share/stockfish/package.xml

@@ -1,0 +1,10 @@
+/home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/build/stockfish/CMakeFiles/uninstall.dir
+/home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/build/stockfish/CMakeFiles/stockfish_uninstall.dir
+/home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/build/stockfish/CMakeFiles/stockfish_node.dir
+/home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/build/stockfish/CMakeFiles/test.dir
+/home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/build/stockfish/CMakeFiles/edit_cache.dir
+/home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/build/stockfish/CMakeFiles/rebuild_cache.dir
+/home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/build/stockfish/CMakeFiles/list_install_components.dir
+/home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/build/stockfish/CMakeFiles/install.dir
+/home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/build/stockfish/CMakeFiles/install/local.dir
+/home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/build/stockfish/CMakeFiles/install/strip.dir
