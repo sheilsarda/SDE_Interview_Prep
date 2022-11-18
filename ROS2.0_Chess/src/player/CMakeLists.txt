@@ -7,18 +7,28 @@ endif()
 
 # find dependencies
 find_package(ament_cmake REQUIRED)
+find_package(rclcpp REQUIRED)
+find_package(std_msgs REQUIRED)
+
 # uncomment the following section in order to fill in
 # further dependencies manually.
 # find_package(<dependency> REQUIRED)
 
-add_executable(chess_player src/chess_player.cpp)
-target_include_directories(chess_player PUBLIC
-  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-  $<INSTALL_INTERFACE:include>)
-target_compile_features(chess_player PUBLIC c_std_99 cxx_std_17)  # Require C99 and C++17
+# add_executable(chess_player src/chess_player.cpp)
+add_executable(listener src/subscriber_member_function.cpp)
+ament_target_dependencies(listener rclcpp std_msgs)
 
-install(TARGETS chess_player
+# target_include_directories(chess_player PUBLIC
+#   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+#   $<INSTALL_INTERFACE:include>)
+# target_compile_features(chess_player PUBLIC c_std_99 cxx_std_17)  # Require C99 and C++17
+
+install(TARGETS
+  listener
   DESTINATION lib/${PROJECT_NAME})
+
+# install(TARGETS chess_player
+#   DESTINATION lib/${PROJECT_NAME})
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)

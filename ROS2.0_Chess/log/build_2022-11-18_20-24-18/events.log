@@ -1,0 +1,314 @@
+[0.000000] (-) TimerEvent: {}
+[0.001673] (player) JobQueued: {'identifier': 'player', 'dependencies': OrderedDict()}
+[0.001724] (stockfish) JobQueued: {'identifier': 'stockfish', 'dependencies': OrderedDict()}
+[0.001757] (player) JobStarted: {'identifier': 'player'}
+[0.026140] (player) JobProgress: {'identifier': 'player', 'progress': 'cmake'}
+[0.028184] (player) JobProgress: {'identifier': 'player', 'progress': 'build'}
+[0.028995] (player) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/build/player', '--', '-j1', '-l1'], 'cwd': '/home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/build/player', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'ubuntu'), ('SSH_CLIENT', '65.88.88.93 28254 22'), ('XDG_SESSION_TYPE', 'tty'), ('GIT_ASKPASS', '/home/ubuntu/.vscode-server/bin/6261075646f055b99068d3688932416f2346dd3b/extensions/git/dist/askpass.sh'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('BROWSER', '/home/ubuntu/.vscode-server/bin/6261075646f055b99068d3688932416f2346dd3b/bin/helpers/browser.sh'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/ubuntu'), ('OLDPWD', '/home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/src'), ('TERM_PROGRAM_VERSION', '1.73.1'), ('VSCODE_IPC_HOOK_CLI', '/run/user/1000/vscode-ipc-77ce2a5c-3545-43f4-baa6-0c90e4ca9d21.sock'), ('ROS_PYTHON_VERSION', '3'), ('VSCODE_GIT_ASKPASS_MAIN', '/home/ubuntu/.vscode-server/bin/6261075646f055b99068d3688932416f2346dd3b/extensions/git/dist/askpass-main.js'), ('VSCODE_GIT_ASKPASS_NODE', '/home/ubuntu/.vscode-server/bin/6261075646f055b99068d3688932416f2346dd3b/node'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'ubuntu'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('TERM', 'xterm-256color'), ('XDG_SESSION_ID', '1'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/home/ubuntu/.vscode-server/bin/6261075646f055b99068d3688932416f2346dd3b/bin/remote-cli:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('LANG', 'en_US.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1000/vscode-git-d000a47584.sock'), ('TERM_PROGRAM', 'vscode'), ('AMENT_PREFIX_PATH', '/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('PWD', '/home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/build/player'), ('LC_ALL', 'en_US.UTF-8'), ('SSH_CONNECTION', '65.88.88.93 28254 172.31.85.82 22'), ('XDG_DATA_DIRS', '/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/opt/ros/humble')]), 'shell': False}
+[0.098473] (-) TimerEvent: {}
+[0.199559] (-) TimerEvent: {}
+[0.279926] (player) StdoutLine: {'line': b'[ 50%] \x1b[32mBuilding CXX object CMakeFiles/listener.dir/src/subscriber_member_function.cpp.o\x1b[0m\n'}
+[0.299656] (-) TimerEvent: {}
+[0.400647] (-) TimerEvent: {}
+[0.501679] (-) TimerEvent: {}
+[0.602669] (-) TimerEvent: {}
+[0.703664] (-) TimerEvent: {}
+[0.804656] (-) TimerEvent: {}
+[0.905756] (-) TimerEvent: {}
+[1.006838] (-) TimerEvent: {}
+[1.107837] (-) TimerEvent: {}
+[1.208910] (-) TimerEvent: {}
+[1.309294] (-) TimerEvent: {}
+[1.410371] (-) TimerEvent: {}
+[1.512503] (-) TimerEvent: {}
+[1.613563] (-) TimerEvent: {}
+[1.714590] (-) TimerEvent: {}
+[1.815608] (-) TimerEvent: {}
+[1.916657] (-) TimerEvent: {}
+[2.017677] (-) TimerEvent: {}
+[2.118707] (-) TimerEvent: {}
+[2.219926] (-) TimerEvent: {}
+[2.320975] (-) TimerEvent: {}
+[2.422013] (-) TimerEvent: {}
+[2.523048] (-) TimerEvent: {}
+[2.624075] (-) TimerEvent: {}
+[2.725218] (-) TimerEvent: {}
+[2.826295] (-) TimerEvent: {}
+[2.927353] (-) TimerEvent: {}
+[3.028504] (-) TimerEvent: {}
+[3.129572] (-) TimerEvent: {}
+[3.230614] (-) TimerEvent: {}
+[3.332557] (-) TimerEvent: {}
+[3.433600] (-) TimerEvent: {}
+[3.534619] (-) TimerEvent: {}
+[3.635756] (-) TimerEvent: {}
+[3.736800] (-) TimerEvent: {}
+[3.837941] (-) TimerEvent: {}
+[3.938998] (-) TimerEvent: {}
+[4.040488] (-) TimerEvent: {}
+[4.141556] (-) TimerEvent: {}
+[4.242595] (-) TimerEvent: {}
+[4.343628] (-) TimerEvent: {}
+[4.444653] (-) TimerEvent: {}
+[4.545763] (-) TimerEvent: {}
+[4.646824] (-) TimerEvent: {}
+[4.747850] (-) TimerEvent: {}
+[4.850738] (-) TimerEvent: {}
+[4.951761] (-) TimerEvent: {}
+[5.052801] (-) TimerEvent: {}
+[5.153894] (-) TimerEvent: {}
+[5.255628] (-) TimerEvent: {}
+[5.356660] (-) TimerEvent: {}
+[5.457706] (-) TimerEvent: {}
+[5.560361] (-) TimerEvent: {}
+[5.661498] (-) TimerEvent: {}
+[5.762551] (-) TimerEvent: {}
+[5.863576] (-) TimerEvent: {}
+[5.964606] (-) TimerEvent: {}
+[6.065702] (-) TimerEvent: {}
+[6.166771] (-) TimerEvent: {}
+[6.267817] (-) TimerEvent: {}
+[6.368859] (-) TimerEvent: {}
+[6.470088] (-) TimerEvent: {}
+[6.571150] (-) TimerEvent: {}
+[6.672194] (-) TimerEvent: {}
+[6.773154] (-) TimerEvent: {}
+[6.874491] (-) TimerEvent: {}
+[6.975481] (-) TimerEvent: {}
+[7.076721] (-) TimerEvent: {}
+[7.177809] (-) TimerEvent: {}
+[7.279077] (-) TimerEvent: {}
+[7.380085] (-) TimerEvent: {}
+[7.481050] (-) TimerEvent: {}
+[7.582122] (-) TimerEvent: {}
+[7.683091] (-) TimerEvent: {}
+[7.784189] (-) TimerEvent: {}
+[7.885150] (-) TimerEvent: {}
+[7.986174] (-) TimerEvent: {}
+[8.087589] (-) TimerEvent: {}
+[8.188588] (-) TimerEvent: {}
+[8.289578] (-) TimerEvent: {}
+[8.390570] (-) TimerEvent: {}
+[8.491832] (-) TimerEvent: {}
+[8.592873] (-) TimerEvent: {}
+[8.701297] (-) TimerEvent: {}
+[8.803345] (-) TimerEvent: {}
+[8.904326] (-) TimerEvent: {}
+[9.007389] (-) TimerEvent: {}
+[9.108382] (-) TimerEvent: {}
+[9.211767] (-) TimerEvent: {}
+[9.319711] (-) TimerEvent: {}
+[9.420875] (-) TimerEvent: {}
+[9.524287] (-) TimerEvent: {}
+[9.627745] (-) TimerEvent: {}
+[9.728873] (-) TimerEvent: {}
+[9.830037] (-) TimerEvent: {}
+[9.931043] (-) TimerEvent: {}
+[10.032100] (-) TimerEvent: {}
+[10.133143] (-) TimerEvent: {}
+[10.234569] (-) TimerEvent: {}
+[10.335602] (-) TimerEvent: {}
+[10.436628] (-) TimerEvent: {}
+[10.538019] (-) TimerEvent: {}
+[10.639950] (-) TimerEvent: {}
+[10.741088] (-) TimerEvent: {}
+[10.843724] (-) TimerEvent: {}
+[10.944794] (-) TimerEvent: {}
+[11.045633] (-) TimerEvent: {}
+[11.147391] (-) TimerEvent: {}
+[11.248578] (-) TimerEvent: {}
+[11.349596] (-) TimerEvent: {}
+[11.450613] (-) TimerEvent: {}
+[11.551614] (-) TimerEvent: {}
+[11.652148] (-) TimerEvent: {}
+[11.754547] (-) TimerEvent: {}
+[11.857153] (-) TimerEvent: {}
+[11.967272] (-) TimerEvent: {}
+[12.088922] (-) TimerEvent: {}
+[12.195061] (-) TimerEvent: {}
+[12.296230] (-) TimerEvent: {}
+[12.398142] (-) TimerEvent: {}
+[12.499417] (-) TimerEvent: {}
+[12.600936] (-) TimerEvent: {}
+[12.702039] (-) TimerEvent: {}
+[12.803088] (-) TimerEvent: {}
+[12.904019] (-) TimerEvent: {}
+[13.004958] (-) TimerEvent: {}
+[13.106028] (-) TimerEvent: {}
+[13.207014] (-) TimerEvent: {}
+[13.308200] (-) TimerEvent: {}
+[13.366602] (player) StdoutLine: {'line': b'[100%] \x1b[32m\x1b[1mLinking CXX executable listener\x1b[0m\n'}
+[13.408326] (-) TimerEvent: {}
+[13.509221] (-) TimerEvent: {}
+[13.610231] (-) TimerEvent: {}
+[13.711218] (-) TimerEvent: {}
+[13.812476] (-) TimerEvent: {}
+[13.913474] (-) TimerEvent: {}
+[14.014435] (-) TimerEvent: {}
+[14.034978] (player) StdoutLine: {'line': b'[100%] Built target listener\n'}
+[14.061104] (player) CommandEnded: {'returncode': 0}
+[14.100038] (player) JobProgress: {'identifier': 'player', 'progress': 'install'}
+[14.110614] (player) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/build/player'], 'cwd': '/home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/build/player', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'ubuntu'), ('SSH_CLIENT', '65.88.88.93 28254 22'), ('XDG_SESSION_TYPE', 'tty'), ('GIT_ASKPASS', '/home/ubuntu/.vscode-server/bin/6261075646f055b99068d3688932416f2346dd3b/extensions/git/dist/askpass.sh'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('BROWSER', '/home/ubuntu/.vscode-server/bin/6261075646f055b99068d3688932416f2346dd3b/bin/helpers/browser.sh'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/ubuntu'), ('OLDPWD', '/home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/src'), ('TERM_PROGRAM_VERSION', '1.73.1'), ('VSCODE_IPC_HOOK_CLI', '/run/user/1000/vscode-ipc-77ce2a5c-3545-43f4-baa6-0c90e4ca9d21.sock'), ('ROS_PYTHON_VERSION', '3'), ('VSCODE_GIT_ASKPASS_MAIN', '/home/ubuntu/.vscode-server/bin/6261075646f055b99068d3688932416f2346dd3b/extensions/git/dist/askpass-main.js'), ('VSCODE_GIT_ASKPASS_NODE', '/home/ubuntu/.vscode-server/bin/6261075646f055b99068d3688932416f2346dd3b/node'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'ubuntu'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('TERM', 'xterm-256color'), ('XDG_SESSION_ID', '1'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/home/ubuntu/.vscode-server/bin/6261075646f055b99068d3688932416f2346dd3b/bin/remote-cli:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('LANG', 'en_US.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1000/vscode-git-d000a47584.sock'), ('TERM_PROGRAM', 'vscode'), ('AMENT_PREFIX_PATH', '/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('PWD', '/home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/build/player'), ('LC_ALL', 'en_US.UTF-8'), ('SSH_CONNECTION', '65.88.88.93 28254 172.31.85.82 22'), ('XDG_DATA_DIRS', '/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/opt/ros/humble')]), 'shell': False}
+[14.114519] (-) TimerEvent: {}
+[14.124148] (player) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[14.127931] (player) StdoutLine: {'line': b'-- Installing: /home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/install/player/lib/player/listener\n'}
+[14.132989] (player) StdoutLine: {'line': b'-- Set runtime path of "/home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/install/player/lib/player/listener" to ""\n'}
+[14.138024] (player) StdoutLine: {'line': b'-- Installing: /home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/install/player/share/ament_index/resource_index/package_run_dependencies/player\n'}
+[14.140594] (player) StdoutLine: {'line': b'-- Installing: /home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/install/player/share/ament_index/resource_index/parent_prefix_path/player\n'}
+[14.146962] (player) StdoutLine: {'line': b'-- Installing: /home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/install/player/share/player/environment/ament_prefix_path.sh\n'}
+[14.148898] (player) StdoutLine: {'line': b'-- Installing: /home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/install/player/share/player/environment/ament_prefix_path.dsv\n'}
+[14.149881] (player) StdoutLine: {'line': b'-- Installing: /home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/install/player/share/player/environment/path.sh\n'}
+[14.150853] (player) StdoutLine: {'line': b'-- Installing: /home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/install/player/share/player/environment/path.dsv\n'}
+[14.151801] (player) StdoutLine: {'line': b'-- Installing: /home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/install/player/share/player/local_setup.bash\n'}
+[14.152733] (player) StdoutLine: {'line': b'-- Installing: /home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/install/player/share/player/local_setup.sh\n'}
+[14.153809] (player) StdoutLine: {'line': b'-- Installing: /home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/install/player/share/player/local_setup.zsh\n'}
+[14.154878] (player) StdoutLine: {'line': b'-- Installing: /home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/install/player/share/player/local_setup.dsv\n'}
+[14.159580] (player) StdoutLine: {'line': b'-- Installing: /home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/install/player/share/player/package.dsv\n'}
+[14.161354] (player) StdoutLine: {'line': b'-- Installing: /home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/install/player/share/ament_index/resource_index/packages/player\n'}
+[14.162394] (player) StdoutLine: {'line': b'-- Installing: /home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/install/player/share/player/cmake/playerConfig.cmake\n'}
+[14.163463] (player) StdoutLine: {'line': b'-- Installing: /home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/install/player/share/player/cmake/playerConfig-version.cmake\n'}
+[14.166702] (player) StdoutLine: {'line': b'-- Installing: /home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/install/player/share/player/package.xml\n'}
+[14.170631] (player) CommandEnded: {'returncode': 0}
+[14.214661] (-) TimerEvent: {}
+[14.273941] (player) JobEnded: {'identifier': 'player', 'rc': 0}
+[14.276008] (stockfish) JobStarted: {'identifier': 'stockfish'}
+[14.296743] (stockfish) JobProgress: {'identifier': 'stockfish', 'progress': 'cmake'}
+[14.299265] (stockfish) JobProgress: {'identifier': 'stockfish', 'progress': 'build'}
+[14.300555] (stockfish) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/build/stockfish', '--', '-j1', '-l1'], 'cwd': '/home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/build/stockfish', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'ubuntu'), ('SSH_CLIENT', '65.88.88.93 28254 22'), ('XDG_SESSION_TYPE', 'tty'), ('GIT_ASKPASS', '/home/ubuntu/.vscode-server/bin/6261075646f055b99068d3688932416f2346dd3b/extensions/git/dist/askpass.sh'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('BROWSER', '/home/ubuntu/.vscode-server/bin/6261075646f055b99068d3688932416f2346dd3b/bin/helpers/browser.sh'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/ubuntu'), ('OLDPWD', '/home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/src'), ('TERM_PROGRAM_VERSION', '1.73.1'), ('VSCODE_IPC_HOOK_CLI', '/run/user/1000/vscode-ipc-77ce2a5c-3545-43f4-baa6-0c90e4ca9d21.sock'), ('ROS_PYTHON_VERSION', '3'), ('VSCODE_GIT_ASKPASS_MAIN', '/home/ubuntu/.vscode-server/bin/6261075646f055b99068d3688932416f2346dd3b/extensions/git/dist/askpass-main.js'), ('VSCODE_GIT_ASKPASS_NODE', '/home/ubuntu/.vscode-server/bin/6261075646f055b99068d3688932416f2346dd3b/node'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'ubuntu'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('TERM', 'xterm-256color'), ('XDG_SESSION_ID', '1'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/home/ubuntu/.vscode-server/bin/6261075646f055b99068d3688932416f2346dd3b/bin/remote-cli:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('LANG', 'en_US.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1000/vscode-git-d000a47584.sock'), ('TERM_PROGRAM', 'vscode'), ('AMENT_PREFIX_PATH', '/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('PWD', '/home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/build/stockfish'), ('LC_ALL', 'en_US.UTF-8'), ('SSH_CONNECTION', '65.88.88.93 28254 172.31.85.82 22'), ('XDG_DATA_DIRS', '/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/opt/ros/humble')]), 'shell': False}
+[14.314760] (-) TimerEvent: {}
+[14.415160] (stockfish) StdoutLine: {'line': b'-- Found ament_cmake: 1.3.2 (/opt/ros/humble/share/ament_cmake/cmake)\n'}
+[14.415405] (-) TimerEvent: {}
+[14.516633] (-) TimerEvent: {}
+[14.617604] (-) TimerEvent: {}
+[14.718575] (-) TimerEvent: {}
+[14.819499] (-) TimerEvent: {}
+[14.873034] (stockfish) StdoutLine: {'line': b'-- Found rclcpp: 16.0.1 (/opt/ros/humble/share/rclcpp/cmake)\n'}
+[14.919675] (-) TimerEvent: {}
+[15.020679] (-) TimerEvent: {}
+[15.031362] (stockfish) StdoutLine: {'line': b'-- Found rosidl_generator_c: 3.1.3 (/opt/ros/humble/share/rosidl_generator_c/cmake)\n'}
+[15.045385] (stockfish) StdoutLine: {'line': b'-- Found rosidl_adapter: 3.1.3 (/opt/ros/humble/share/rosidl_adapter/cmake)\n'}
+[15.071687] (stockfish) StdoutLine: {'line': b'-- Found rosidl_generator_cpp: 3.1.3 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)\n'}
+[15.120064] (stockfish) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[15.120767] (-) TimerEvent: {}
+[15.174433] (stockfish) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[15.220906] (-) TimerEvent: {}
+[15.321861] (-) TimerEvent: {}
+[15.326627] (stockfish) StdoutLine: {'line': b'-- Found rmw_implementation_cmake: 6.1.0 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)\n'}
+[15.339732] (stockfish) StdoutLine: {'line': b'-- Found rmw_fastrtps_cpp: 6.2.1 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)\n'}
+[15.421988] (-) TimerEvent: {}
+[15.522941] (-) TimerEvent: {}
+[15.532773] (stockfish) StdoutLine: {'line': b'-- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "3.0.2")  \n'}
+[15.556029] (stockfish) StdoutLine: {'line': b'-- Found FastRTPS: /opt/ros/humble/include  \n'}
+[15.596261] (stockfish) StdoutLine: {'line': b"-- Using RMW implementation 'rmw_fastrtps_cpp' as default\n"}
+[15.623070] (-) TimerEvent: {}
+[15.724016] (-) TimerEvent: {}
+[15.824984] (-) TimerEvent: {}
+[15.900553] (stockfish) StdoutLine: {'line': b'-- Found ament_lint_auto: 0.12.4 (/opt/ros/humble/share/ament_lint_auto/cmake)\n'}
+[15.925083] (-) TimerEvent: {}
+[16.026027] (-) TimerEvent: {}
+[16.068161] (stockfish) StdoutLine: {'line': b"-- Added test 'cppcheck' to perform static code analysis on C / C++ code\n"}
+[16.068625] (stockfish) StdoutLine: {'line': b'-- Configured cppcheck include dirs: \n'}
+[16.068824] (stockfish) StdoutLine: {'line': b'-- Configured cppcheck exclude dirs and/or files: \n'}
+[16.071480] (stockfish) StdoutLine: {'line': b"-- Added test 'lint_cmake' to check CMake code style\n"}
+[16.074423] (stockfish) StdoutLine: {'line': b"-- Added test 'uncrustify' to check C / C++ code style\n"}
+[16.074652] (stockfish) StdoutLine: {'line': b'-- Configured uncrustify additional arguments: \n'}
+[16.076180] (stockfish) StdoutLine: {'line': b"-- Added test 'xmllint' to check XML markup files\n"}
+[16.083837] (stockfish) StdoutLine: {'line': b'-- Configuring done\n'}
+[16.120179] (stockfish) StdoutLine: {'line': b'-- Generating done\n'}
+[16.124246] (stockfish) StdoutLine: {'line': b'-- Build files have been written to: /home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/build/stockfish\n'}
+[16.126108] (-) TimerEvent: {}
+[16.160180] (stockfish) StdoutLine: {'line': b'[ 50%] \x1b[32mBuilding CXX object CMakeFiles/talker.dir/src/publisher_member_function.cpp.o\x1b[0m\n'}
+[16.226264] (-) TimerEvent: {}
+[16.327174] (-) TimerEvent: {}
+[16.428104] (-) TimerEvent: {}
+[16.529026] (-) TimerEvent: {}
+[16.631750] (-) TimerEvent: {}
+[16.732868] (-) TimerEvent: {}
+[16.833889] (-) TimerEvent: {}
+[16.934855] (-) TimerEvent: {}
+[17.035792] (-) TimerEvent: {}
+[17.137609] (-) TimerEvent: {}
+[17.238553] (-) TimerEvent: {}
+[17.339469] (-) TimerEvent: {}
+[17.440400] (-) TimerEvent: {}
+[17.541286] (-) TimerEvent: {}
+[17.642235] (-) TimerEvent: {}
+[17.743280] (-) TimerEvent: {}
+[17.844229] (-) TimerEvent: {}
+[17.945154] (-) TimerEvent: {}
+[18.046145] (-) TimerEvent: {}
+[18.147084] (-) TimerEvent: {}
+[18.248038] (-) TimerEvent: {}
+[18.348982] (-) TimerEvent: {}
+[18.449957] (-) TimerEvent: {}
+[18.550912] (-) TimerEvent: {}
+[18.651889] (-) TimerEvent: {}
+[18.752897] (-) TimerEvent: {}
+[18.853828] (-) TimerEvent: {}
+[18.954817] (-) TimerEvent: {}
+[19.055764] (-) TimerEvent: {}
+[19.156731] (-) TimerEvent: {}
+[19.258968] (-) TimerEvent: {}
+[19.359925] (-) TimerEvent: {}
+[19.460864] (-) TimerEvent: {}
+[19.561829] (-) TimerEvent: {}
+[19.662787] (-) TimerEvent: {}
+[19.763752] (-) TimerEvent: {}
+[19.864718] (-) TimerEvent: {}
+[19.968286] (-) TimerEvent: {}
+[20.069414] (-) TimerEvent: {}
+[20.170394] (-) TimerEvent: {}
+[20.271445] (-) TimerEvent: {}
+[20.372646] (-) TimerEvent: {}
+[20.473614] (-) TimerEvent: {}
+[20.574594] (-) TimerEvent: {}
+[20.675527] (-) TimerEvent: {}
+[20.776506] (-) TimerEvent: {}
+[20.877478] (-) TimerEvent: {}
+[20.978446] (-) TimerEvent: {}
+[21.079515] (-) TimerEvent: {}
+[21.180738] (-) TimerEvent: {}
+[21.281682] (-) TimerEvent: {}
+[21.382635] (-) TimerEvent: {}
+[21.483555] (-) TimerEvent: {}
+[21.584456] (-) TimerEvent: {}
+[21.685480] (-) TimerEvent: {}
+[21.786476] (-) TimerEvent: {}
+[21.887475] (-) TimerEvent: {}
+[21.988421] (-) TimerEvent: {}
+[22.089400] (-) TimerEvent: {}
+[22.190331] (-) TimerEvent: {}
+[22.291264] (-) TimerEvent: {}
+[22.392203] (-) TimerEvent: {}
+[22.493111] (-) TimerEvent: {}
+[22.594712] (-) TimerEvent: {}
+[22.695684] (-) TimerEvent: {}
+[22.721645] (stockfish) StdoutLine: {'line': b'[100%] \x1b[32m\x1b[1mLinking CXX executable talker\x1b[0m\n'}
+[22.795814] (-) TimerEvent: {}
+[22.897051] (-) TimerEvent: {}
+[22.939003] (stockfish) StdoutLine: {'line': b'[100%] Built target talker\n'}
+[22.949606] (stockfish) CommandEnded: {'returncode': 0}
+[22.974169] (stockfish) JobProgress: {'identifier': 'stockfish', 'progress': 'install'}
+[22.974227] (stockfish) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/build/stockfish'], 'cwd': '/home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/build/stockfish', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'ubuntu'), ('SSH_CLIENT', '65.88.88.93 28254 22'), ('XDG_SESSION_TYPE', 'tty'), ('GIT_ASKPASS', '/home/ubuntu/.vscode-server/bin/6261075646f055b99068d3688932416f2346dd3b/extensions/git/dist/askpass.sh'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('BROWSER', '/home/ubuntu/.vscode-server/bin/6261075646f055b99068d3688932416f2346dd3b/bin/helpers/browser.sh'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/ubuntu'), ('OLDPWD', '/home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/src'), ('TERM_PROGRAM_VERSION', '1.73.1'), ('VSCODE_IPC_HOOK_CLI', '/run/user/1000/vscode-ipc-77ce2a5c-3545-43f4-baa6-0c90e4ca9d21.sock'), ('ROS_PYTHON_VERSION', '3'), ('VSCODE_GIT_ASKPASS_MAIN', '/home/ubuntu/.vscode-server/bin/6261075646f055b99068d3688932416f2346dd3b/extensions/git/dist/askpass-main.js'), ('VSCODE_GIT_ASKPASS_NODE', '/home/ubuntu/.vscode-server/bin/6261075646f055b99068d3688932416f2346dd3b/node'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'ubuntu'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('TERM', 'xterm-256color'), ('XDG_SESSION_ID', '1'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/home/ubuntu/.vscode-server/bin/6261075646f055b99068d3688932416f2346dd3b/bin/remote-cli:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('LANG', 'en_US.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1000/vscode-git-d000a47584.sock'), ('TERM_PROGRAM', 'vscode'), ('AMENT_PREFIX_PATH', '/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('PWD', '/home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/build/stockfish'), ('LC_ALL', 'en_US.UTF-8'), ('SSH_CONNECTION', '65.88.88.93 28254 172.31.85.82 22'), ('XDG_DATA_DIRS', '/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/opt/ros/humble')]), 'shell': False}
+[22.981873] (stockfish) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[22.982984] (stockfish) StdoutLine: {'line': b'-- Installing: /home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/install/stockfish/lib/stockfish/talker\n'}
+[22.984656] (stockfish) StdoutLine: {'line': b'-- Set runtime path of "/home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/install/stockfish/lib/stockfish/talker" to ""\n'}
+[22.985582] (stockfish) StdoutLine: {'line': b'-- Installing: /home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/install/stockfish/share/ament_index/resource_index/package_run_dependencies/stockfish\n'}
+[22.986688] (stockfish) StdoutLine: {'line': b'-- Installing: /home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/install/stockfish/share/ament_index/resource_index/parent_prefix_path/stockfish\n'}
+[22.988412] (stockfish) StdoutLine: {'line': b'-- Up-to-date: /home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/install/stockfish/share/stockfish/environment/ament_prefix_path.sh\n'}
+[22.988706] (stockfish) StdoutLine: {'line': b'-- Installing: /home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/install/stockfish/share/stockfish/environment/ament_prefix_path.dsv\n'}
+[22.989103] (stockfish) StdoutLine: {'line': b'-- Up-to-date: /home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/install/stockfish/share/stockfish/environment/path.sh\n'}
+[22.989419] (stockfish) StdoutLine: {'line': b'-- Installing: /home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/install/stockfish/share/stockfish/environment/path.dsv\n'}
+[22.989802] (stockfish) StdoutLine: {'line': b'-- Up-to-date: /home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/install/stockfish/share/stockfish/local_setup.bash\n'}
+[22.990061] (stockfish) StdoutLine: {'line': b'-- Up-to-date: /home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/install/stockfish/share/stockfish/local_setup.sh\n'}
+[22.990312] (stockfish) StdoutLine: {'line': b'-- Up-to-date: /home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/install/stockfish/share/stockfish/local_setup.zsh\n'}
+[22.990568] (stockfish) StdoutLine: {'line': b'-- Installing: /home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/install/stockfish/share/stockfish/local_setup.dsv\n'}
+[22.990975] (stockfish) StdoutLine: {'line': b'-- Installing: /home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/install/stockfish/share/stockfish/package.dsv\n'}
+[22.992083] (stockfish) StdoutLine: {'line': b'-- Up-to-date: /home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/install/stockfish/share/ament_index/resource_index/packages/stockfish\n'}
+[22.992966] (stockfish) StdoutLine: {'line': b'-- Up-to-date: /home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/install/stockfish/share/stockfish/cmake/stockfishConfig.cmake\n'}
+[22.993262] (stockfish) StdoutLine: {'line': b'-- Up-to-date: /home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/install/stockfish/share/stockfish/cmake/stockfishConfig-version.cmake\n'}
+[22.993561] (stockfish) StdoutLine: {'line': b'-- Installing: /home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/install/stockfish/share/stockfish/package.xml\n'}
+[22.998036] (stockfish) CommandEnded: {'returncode': 0}
+[22.998576] (-) TimerEvent: {}
+[23.049905] (stockfish) JobEnded: {'identifier': 'stockfish', 'rc': 0}
+[23.052138] (-) EventReactorShutdown: {}

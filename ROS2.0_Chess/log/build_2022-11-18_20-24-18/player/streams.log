@@ -1,0 +1,25 @@
+[0.028s] Invoking command in '/home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/build/player': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/build/player -- -j1 -l1
+[0.278s] [ 50%] [32mBuilding CXX object CMakeFiles/listener.dir/src/subscriber_member_function.cpp.o[0m
+[13.366s] [100%] [32m[1mLinking CXX executable listener[0m
+[14.033s] [100%] Built target listener
+[14.064s] Invoked command in '/home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/build/player' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/build/player -- -j1 -l1
+[14.109s] Invoking command in '/home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/build/player': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/build/player
+[14.122s] -- Install configuration: ""
+[14.126s] -- Installing: /home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/install/player/lib/player/listener
+[14.131s] -- Set runtime path of "/home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/install/player/lib/player/listener" to ""
+[14.136s] -- Installing: /home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/install/player/share/ament_index/resource_index/package_run_dependencies/player
+[14.139s] -- Installing: /home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/install/player/share/ament_index/resource_index/parent_prefix_path/player
+[14.145s] -- Installing: /home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/install/player/share/player/environment/ament_prefix_path.sh
+[14.147s] -- Installing: /home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/install/player/share/player/environment/ament_prefix_path.dsv
+[14.148s] -- Installing: /home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/install/player/share/player/environment/path.sh
+[14.149s] -- Installing: /home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/install/player/share/player/environment/path.dsv
+[14.150s] -- Installing: /home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/install/player/share/player/local_setup.bash
+[14.151s] -- Installing: /home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/install/player/share/player/local_setup.sh
+[14.152s] -- Installing: /home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/install/player/share/player/local_setup.zsh
+[14.153s] -- Installing: /home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/install/player/share/player/local_setup.dsv
+[14.158s] -- Installing: /home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/install/player/share/player/package.dsv
+[14.160s] -- Installing: /home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/install/player/share/ament_index/resource_index/packages/player
+[14.161s] -- Installing: /home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/install/player/share/player/cmake/playerConfig.cmake
+[14.162s] -- Installing: /home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/install/player/share/player/cmake/playerConfig-version.cmake
+[14.165s] -- Installing: /home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/install/player/share/player/package.xml
+[14.169s] Invoked command in '/home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/build/player' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/build/player

@@ -1,4 +1,4 @@
-/home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/install/stockfish/lib/stockfish/stockfish_node
+/home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/install/stockfish/lib/stockfish/talker
 /home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/install/stockfish/share/ament_index/resource_index/package_run_dependencies/stockfish
 /home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/install/stockfish/share/ament_index/resource_index/parent_prefix_path/stockfish
 /home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/install/stockfish/share/stockfish/environment/ament_prefix_path.sh

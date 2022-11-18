@@ -1,0 +1,10 @@
+[31mCMake Error at CMakeLists.txt:21 (target_include_directories):
+  Cannot specify include directories for target "chess_player" which is not
+  built by this project.
+
+[0m
+[31mCMake Error at CMakeLists.txt:24 (target_compile_features):
+  Cannot specify compile features for target "chess_player" which is not
+  built by this project.
+
+[0m

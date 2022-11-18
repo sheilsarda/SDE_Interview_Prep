@@ -198,41 +198,41 @@ stockfish_uninstall/fast:
 .PHONY : stockfish_uninstall/fast
 
 #=============================================================================
-# Target rules for targets named stockfish_node
+# Target rules for targets named talker
 
 # Build rule for target.
-stockfish_node: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 stockfish_node
-.PHONY : stockfish_node
+talker: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 talker
+.PHONY : talker
 
 # fast build rule for target.
-stockfish_node/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/stockfish_node.dir/build.make CMakeFiles/stockfish_node.dir/build
-.PHONY : stockfish_node/fast
+talker/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/talker.dir/build.make CMakeFiles/talker.dir/build
+.PHONY : talker/fast
 
-src/stockfish_node.o: src/stockfish_node.cpp.o
-.PHONY : src/stockfish_node.o
+src/publisher_member_function.o: src/publisher_member_function.cpp.o
+.PHONY : src/publisher_member_function.o
 
 # target to build an object file
-src/stockfish_node.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/stockfish_node.dir/build.make CMakeFiles/stockfish_node.dir/src/stockfish_node.cpp.o
-.PHONY : src/stockfish_node.cpp.o
+src/publisher_member_function.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/talker.dir/build.make CMakeFiles/talker.dir/src/publisher_member_function.cpp.o
+.PHONY : src/publisher_member_function.cpp.o
 
-src/stockfish_node.i: src/stockfish_node.cpp.i
-.PHONY : src/stockfish_node.i
+src/publisher_member_function.i: src/publisher_member_function.cpp.i
+.PHONY : src/publisher_member_function.i
 
 # target to preprocess a source file
-src/stockfish_node.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/stockfish_node.dir/build.make CMakeFiles/stockfish_node.dir/src/stockfish_node.cpp.i
-.PHONY : src/stockfish_node.cpp.i
+src/publisher_member_function.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/talker.dir/build.make CMakeFiles/talker.dir/src/publisher_member_function.cpp.i
+.PHONY : src/publisher_member_function.cpp.i
 
-src/stockfish_node.s: src/stockfish_node.cpp.s
-.PHONY : src/stockfish_node.s
+src/publisher_member_function.s: src/publisher_member_function.cpp.s
+.PHONY : src/publisher_member_function.s
 
 # target to generate assembly for a file
-src/stockfish_node.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/stockfish_node.dir/build.make CMakeFiles/stockfish_node.dir/src/stockfish_node.cpp.s
-.PHONY : src/stockfish_node.cpp.s
+src/publisher_member_function.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/talker.dir/build.make CMakeFiles/talker.dir/src/publisher_member_function.cpp.s
+.PHONY : src/publisher_member_function.cpp.s
 
 # Help Target
 help:
@@ -249,10 +249,10 @@ help:
 	@echo "... test"
 	@echo "... stockfish_uninstall"
 	@echo "... uninstall"
-	@echo "... stockfish_node"
-	@echo "... src/stockfish_node.o"
-	@echo "... src/stockfish_node.i"
-	@echo "... src/stockfish_node.s"
+	@echo "... talker"
+	@echo "... src/publisher_member_function.o"
+	@echo "... src/publisher_member_function.i"
+	@echo "... src/publisher_member_function.s"
 .PHONY : help
 
 
