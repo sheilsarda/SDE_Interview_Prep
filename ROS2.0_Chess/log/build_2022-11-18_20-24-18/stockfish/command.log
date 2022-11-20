@@ -1,4 +1,0 @@
-Invoking command in '/home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/build/stockfish': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/build/stockfish -- -j1 -l1
-Invoked command in '/home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/build/stockfish' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/build/stockfish -- -j1 -l1
-Invoking command in '/home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/build/stockfish': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/build/stockfish
-Invoked command in '/home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/build/stockfish' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/ubuntu/SDE_Interview_Prep/ROS2.0_Chess/build/stockfish

@@ -104,3 +104,7 @@ Be mindful that your code will be reviewed to evaluate your proficiency with ROS
 If Stockfish seems to make an illegal move, it is likely that you have a bug in your model of the game state.
 
 A solution in Python is possible in under 250 lines. This is not a limit.
+
+## Log
+ - As it stands, this program has 2 channels: Stockfish (publisher) and player (listener); both are created per the ROS2 tutorial 
+ - Does not build well on AWS free tier (t2 micro) due to hardware constraints

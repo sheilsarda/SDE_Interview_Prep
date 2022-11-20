@@ -16,6 +16,8 @@
 #include <functional>
 #include <memory>
 #include <string>
+#include <stdio.h>
+#include <stdlib.h>
 
 #include "rclcpp/rclcpp.hpp"
 #include "std_msgs/msg/string.hpp"
@@ -31,9 +33,10 @@ public:
   MinimalPublisher()
   : Node("minimal_publisher"), count_(0)
   {
+    
     publisher_ = this->create_publisher<std_msgs::msg::String>("topic", 10);
     timer_ = this->create_wall_timer(
-      500ms, std::bind(&MinimalPublisher::timer_callback, this));
+      2000ms, std::bind(&MinimalPublisher::timer_callback, this));
   }
 
 private:
@@ -52,6 +55,8 @@ private:
 int main(int argc, char * argv[])
 {
   rclcpp::init(argc, argv);
+  // rclpp::spin(system("stockfish_starter.sh"))
+  // system("stockfish_starter.sh");
   rclcpp::spin(std::make_shared<MinimalPublisher>());
   rclcpp::shutdown();
   return 0;
