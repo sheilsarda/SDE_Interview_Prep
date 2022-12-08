@@ -15,7 +15,7 @@ class GarageDoor {
 
     private:
         DoorState currentState, prevState;
-        uint16_t actionCounter, currentTime;
+        unsigned int actionCounter, currentTime;
 
     public:
         GarageDoor();

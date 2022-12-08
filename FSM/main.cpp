@@ -2,7 +2,7 @@
 #include <iostream>
 #include <string>
 
-GarageDoor::GarageDoor():currentState(Closed), prevState(Closed), actionCounter(0) {
+GarageDoor::GarageDoor():currentState(Closed), prevState(Closed), actionCounter(0), currentTime(0) {
 }
 
 GarageDoor::DoorState GarageDoor::doorTriggered(){
@@ -40,29 +40,31 @@ GarageDoor::DoorState GarageDoor::safetyTrigger(){
 }
 
 void GarageDoor::timerCompare(){
+    auto timeAfterAction = GarageDoor::actionCounter + GarageDoor::currentTime;
+
     switch(GarageDoor::currentState){
         case Start_Opening:
-            if(GarageDoor::actionCounter + doorOpenTime > GarageDoor::currentTime){
+            
+            if(timeAfterAction > currentTime){
                 GarageDoor::currentState    = Open;
                 GarageDoor::actionCounter   = 0;
             } 
             break;
         case Start_Closing:
-            if(GarageDoor::actionCounter + doorCloseTime > GarageDoor::currentTime){
-                GarageDoor::currentState    = Close;
+            if(timeAfterAction > currentTime){
+                GarageDoor::currentState    = Closed;
                 GarageDoor::actionCounter   = 0;
             }
     }
 }
 
-
 int main(){
     std::cout << "Hello World\r\n";
-    std::cout << "Please press any key to trigger garage door remote; "exit" to exit loop\r\n";
+    std::cout << "Please press any key to trigger garage door remote; \"exit\" to exit loop\r\n";
     GarageDoor door;
     
     std::string input;
-    for(;;;){
+    for(;;){
         door.timerCompare();
         std::getline(std::cin, input);
         std::cout << "Door Triggered\r\n";
