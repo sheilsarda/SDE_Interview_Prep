@@ -13,4 +13,6 @@ GarageDoor::DoorState GarageDoor::safetyTrigger(){
 
 int main(){
     std::cout << "Hello World\r\n";
+    GarageDoor door;
+    std::cout << door.doorTriggered() << "\r\n";
 }
