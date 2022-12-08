@@ -1,17 +1,22 @@
 #ifndef GarageDoorClass
 #define GarageDoorClass
 
-enum DoorState {Open, Closed, Start_Opening, Start_Closing}
-
 class GarageDoor {
+    enum DoorState{
+        Closed=0, 
+        Open=1, 
+        Start_Opening=2, 
+        Start_Closing=3
+    };
+
     private:
-        DoorState currentState;
+        DoorState currentState, prevState;
 
     public:
         GarageDoor();
-        doorTriggered();
-        safetyTrigger();
+        DoorState doorTriggered();
+        DoorState safetyTrigger();
 
-}
+};
 
 #endif /* GarageDoorClass */
