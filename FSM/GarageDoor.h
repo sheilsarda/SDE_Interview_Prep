@@ -1,10 +1,12 @@
 #ifndef GarageDoorClass
 #define GarageDoorClass
 
-#define doorCloseTime   15000000; // microsecs to close door
-#define doorOpenTime    15000000; // microsecs to open door
+#define doorCloseTime   5; // secs to close door
+#define doorOpenTime    5; // secs to open door
 
+#include <iostream>
 #include <string>
+#include <chrono>
 using namespace std;
 
 class GarageDoor {

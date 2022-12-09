@@ -1,7 +1,5 @@
 #include "GarageDoor.h"
-#include <iostream>
-#include <string>
-#include <chrono>
+
 
 using namespace std;
 
@@ -44,20 +42,22 @@ GarageDoor::DoorState GarageDoor::safetyTrigger(){
 }
 
 void GarageDoor::timerCompare(){
-    auto timeAfterAction = literals::"15000 ms" + GarageDoor::currentTime;
-
+    time_t timeAfterAction;
     switch(GarageDoor::currentState){
         case Start_Opening:
-            
+            timeAfterAction = GarageDoor::currentTime + doorOpenTime;
             if(timeAfterAction > currentTime){
                 GarageDoor::currentState    = Open;
                 GarageDoor::actionCounter   = 0;
+                printState(currentState);
             } 
             break;
         case Start_Closing:
+            timeAfterAction = GarageDoor::currentTime + doorCloseTime;
             if(timeAfterAction > currentTime){
                 GarageDoor::currentState    = Closed;
                 GarageDoor::actionCounter   = 0;
+                printState(currentState);
             }
     }
 }
