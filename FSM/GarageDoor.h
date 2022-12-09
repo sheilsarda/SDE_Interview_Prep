@@ -1,8 +1,8 @@
 #ifndef GarageDoorClass
 #define GarageDoorClass
 
-#define doorCloseTime   15000; // milliseconds to close door
-#define doorOpenTime    15000; // milliseconds to open door
+#define doorCloseTime   15000000; // microsecs to close door
+#define doorOpenTime    15000000; // microsecs to open door
 
 #include <string>
 using namespace std;
@@ -17,10 +17,11 @@ class GarageDoor {
     };
 
     private:
-        DoorState currentState, prevState;
-        unsigned int actionCounter, currentTime;
+        volatile DoorState currentState, prevState;
+        volatile time_t actionCounter;
 
     public:
+        volatile time_t currentTime;
         GarageDoor();
         DoorState doorTriggered();
         DoorState safetyTrigger();

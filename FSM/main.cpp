@@ -1,6 +1,7 @@
 #include "GarageDoor.h"
 #include <iostream>
 #include <string>
+#include <chrono>
 
 using namespace std;
 
@@ -77,8 +78,10 @@ int main(){
     GarageDoor door;
     
     string input;
+
     for(;;){
-        door.timerCompare();
+        door.currentTime = chrono::system_clock::to_time_t(chrono::system_clock::now());
+        // door.timerCompare();
         getline(cin, input);
         cout << "Door Triggered\r\n";
         cout << door.doorTriggered() << "\r\n";
