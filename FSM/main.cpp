@@ -44,7 +44,7 @@ GarageDoor::DoorState GarageDoor::safetyTrigger(){
 }
 
 void GarageDoor::timerCompare(){
-    auto timeAfterAction = GarageDoor::actionCounter + GarageDoor::currentTime;
+    auto timeAfterAction = literals::"15000 ms" + GarageDoor::currentTime;
 
     switch(GarageDoor::currentState){
         case Start_Opening:
@@ -81,7 +81,7 @@ int main(){
 
     for(;;){
         door.currentTime = chrono::system_clock::to_time_t(chrono::system_clock::now());
-        // door.timerCompare();
+        door.timerCompare();
         getline(cin, input);
         cout << "Door Triggered\r\n";
         cout << door.doorTriggered() << "\r\n";
