@@ -1,6 +1,5 @@
 #include "GarageDoor.h"
 
-
 using namespace std;
 
 GarageDoor::GarageDoor():currentState(Closed), prevState(Closed), actionCounter(0), currentTime(0) {
@@ -46,18 +45,18 @@ void GarageDoor::timerCompare(){
     switch(GarageDoor::currentState){
         case Start_Opening:
             timeAfterAction = GarageDoor::currentTime + doorOpenTime;
-            if(timeAfterAction > currentTime){
+            if(timeAfterAction <= currentTime){
                 GarageDoor::currentState    = Open;
                 GarageDoor::actionCounter   = 0;
-                printState(currentState);
+                cout << printState(currentState) << "\r\n";
             } 
             break;
         case Start_Closing:
             timeAfterAction = GarageDoor::currentTime + doorCloseTime;
-            if(timeAfterAction > currentTime){
+            if(timeAfterAction <= currentTime){
                 GarageDoor::currentState    = Closed;
                 GarageDoor::actionCounter   = 0;
-                printState(currentState);
+                cout << printState(currentState) << "\r\n";
             }
     }
 }
@@ -83,7 +82,7 @@ int main(){
         door.currentTime = chrono::system_clock::to_time_t(chrono::system_clock::now());
         door.timerCompare();
         getline(cin, input);
-        cout << "Door Triggered\r\n";
+        cout << "Door Triggered at " << door.currentTime << "seconds \r\n";
         cout << door.doorTriggered() << "\r\n";
         if(input == "exit") break;
     }
