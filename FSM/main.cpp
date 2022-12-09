@@ -79,7 +79,7 @@ int main(){
 
     cout << "Hello World\r\n";
     cout << "Please press any key to trigger garage door remote; \"exit\"" <<
-                "to exit loop\r\n";
+                " to exit loop\r\n";
     GarageDoor door;
     string input;
 
@@ -88,7 +88,7 @@ int main(){
             chrono::system_clock::now());
         door.timerCompare();
         getline(cin, input);
-        if(input.compare("\n")) continue;
+        if(input.compare("\n") == NULL) cout << "Empty input detected";
         else {
             cout << "Door Triggered at " << door.currentTime << "seconds \r\n";
             cout << door.doorTriggered() << "\r\n";
