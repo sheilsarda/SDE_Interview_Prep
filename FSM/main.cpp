@@ -2,6 +2,8 @@
 #include <iostream>
 #include <string>
 
+using namespace std;
+
 GarageDoor::GarageDoor():currentState(Closed), prevState(Closed), actionCounter(0), currentTime(0) {
 }
 
@@ -29,10 +31,11 @@ GarageDoor::DoorState GarageDoor::doorTriggered(){
             break;            
         case Freeze:
             if(GarageDoor::prevState == Start_Opening) GarageDoor::currentState = Start_Closing;
-            else GarageDoor::currentState = Start_Opening;
-            GarageDoor::actionCounter   = GarageDoor::currentTime;
-            GarageDoor::prevState       = Freeze;
+            else GarageDoor::currentState   = Start_Opening;
+            GarageDoor::actionCounter       = GarageDoor::currentTime;
+            GarageDoor::prevState           = Freeze;
     }
+    cout << printState(GarageDoor::currentState) << "\r\n";
     return GarageDoor::currentState;
 }
 GarageDoor::DoorState GarageDoor::safetyTrigger(){
@@ -58,18 +61,27 @@ void GarageDoor::timerCompare(){
     }
 }
 
+string GarageDoor::printState(DoorState state){
+    switch(state){
+        case Closed: return "Closed";
+        case Open: return "Open"; 
+        case Start_Opening: return "Starting to Open"; 
+        case Start_Closing: return "Starting to Close"; 
+        default: return "Freeze"; 
+    }
+}
+
 int main(){
-    std::cout << "Hello World\r\n";
-    std::cout << "Please press any key to trigger garage door remote; \"exit\" to exit loop\r\n";
+    cout << "Hello World\r\n";
+    cout << "Please press any key to trigger garage door remote; \"exit\" to exit loop\r\n";
     GarageDoor door;
     
-    std::string input;
+    string input;
     for(;;){
         door.timerCompare();
-        std::getline(std::cin, input);
-        std::cout << "Door Triggered\r\n";
-        std::cout << door.doorTriggered() << "\r\n";
+        getline(cin, input);
+        cout << "Door Triggered\r\n";
+        cout << door.doorTriggered() << "\r\n";
         if(input == "exit") break;
-
     }
 }

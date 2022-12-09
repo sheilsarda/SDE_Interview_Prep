@@ -2,7 +2,7 @@ CFLAGS=-g -Wall
 CC=g++
 SRCS= main.cpp
 OBJS= main.o
-LDFLAGS=-std=c++17
+LDFLAGS=
 LIBS=
 
 all:    garageDoor

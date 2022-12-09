@@ -4,6 +4,9 @@
 #define doorCloseTime   15000; // milliseconds to close door
 #define doorOpenTime    15000; // milliseconds to open door
 
+#include <string>
+using namespace std;
+
 class GarageDoor {
     enum DoorState{
         Closed=0, 
@@ -22,7 +25,7 @@ class GarageDoor {
         DoorState doorTriggered();
         DoorState safetyTrigger();
         void timerCompare();
-
+        string printState(DoorState);
 };
 
 #endif /* GarageDoorClass */
