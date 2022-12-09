@@ -7,6 +7,8 @@
 #include <iostream>
 #include <string>
 #include <chrono>
+#include <fcntl.h>
+
 using namespace std;
 
 class GarageDoor {

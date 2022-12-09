@@ -72,6 +72,9 @@ string GarageDoor::printState(DoorState state){
 }
 
 int main(){
+    int flags = fcntl(0, F_GETFL, 0);
+    fcntl(0, F_SETFL, flags | O_NONBLOCK);
+
     cout << "Hello World\r\n";
     cout << "Please press any key to trigger garage door remote; \"exit\" to exit loop\r\n";
     GarageDoor door;
@@ -81,9 +84,10 @@ int main(){
     for(;;){
         door.currentTime = chrono::system_clock::to_time_t(chrono::system_clock::now());
         door.timerCompare();
-        getline(cin, input);
-        cout << "Door Triggered at " << door.currentTime << "seconds \r\n";
-        cout << door.doorTriggered() << "\r\n";
-        if(input == "exit") break;
+        if(getline(cin, input)){
+            cout << "Door Triggered at " << door.currentTime << "seconds \r\n";
+            cout << door.doorTriggered() << "\r\n";
+            if(input == "exit") break;
+        }
     }
 }
