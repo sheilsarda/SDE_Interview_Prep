@@ -1,6 +1,7 @@
 #include "GarageDoor.h"
 
 using namespace std;
+int charsInBuffer;
 
 GarageDoor::GarageDoor():currentState(Closed), prevState(Closed), 
     actionCounter(0), currentTime(0) {
@@ -46,7 +47,7 @@ void GarageDoor::timerCompare(){
     time_t timeAfterAction;
     switch(GarageDoor::currentState){
         case Start_Opening:
-            timeAfterAction = GarageDoor::currentTime + doorOpenTime;
+            timeAfterAction = GarageDoor::actionCounter + doorOpenTime;
             if(timeAfterAction <= currentTime){
                 GarageDoor::currentState    = Open;
                 GarageDoor::actionCounter   = 0;
@@ -54,7 +55,7 @@ void GarageDoor::timerCompare(){
             } 
             break;
         case Start_Closing:
-            timeAfterAction = GarageDoor::currentTime + doorCloseTime;
+            timeAfterAction = GarageDoor::actionCounter + doorCloseTime;
             if(timeAfterAction <= currentTime){
                 GarageDoor::currentState    = Closed;
                 GarageDoor::actionCounter   = 0;
@@ -74,25 +75,26 @@ string GarageDoor::printState(DoorState state){
 }
 
 int main(){
-    int flags = fcntl(0, F_GETFL, 0);
-    fcntl(0, F_SETFL, flags | O_NONBLOCK);
+    // int flags = fcntl(0, F_GETFL, 0);
+    // fcntl(0, F_SETFL, flags | O_NONBLOCK);
 
     cout << "Hello World\r\n";
     cout << "Please press any key to trigger garage door remote; \"exit\"" <<
                 " to exit loop\r\n";
     GarageDoor door;
-    string input;
+    string input = "";
 
     for(;;){
         door.currentTime = chrono::system_clock::to_time_t(
             chrono::system_clock::now());
         door.timerCompare();
-        getline(cin, input);
-        if(input.compare("\n") == NULL) cout << "Empty input detected";
-        else {
+        charsInBuffer = cin.rdbuf()->in_avail();
+        if (charsInBuffer >= 0) {
+            getline(cin, input);
+            if(input == "exit") break;
+            charsInBuffer = 0;
             cout << "Door Triggered at " << door.currentTime << "seconds \r\n";
             cout << door.doorTriggered() << "\r\n";
-            if(input == "exit") break;
         }
     }
 }
