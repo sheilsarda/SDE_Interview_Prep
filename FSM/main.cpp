@@ -11,8 +11,7 @@ class AsyncGetline {
             sendOverNextLine = true;
             continueGettingInput = true;
 
-            
-            thread([&]() {
+            thread([&]{
                 //Start a new detached thread to call getline over and over again and retrieve new input to be processed.
                 string synchronousInput;
                 char nextCharacter;
