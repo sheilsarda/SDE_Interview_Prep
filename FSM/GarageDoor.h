@@ -8,6 +8,10 @@
 #include <string>
 #include <chrono>
 #include <fcntl.h>
+#include <iostream>
+#include <thread>
+#include <mutex>
+#include <atomic>
 
 using namespace std;
 
