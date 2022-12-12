@@ -3,7 +3,7 @@ CC=g++
 SRCS= main.cpp
 OBJS= main.o
 LDFLAGS=
-LIBS=
+LIBS= -pthread
 
 all:    garageDoor
 
