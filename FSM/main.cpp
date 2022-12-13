@@ -58,7 +58,7 @@ class AsyncGetline {
                 inputLock.unlock();
 
                 //Also, signal to the getline thread that it can continue sending over the next line of input, if available.
-                sendOverNextLine = true;
+                sendOverNextLine = true; cout << returnInput << "\r\n";
                 return returnInput;
             }
         }
@@ -112,7 +112,7 @@ void GarageDoor::timerCompare(){
     time_t timeAfterAction;
     switch(GarageDoor::currentState){
         case Start_Opening:
-            timeAfterAction = ((int) GarageDoor::actionCounter) + 5000;
+            timeAfterAction = ((int) GarageDoor::actionCounter) + 5;
             if(timeAfterAction <= currentTime){
                 GarageDoor::currentState    = Open;
                 GarageDoor::actionCounter   = 0;
@@ -140,7 +140,6 @@ string GarageDoor::printState(DoorState state){
 }
 
 int main(){
-
     cout << "Hello World\r\n";
     cout << "Please press any key to trigger garage door remote; \"exit\"" <<
                 " to exit loop\r\n";
@@ -155,7 +154,6 @@ int main(){
         
         input = getLineObj.GetLine();
         if (!input.empty()) {
-            getline(cin, input);
             cout << "Door Triggered at " << door.currentTime << "seconds \r\n";
             cout << door.doorTriggered() << "\r\n";
         }
