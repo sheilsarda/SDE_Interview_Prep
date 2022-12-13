@@ -32,6 +32,7 @@ class GarageDoor {
     public:
         volatile time_t currentTime;
         GarageDoor();
+        ~GarageDoor();
         DoorState doorTriggered();
         DoorState safetyTrigger();
         void timerCompare();

@@ -2,76 +2,81 @@
 
 using namespace std;
 
-// https://stackoverflow.com/questions/16592357/non-blocking-stdgetline-exit-if-no-input
-//AsyncGetline is a class that allows for asynchronous CLI getline-style input
-class AsyncGetline {
-    public:
-        AsyncGetline() {
-            input = "";
-            sendOverNextLine = true;
-            continueGettingInput = true;
+class GetLineThread {
+    private:
+        atomic<bool> fetchingInput, sendOverInput; 
+        string input;
+        mutex inputLock; // Mutex to permit only one thread to acceses input (processor vs. fetcher)           
 
-            //Start a new detached thread to call getline over and over again and retrieve new input to be processed.
+    public:
+        GetLineThread() {
+            inputString = "";
+            sendOverInput = true;
+            fetchingInput = true;
+            
             thread([&](){
-                string synchronousInput;
-                char nextCharacter;
+                string inputBuffer; 
+                char charReceived;
+                
                 do {
-                    //Get the asynchronous input lines.
-                    synchronousInput = "";
-                    while (continueGettingInput) {
-                        while (cin.peek() == EOF) this_thread::yield(); 
-                        nextCharacter = cin.get();
-                        if (nextCharacter == '\n') break;
-                        synchronousInput += nextCharacter;
+                    inputBuffer = "";
+                    while (fetchingInput) {
+                        // Non-blocking wait
+                        while (cin.peek() == NULL) this_thread::yield(); 
+                        charReceived = cin.get();
+                        if (charReceived == '\n') break;
+                        inputBuffer += charReceived;
                     }
 
-                    //Wait until the processing thread is ready to process the next line.
-                    if (!continueGettingInput) break;
-                    while (continueGettingInput && !sendOverNextLine) this_thread::yield();
-                    if (!continueGettingInput) break;
+                    // Non-blocking wait for processing thread to free up to receive
+                    if (!fetchingInput) break;
+                    while (fetchingInput && !sendOverInput) this_thread::yield();
+                    if (!fetchingInput) break;
 
-                    //Safely send the next line of input over for usage in the processing thread.
-                    inputLock.lock(); input = synchronousInput; inputLock.unlock();
+                    // Safely sync thread input with processor input string
+                    inputLock.lock(); 
+                    input = synchronousInput; 
+                    inputLock.unlock();
 
-                    //Signal that although this thread will read in the next line, it will not send it over until the processing thread is ready.
-                    sendOverNextLine = false;
-                }
-                while (continueGettingInput && input != "exit");
+                    // Don't send next line until the processing thread is ready
+                    sendOverInput = false;
+
+                } while (fetchingInput && input != "exit");
+
             }).detach();
         }
 
         ~AsyncGetline() {
-            continueGettingInput = false; //Stop the getline thread.
+            continueGettingInput = false; // Stop thread worker
         }
 
-        //Get the next line of input if there is any; if not, sleep for a millisecond and return an empty string.
+        // Get next line if any; else, return empty string.
         string GetLine() {
-            if (sendOverNextLine) {
-                //Don't consume the CPU while waiting for input; this_thread::yield() would still consume a lot of CPU, so sleep must be used.
-                this_thread::sleep_for(chrono::milliseconds(1));
-                return "";
-            }
+            if (sendOverInput) return "";
             else {
-                //Retrieve the next line of input from the getline thread and store it for return.
+                // Retrieve next line from fetcher thread and store for return
                 inputLock.lock();
                 string returnInput = input;
                 inputLock.unlock();
 
-                //Also, signal to the getline thread that it can continue sending over the next line of input, if available.
+                // Signal to fetcher that it can continue sending over next line if available
                 sendOverNextLine = true; cout << returnInput << "\r\n";
                 return returnInput;
             }
         }
-    private:
-        atomic<bool> continueGettingInput, sendOverNextLine; //Cross-thread-safe booleans
-        mutex inputLock;         //Mutex lock to ensure only one thread (processing vs. getline) is accessing input string 
-        string input;
+    
 };
 
+/// @brief Destructor
+GarageDoor::~GarageDoor() { }
+
+/// @brief Constructor using initializer list
 GarageDoor::GarageDoor():currentState(Closed), prevState(Closed), 
     actionCounter(0), currentTime(0) {
 }
 
+/// @brief update FSM when door is triggered
+/// @return current state after update
 GarageDoor::DoorState GarageDoor::doorTriggered(){
     switch(GarageDoor::currentState){
         case Closed: 
@@ -108,6 +113,7 @@ GarageDoor::DoorState GarageDoor::safetyTrigger(){
     return GarageDoor::currentState;
 }
 
+/// @brief update state if door has finished opening or closing
 void GarageDoor::timerCompare(){
     time_t timeAfterAction;
     switch(GarageDoor::currentState){
@@ -129,6 +135,9 @@ void GarageDoor::timerCompare(){
     }
 }
 
+/// @brief converts enum of door state to a string that can be printed on cout
+/// @param state : current garage door state
+/// @return returns string representation of state
 string GarageDoor::printState(DoorState state){
     switch(state){
         case Closed: return "Closed";
