@@ -49,7 +49,7 @@ class GetLineThread {
         GetLineThread();
         ~GetLineThread();
         string GetLine();
-}
+};
 
 
 #endif /* GarageDoorClass */

@@ -4,7 +4,7 @@ using namespace std;
 
 /// @brief Constructor which initializes new thread 
 GetLineThread::GetLineThread() {
-    inputString = "";
+    input = "";
     sendOverInput = true;
     fetchingInput = true;
     
@@ -16,7 +16,7 @@ GetLineThread::GetLineThread() {
             inputBuffer = "";
             while (fetchingInput) {
                 // Non-blocking wait
-                while (cin.peek() == NULL) this_thread::yield(); 
+                while (cin.peek() == EOF) this_thread::yield(); 
                 charReceived = cin.get();
                 if (charReceived == '\n') break;
                 inputBuffer += charReceived;
@@ -29,7 +29,7 @@ GetLineThread::GetLineThread() {
 
             // Safely sync thread input with processor input string
             inputLock.lock(); 
-            input = synchronousInput; 
+            input = inputBuffer; 
             inputLock.unlock();
 
             // Don't send next line until the processing thread is ready
@@ -42,7 +42,7 @@ GetLineThread::GetLineThread() {
 
 /// @brief Destructor; stops fetcher thread
 GetLineThread::~GetLineThread() {
-    continueGettingInput = false; 
+    fetchingInput = false; 
 }
 
 /// @brief Get next line 
@@ -56,7 +56,8 @@ string GetLineThread::GetLine() {
         inputLock.unlock();
 
         // Signal to fetcher that it can continue sending over next line if available
-        sendOverNextLine = true; cout << returnInput << "\r\n";
+        sendOverInput = true; 
+        cout << returnInput << "\r\n";
         return returnInput;
     }
 }
@@ -143,11 +144,10 @@ string GarageDoor::printState(DoorState state){
 }
 
 int main(){
-    cout << "Hello World\r\n";
     cout << "Please press any key to trigger garage door remote; \"exit\"" <<
                 " to exit loop\r\n";
     GarageDoor door;
-    AsyncGetline getLineObj;
+    GetLineThread inputFetcher;
     string input = "";
 
     for(;;){
@@ -155,7 +155,7 @@ int main(){
             chrono::system_clock::now());
         door.timerCompare();
         
-        input = getLineObj.GetLine();
+        input = inputFetcher.GetLine();
         if (!input.empty()) {
             cout << "Door Triggered at " << door.currentTime << "seconds \r\n";
             cout << door.doorTriggered() << "\r\n";
