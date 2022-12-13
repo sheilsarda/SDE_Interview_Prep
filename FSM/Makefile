@@ -1,7 +1,7 @@
 CFLAGS=-g -Wall
 CC=g++
-SRCS= main.cpp
-OBJS= main.o
+SRCS= main.cpp GarageDoor.cpp
+OBJS= main.o  GarageDoor.o
 LDFLAGS=
 LIBS= -pthread
 
