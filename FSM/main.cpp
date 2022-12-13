@@ -2,70 +2,64 @@
 
 using namespace std;
 
-class GetLineThread {
-    private:
-        atomic<bool> fetchingInput, sendOverInput; 
-        string input;
-        mutex inputLock; // Mutex to permit only one thread to acceses input (processor vs. fetcher)           
-
-    public:
-        GetLineThread() {
-            inputString = "";
-            sendOverInput = true;
-            fetchingInput = true;
-            
-            thread([&](){
-                string inputBuffer; 
-                char charReceived;
-                
-                do {
-                    inputBuffer = "";
-                    while (fetchingInput) {
-                        // Non-blocking wait
-                        while (cin.peek() == NULL) this_thread::yield(); 
-                        charReceived = cin.get();
-                        if (charReceived == '\n') break;
-                        inputBuffer += charReceived;
-                    }
-
-                    // Non-blocking wait for processing thread to free up to receive
-                    if (!fetchingInput) break;
-                    while (fetchingInput && !sendOverInput) this_thread::yield();
-                    if (!fetchingInput) break;
-
-                    // Safely sync thread input with processor input string
-                    inputLock.lock(); 
-                    input = synchronousInput; 
-                    inputLock.unlock();
-
-                    // Don't send next line until the processing thread is ready
-                    sendOverInput = false;
-
-                } while (fetchingInput && input != "exit");
-
-            }).detach();
-        }
-
-        ~AsyncGetline() {
-            continueGettingInput = false; // Stop thread worker
-        }
-
-        // Get next line if any; else, return empty string.
-        string GetLine() {
-            if (sendOverInput) return "";
-            else {
-                // Retrieve next line from fetcher thread and store for return
-                inputLock.lock();
-                string returnInput = input;
-                inputLock.unlock();
-
-                // Signal to fetcher that it can continue sending over next line if available
-                sendOverNextLine = true; cout << returnInput << "\r\n";
-                return returnInput;
-            }
-        }
+/// @brief Constructor which initializes new thread 
+GetLineThread::GetLineThread() {
+    inputString = "";
+    sendOverInput = true;
+    fetchingInput = true;
     
-};
+    thread([&](){
+        string inputBuffer; 
+        char charReceived;
+        
+        do {
+            inputBuffer = "";
+            while (fetchingInput) {
+                // Non-blocking wait
+                while (cin.peek() == NULL) this_thread::yield(); 
+                charReceived = cin.get();
+                if (charReceived == '\n') break;
+                inputBuffer += charReceived;
+            }
+
+            // Non-blocking wait for processing thread to free up to receive
+            if (!fetchingInput) break;
+            while (fetchingInput && !sendOverInput) this_thread::yield();
+            if (!fetchingInput) break;
+
+            // Safely sync thread input with processor input string
+            inputLock.lock(); 
+            input = synchronousInput; 
+            inputLock.unlock();
+
+            // Don't send next line until the processing thread is ready
+            sendOverInput = false;
+
+        } while (fetchingInput && input != "exit");
+
+    }).detach();
+}
+
+/// @brief Destructor; stops fetcher thread
+GetLineThread::~GetLineThread() {
+    continueGettingInput = false; 
+}
+
+/// @brief Get next line 
+/// @return returns string input if ready; else, empty string.
+string GetLineThread::GetLine() {
+    if (sendOverInput) return "";
+    else {
+        // Retrieve next line from fetcher thread and store for return
+        inputLock.lock();
+        string returnInput = input;
+        inputLock.unlock();
+
+        // Signal to fetcher that it can continue sending over next line if available
+        sendOverNextLine = true; cout << returnInput << "\r\n";
+        return returnInput;
+    }
+}
 
 /// @brief Destructor
 GarageDoor::~GarageDoor() { }

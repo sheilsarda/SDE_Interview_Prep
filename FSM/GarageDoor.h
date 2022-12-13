@@ -39,4 +39,18 @@ class GarageDoor {
         string printState(DoorState);
 };
 
+class GetLineThread {
+    private:
+        atomic<bool> fetchingInput, sendOverInput; 
+        string input;
+        mutex inputLock; // Mutex to permit only one thread to acceses input (processor vs. fetcher)
+
+    public:
+        GetLineThread();
+        ~GetLineThread();
+        string GetLine();
+}
+
+
 #endif /* GarageDoorClass */
+
