@@ -35,7 +35,7 @@ GetLineThread::GetLineThread() {
             // Don't send next line until the processing thread is ready
             sendOverInput = false;
 
-        } while (fetchingInput && input != "exit");
+        } while (fetchingInput);
 
     }).detach();
 }
@@ -57,7 +57,7 @@ string GetLineThread::GetLine() {
 
         // Signal to fetcher that it can continue sending over next line if available
         sendOverInput = true; 
-        cout << returnInput << "\r\n";
+        
         return returnInput;
     }
 }
@@ -144,7 +144,7 @@ string GarageDoor::printState(DoorState state){
 }
 
 int main(){
-    cout << "Please press any key to trigger garage door remote; \"exit\"" <<
+    cout << "Please type any keys + \"Enter\" to trigger garage door remote; \"exit\"" <<
                 " to exit loop\r\n";
     GarageDoor door;
     GetLineThread inputFetcher;
@@ -157,8 +157,10 @@ int main(){
         
         input = inputFetcher.GetLine();
         if (!input.empty()) {
+            if(input == "exit") break;
             cout << "Door Triggered at " << door.currentTime << "seconds \r\n";
-            cout << door.doorTriggered() << "\r\n";
+            door.doorTriggered();
         }
     }
+    inputFetcher.~GetLineThread();
 }
