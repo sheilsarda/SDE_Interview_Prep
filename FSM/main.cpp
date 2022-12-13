@@ -1,5 +1,4 @@
 #include "GarageDoor.h"
-
 using namespace std;
 
 /// @brief Constructor which initializes new thread 
@@ -57,7 +56,7 @@ string GetLineThread::GetLine() {
 
         // Signal to fetcher that it can continue sending over next line if available
         sendOverInput = true; 
-        
+
         return returnInput;
     }
 }
@@ -67,7 +66,7 @@ GarageDoor::~GarageDoor() { }
 
 /// @brief Constructor using initializer list
 GarageDoor::GarageDoor():currentState(Closed), prevState(Closed), 
-    actionCounter(0), currentTime(0) {
+    actionCounter(0), currentTime(0), safetyTriggerActivated(false) {
 }
 
 /// @brief update FSM when door is triggered
@@ -86,13 +85,23 @@ GarageDoor::DoorState GarageDoor::doorTriggered(){
             break;            
         case Start_Opening:
             GarageDoor::prevState       = Start_Opening;
-            GarageDoor::currentState    = Freeze;   
-            GarageDoor::actionCounter   = 0; 
+            if(safetyTriggerActivated) {
+                GarageDoor::currentState = Start_Closing;   
+                GarageDoor::actionCounter   = GarageDoor::currentTime;
+            } else {
+                GarageDoor::currentState = Freeze;   
+                GarageDoor::actionCounter   = 0; 
+            } 
             break;            
         case Start_Closing:
             GarageDoor::prevState       = Start_Closing;
-            GarageDoor::currentState    = Freeze;  
-            GarageDoor::actionCounter   = 0; 
+            if(safetyTriggerActivated) {
+                GarageDoor::currentState = Start_Opening;  
+                GarageDoor::actionCounter   = GarageDoor::currentTime;
+            } else {
+                GarageDoor::currentState    = Freeze;  
+                GarageDoor::actionCounter   = 0; 
+            }
             break;            
         case Freeze:
             if(GarageDoor::prevState == Start_Opening) 
@@ -100,6 +109,10 @@ GarageDoor::DoorState GarageDoor::doorTriggered(){
             else GarageDoor::currentState   = Start_Opening;
             GarageDoor::actionCounter       = GarageDoor::currentTime;
             GarageDoor::prevState           = Freeze;
+    }
+    if(safetyTriggerActivated){
+        cout << "Object detected; Safety Trigger Activated" << "\r\n";
+        safetyTriggerActivated = false;
     }
     cout << printState(GarageDoor::currentState) << "\r\n";
     return GarageDoor::currentState;
@@ -158,7 +171,10 @@ int main(){
         input = inputFetcher.GetLine();
         if (!input.empty()) {
             if(input == "exit") break;
-            cout << "Door Triggered at " << door.currentTime << "seconds \r\n";
+            
+            if(input == "safety") door.safetyTriggerActivated = true;
+            else cout << "Door Triggered at " << door.currentTime << "seconds \r\n";
+            
             door.doorTriggered();
         }
     }
