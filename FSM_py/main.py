@@ -1,4 +1,5 @@
 from enum import Enum
+from time import time
 
 class DoorState(Enum):
     Closed=0
@@ -12,12 +13,21 @@ class GarageDoor():
         self.currentState = DoorState['Closed']
         self.prevState = DoorState['Closed']
         self.actionCounter = 0
-        self.currentTime = 
+        self.currentTime = 0
         self.safetyTriggerActivated = False
 
     def doorTriggered(self): 
-        return
-    
+        if(DoorState['Closed'] == self.currentState):
+            return
+        elif(DoorState['Closed'] == self.currentState):
+            return
+        elif(DoorState['Start_Opening'] == self.currentState):
+            return
+        elif(DoorState['Start_Closing'] == self.currentState):
+            return
+        elif(DoorState['Freeze'] == self.currentState):
+            return
+
     def safetyTrigger(self):
         return
 
