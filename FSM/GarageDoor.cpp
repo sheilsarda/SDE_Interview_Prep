@@ -139,6 +139,7 @@ void GarageDoor::timerCompare(){
                 GarageDoor::actionCounter   = 0;
                 cout << printState(currentState) << "\r\n";
             }
+        default: return;
     }
 }
 

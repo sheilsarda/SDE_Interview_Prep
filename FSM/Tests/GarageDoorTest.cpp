@@ -4,7 +4,7 @@
 
 using namespace std;
 
-TEST(testMath, myTest)
+TEST(instantiationTest, garageDoorTest)
 {
     EXPECT_EQ(1000, 1000); 
 }

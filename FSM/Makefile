@@ -1,8 +1,8 @@
 CFLAGS=-g -Wall
 CC=g++
-SRCS= main.cpp GarageDoor.cpp
+SRCS= main.cpp GarageDoor.cpp Tests/GarageDoorTest.cpp
 OBJS1= main.o  GarageDoor.o
-OBJS2= GarageDoor.o 
+OBJS2= GarageDoor.o Tests/GarageDoorTest.o
 LDFLAGS=
 LIBS= -pthread
 
@@ -18,3 +18,5 @@ test: $(SHELL_OBJ) $(OBJS2)
 	$(CC) $(LDFLAGS) $(LIBS) -o garageDoor $(SHELL_OBJ) $(OBJS2)
 clean:
 	rm -f *.o garageDoor
+
+
