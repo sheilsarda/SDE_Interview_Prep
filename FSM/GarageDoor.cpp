@@ -77,7 +77,7 @@ GarageDoor::GarageDoor(DoorState ds):currentState(ds), prevState(Closed),
 
 /// @brief update FSM when door is triggered
 /// @return current state after update
-GarageDoor::DoorState GarageDoor::doorTriggered(){
+DoorState GarageDoor::doorTriggered(){
     switch(GarageDoor::currentState){
         case Closed: 
             GarageDoor::prevState       = Closed;
@@ -120,7 +120,7 @@ GarageDoor::DoorState GarageDoor::doorTriggered(){
     cout << printCurrentState() << "\r\n";
     return GarageDoor::currentState;
 }
-GarageDoor::DoorState GarageDoor::safetyTrigger(){
+DoorState GarageDoor::safetyTrigger(){
     return GarageDoor::currentState;
 }
 
