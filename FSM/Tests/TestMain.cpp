@@ -1,4 +1,11 @@
 #include "GarageDoorTest.cpp"
+#include "../GarageDoor.h"
+
+TEST(instantiationTest, garageDoorTest)
+{
+    EXPECT_EQ(1000, 1000); 
+}
+
 
 int main(int argc, char **argv)
 {

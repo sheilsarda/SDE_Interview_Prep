@@ -4,7 +4,3 @@
 
 using namespace std;
 
-TEST(instantiationTest, garageDoorTest)
-{
-    EXPECT_EQ(1000, 1000); 
-}
