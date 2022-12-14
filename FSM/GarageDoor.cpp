@@ -56,7 +56,6 @@ string GetLineThread::GetLine() {
 
         // Signal to fetcher that it can continue sending over next line if available
         sendOverInput = true; 
-
         return returnInput;
     }
 }
