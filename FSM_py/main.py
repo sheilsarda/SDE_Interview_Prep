@@ -10,49 +10,53 @@ class DoorState(Enum):
 
 class GarageDoor(): 
     def __init__(self): 
-        self.currentState = DoorState['Closed']
-        self.prevState = DoorState['Closed']
-        self.actionCounter = 0
+        self.__currentState = DoorState['Closed']
+        self.__prevState = DoorState['Closed']
+        self.__actionCounter = 0
         self.currentTime = 0
         self.safetyTriggerActivated = False
 
     def doorTriggered(self): 
-        if(DoorState['Closed'] == self.currentState):
-            self.prevState = self.currentState
-            self.currentState = DoorState['Start_Opening']
-            self.actionCounter = 0
-        elif(DoorState['Open'] == self.currentState):
-            self.prevState = self.currentState
-            self.currentState = DoorState['Start_Closing']
-            self.actionCounter = 0
-        elif(DoorState['Start_Opening'] == self.currentState):
-            self.prevState = self.currentState
-            self.currentState = DoorState['Freeze']
-            self.actionCounter = 0
-        elif(DoorState['Start_Closing'] == self.currentState):
-            self.prevState = self.currentState
+        if(DoorState['Closed'] == self.__curentState):
+            self.__prevState = self.__curentState
+            self.__curentState = DoorState['Start_Opening']
+            self.__actionCounter = 0
+        elif(DoorState['Open'] == self.__curentState):
+            self.__prevState = self.__curentState
+            self.__curentState = DoorState['Start_Closing']
+            self.__actionCounter = 0
+        elif(DoorState['Start_Opening'] == self.__curentState):
+            self.__prevState = self.__curentState
+            self.__curentState = DoorState['Freeze']
+            self.__actionCounter = 0
+        elif(DoorState['Start_Closing'] == self.__curentState):
+            self.__prevState = self.__curentState
             if(self.safetyTriggerActivated):
-                self.currentState = DoorState['Start_Opening']
-                self.actionCounter = time()
+                self.__curentState = DoorState['Start_Opening']
+                self.__actionCounter = time()
             else:
-                self.currentState = DoorState['Freeze']
-                self.actionCounter = 0
-        elif(DoorState['Freeze'] == self.currentState):
-            if(self.prevState == DoorState['Start_Opening']):
-                self.currentState = DoorState['Start_Closing']
+                self.__curentState = DoorState['Freeze']
+                self.__actionCounter = 0
+        elif(DoorState['Freeze'] == self.__curentState):
+            if(self.__prevState == DoorState['Start_Opening']):
+                self.__curentState = DoorState['Start_Closing']
             else:
-                self.currentState = DoorState['Start_Opening']
-            self.actionCounter = time()
-            self.prevState = self.currentState
+                self.__curentState = DoorState['Start_Opening']
+            self.__actionCounter = time()
+            self.__prevState = self.__curentState
         
+        if(self.safetyTriggerActivated):
+            if(self.__prevState == DoorState['Start_Closing']):
+                print("Object Detected; Safety Trigger Activated\n")
+            else: 
+                print("Safety Trigger Cannot be activated unless door is closing")
+            self.safetyTriggerActivated = False;
         
-
-
-    def safetyTrigger(self):
-        return
+        print(self.__curentState)
+        return self.__curentState
 
     def timerCompare(self):
         return
     
     def printCurrentState(self):
-        print(self.currentState.name)
+        print(self.__curentState.name)

@@ -38,7 +38,6 @@ class GarageDoor {
         GarageDoor(DoorState);
         ~GarageDoor();
         DoorState doorTriggered();
-        DoorState safetyTrigger();
         void timerCompare();
         string printCurrentState();
 };

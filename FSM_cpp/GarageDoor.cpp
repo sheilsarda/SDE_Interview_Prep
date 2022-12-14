@@ -120,9 +120,6 @@ DoorState GarageDoor::doorTriggered(){
     cout << printCurrentState() << "\r\n";
     return GarageDoor::currentState;
 }
-DoorState GarageDoor::safetyTrigger(){
-    return GarageDoor::currentState;
-}
 
 /// @brief update state if door has finished opening or closing
 void GarageDoor::timerCompare(){
