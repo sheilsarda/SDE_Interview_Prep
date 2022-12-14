@@ -33,6 +33,7 @@ class GarageDoor {
         volatile time_t currentTime;
         volatile bool safetyTriggerActivated;
         GarageDoor();
+        GarageDoor(DoorState);
         ~GarageDoor();
         DoorState doorTriggered();
         DoorState safetyTrigger();
