@@ -31,6 +31,34 @@ TEST(doorTriggerTest2, garageDoorTests)
     EXPECT_EQ(door.printCurrentState(), "Closed"); 
 }
 
+TEST(doorTriggerTest3, garageDoorTests)
+{
+    using namespace std::chrono_literals;
+    GarageDoor door(Open);
+    door.currentTime = chrono::system_clock::to_time_t(chrono::system_clock::now());
+    door.doorTriggered();
+
+    std::this_thread::sleep_for(2s);
+    door.currentTime = chrono::system_clock::to_time_t(chrono::system_clock::now());
+    door.timerCompare();
+
+    door.doorTriggered();
+    EXPECT_EQ(door.printCurrentState(), "Freeze"); 
+}
+
+TEST(doorTriggerTest3, garageDoorTests)
+{
+    using namespace std::chrono_literals;
+    GarageDoor door(Freeze);
+    door.currentTime = chrono::system_clock::to_time_t(chrono::system_clock::now());
+    door.doorTriggered();
+    std::this_thread::sleep_for(7s);
+    door.currentTime = chrono::system_clock::to_time_t(chrono::system_clock::now());
+    door.timerCompare();
+
+    EXPECT_EQ(door.printCurrentState(), "Open"); 
+}
+
 int main(int argc, char **argv)
 {
     ::testing::InitGoogleTest(&argc, argv);

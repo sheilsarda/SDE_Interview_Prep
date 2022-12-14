@@ -71,6 +71,8 @@ GarageDoor::GarageDoor():currentState(Closed), prevState(Closed),
 /// @brief Constructor used for testing various start configurations
 GarageDoor::GarageDoor(DoorState ds):currentState(ds), prevState(Closed), 
     actionCounter(0), currentTime(0), safetyTriggerActivated(false) {
+    if(ds == Start_Opening || ds == Start_Closing) 
+        GarageDoor::actionCounter = GarageDoor::currentTime;
 }
 
 /// @brief update FSM when door is triggered
