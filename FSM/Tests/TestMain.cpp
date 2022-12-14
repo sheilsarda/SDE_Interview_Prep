@@ -20,7 +20,7 @@ TEST(doorTriggerTest1, garageDoorTests)
 TEST(doorTriggerTest2, garageDoorTests)
 {
     using namespace std::chrono_literals;
-    GarageDoor door(Open);
+    GarageDoor door(DoorState::Open);
     door.currentTime = chrono::system_clock::to_time_t(chrono::system_clock::now());
     door.doorTriggered();
 
@@ -46,7 +46,7 @@ TEST(doorTriggerTest3, garageDoorTests)
     EXPECT_EQ(door.printCurrentState(), "Freeze"); 
 }
 
-TEST(doorTriggerTest3, garageDoorTests)
+TEST(doorTriggerTest4, garageDoorTests)
 {
     using namespace std::chrono_literals;
     GarageDoor door(Freeze);

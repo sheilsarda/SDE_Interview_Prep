@@ -16,14 +16,16 @@
 
 using namespace std;
 
+enum DoorState{
+    Closed=0, 
+    Open=1, 
+    Start_Opening=2, 
+    Start_Closing=3,
+    Freeze=-1
+};
+
 class GarageDoor {
-    enum DoorState{
-        Closed=0, 
-        Open=1, 
-        Start_Opening=2, 
-        Start_Closing=3,
-        Freeze=-1
-    };
+
 
     private:
         volatile DoorState currentState, prevState;
