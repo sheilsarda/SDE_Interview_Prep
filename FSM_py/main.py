@@ -15,6 +15,8 @@ class GarageDoor():
         self.__actionCounter = 0
         self.currentTime = 0
         self.safetyTriggerActivated = False
+        self.__doorOpenTime = 5
+        self.__doorCloseTime = 5
 
     def doorTriggered(self): 
         if(DoorState['Closed'] == self.__curentState):
@@ -52,11 +54,24 @@ class GarageDoor():
                 print("Safety Trigger Cannot be activated unless door is closing")
             self.safetyTriggerActivated = False;
         
-        print(self.__curentState)
+        print(self.__curentState.name)
         return self.__curentState
 
     def timerCompare(self):
+        if(self.currentState == DoorState['Start_Opening']):
+            timeAfterAction = self.__actionCounter + self.__doorOpenTime
+            if(self.currentTime >= timeAfterAction):
+                self.__currentState = DoorState['Open']
+                self.__actionCounter = 0
+                print(self.__curentState.name)
         return
     
     def printCurrentState(self):
         print(self.__curentState.name)
+
+def main():
+    return
+
+if __name__ == "__main__":
+    print("Hello world")
+    main()
