@@ -37,7 +37,7 @@ class GarageDoor {
         DoorState doorTriggered();
         DoorState safetyTrigger();
         void timerCompare();
-        string printState(DoorState);
+        string printCurrentState();
 };
 
 class GetLineThread {

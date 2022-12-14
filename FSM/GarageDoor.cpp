@@ -84,13 +84,8 @@ GarageDoor::DoorState GarageDoor::doorTriggered(){
             break;            
         case Start_Opening:
             GarageDoor::prevState       = Start_Opening;
-            if(safetyTriggerActivated) {
-                GarageDoor::currentState = Start_Closing;   
-                GarageDoor::actionCounter   = GarageDoor::currentTime;
-            } else {
-                GarageDoor::currentState = Freeze;   
-                GarageDoor::actionCounter   = 0; 
-            } 
+            GarageDoor::currentState = Freeze;   
+            GarageDoor::actionCounter   = 0; 
             break;            
         case Start_Closing:
             GarageDoor::prevState       = Start_Closing;
@@ -110,10 +105,12 @@ GarageDoor::DoorState GarageDoor::doorTriggered(){
             GarageDoor::prevState           = Freeze;
     }
     if(safetyTriggerActivated){
-        cout << "Object detected; Safety Trigger Activated" << "\r\n";
+        if(GarageDoor::prevState == Start_Closing)
+            cout << "Object detected; Safety Trigger activated" << "\r\n";
+        else cout << "Safety Trigger cannot be activated unless door is closing" << "\r\n";
         safetyTriggerActivated = false;
     }
-    cout << printState(GarageDoor::currentState) << "\r\n";
+    cout << printCurrentState() << "\r\n";
     return GarageDoor::currentState;
 }
 GarageDoor::DoorState GarageDoor::safetyTrigger(){
@@ -129,7 +126,7 @@ void GarageDoor::timerCompare(){
             if(timeAfterAction <= currentTime){
                 GarageDoor::currentState    = Open;
                 GarageDoor::actionCounter   = 0;
-                cout << printState(currentState) << "\r\n";
+                cout << printCurrentState() << "\r\n";
             } 
             break;
         case Start_Closing:
@@ -137,17 +134,16 @@ void GarageDoor::timerCompare(){
             if(timeAfterAction <= currentTime){
                 GarageDoor::currentState    = Closed;
                 GarageDoor::actionCounter   = 0;
-                cout << printState(currentState) << "\r\n";
+                cout << printCurrentState() << "\r\n";
             }
         default: return;
     }
 }
 
 /// @brief converts enum of door state to a string that can be printed on cout
-/// @param state : current garage door state
-/// @return returns string representation of state
-string GarageDoor::printState(DoorState state){
-    switch(state){
+/// @return returns string representation of current state
+string GarageDoor::printCurrentState(){
+    switch(GarageDoor::currentState){
         case Closed: return "Closed";
         case Open: return "Open"; 
         case Start_Opening: return "Starting to Open"; 

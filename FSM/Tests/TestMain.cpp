@@ -1,9 +1,19 @@
 #include "../GarageDoor.h"
 #include "gtest/gtest.h"
 
+using namespace std;
+
 TEST(instantiationTest, garageDoorTest)
 {
-    EXPECT_EQ(1000, 1000); 
+    GarageDoor door;
+    door.currentTime = chrono::system_clock::to_time_t(chrono::system_clock::now());
+    door.doorTriggered();
+
+    std::this_thread::sleep_for(chrono_literals:7s);
+    door.currentTime = chrono::system_clock::to_time_t(chrono::system_clock::now());
+    door.timerCompare();
+        
+    EXPECT_EQ(door.printCurrentState(), "Open"); 
 }
 
 
