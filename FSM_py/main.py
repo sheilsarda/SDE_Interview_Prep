@@ -18,15 +18,35 @@ class GarageDoor():
 
     def doorTriggered(self): 
         if(DoorState['Closed'] == self.currentState):
-            return
-        elif(DoorState['Closed'] == self.currentState):
-            return
+            self.prevState = self.currentState
+            self.currentState = DoorState['Start_Opening']
+            self.actionCounter = 0
+        elif(DoorState['Open'] == self.currentState):
+            self.prevState = self.currentState
+            self.currentState = DoorState['Start_Closing']
+            self.actionCounter = 0
         elif(DoorState['Start_Opening'] == self.currentState):
-            return
+            self.prevState = self.currentState
+            self.currentState = DoorState['Freeze']
+            self.actionCounter = 0
         elif(DoorState['Start_Closing'] == self.currentState):
-            return
+            self.prevState = self.currentState
+            if(self.safetyTriggerActivated):
+                self.currentState = DoorState['Start_Opening']
+                self.actionCounter = time()
+            else:
+                self.currentState = DoorState['Freeze']
+                self.actionCounter = 0
         elif(DoorState['Freeze'] == self.currentState):
-            return
+            if(self.prevState == DoorState['Start_Opening']):
+                self.currentState = DoorState['Start_Closing']
+            else:
+                self.currentState = DoorState['Start_Opening']
+            self.actionCounter = time()
+            self.prevState = self.currentState
+        
+        
+
 
     def safetyTrigger(self):
         return
