@@ -1,5 +1,5 @@
-#include "GarageDoorTest.cpp"
 #include "../GarageDoor.h"
+#include "gtest/gtest.h"
 
 TEST(instantiationTest, garageDoorTest)
 {
