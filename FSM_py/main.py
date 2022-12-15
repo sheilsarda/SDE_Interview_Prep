@@ -1,22 +1,26 @@
 from enum import Enum
 from time import time
+from aioconsole import ainput
+from threading import Thread, Lock
 
-class DoorState(Enum):
+class Door_state(Enum):
     Closed=0
     Open=1
     Start_Opening=2,
     Start_Closing=3
     Freeze=-1
 
-class GarageDoor(): 
+class Garage_door(): 
     def __init__(self): 
-        self.__currentState = DoorState['Closed']
-        self.__prevState = DoorState['Closed']
-        self.__actionCounter = 0
+        self.__current_state = DoorState['Closed']
+        self.__prev_state = DoorState['Closed']
+        self.__action_counter = 0
         self.currentTime = 0
         self.safetyTriggerActivated = False
         self.__doorOpenTime = 5
         self.__doorCloseTime = 5
+        self.__userInput = ""
+        self.__inputMutex = Lock()
 
     def doorTriggered(self): 
         if(DoorState['Closed'] == self.__curentState):
@@ -69,7 +73,29 @@ class GarageDoor():
     def printCurrentState(self):
         print(self.__curentState.name)
 
-def main():
+
+    async def getLine(self):
+        consoleBuffer = await ainput(self.shell_prompt)
+        await self.__inputMutex.acquire()
+        self.__userInput = consoleBuffer
+        self.__inputMutex.release()
+        
+
+async def main():
+    print("Please type any keys + \"Enter\" to trigger garage door remote; \"exit\" to quite")
+    door = GarageDoor()
+    while True:
+        door.currentTime = time()
+        door.timerCompare()
+        door.getLine()
+        if(len(self.__userInput)):
+            if(self.__userinput == "exit"): 
+                break
+            elif)self.__userInput
+
+        
+
+
     return
 
 if __name__ == "__main__":

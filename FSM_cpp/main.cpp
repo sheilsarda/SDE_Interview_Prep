@@ -3,7 +3,7 @@ using namespace std;
 
 int main(){
     cout << "Please type any keys + \"Enter\" to trigger garage door remote; \"exit\"" <<
-                " to exit loop\r\n";
+                " to quit\r\n";
     GarageDoor door;
     GetLineThread inputFetcher;
     string input = "";
