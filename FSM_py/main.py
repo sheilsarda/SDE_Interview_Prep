@@ -28,11 +28,11 @@ class Garage_door():
         if(Door_state['Closed'] == self.__current_state):
             self.__prev_state = self.__current_state
             self.__current_state = Door_state['Start_Opening']
-            self.__action_counter = 0
+            self.__action_counter = time()
         elif(Door_state['Open'] == self.__current_state):
             self.__prev_state = self.__current_state
             self.__current_state = Door_state['Start_Closing']
-            self.__action_counter = 0
+            self.__action_counter = time()
         elif(Door_state['Start_Opening'] == self.__current_state):
             self.__prev_state = self.__current_state
             self.__current_state = Door_state['Freeze']
@@ -105,11 +105,11 @@ async def main():
             else:
                 print("Door triggered at ",door.current_time,"seconds")
             door.door_triggered()
-        while(door.input_mutex.locked()): 
-            continue 
-        door.input_mutex.acquire()
-        door.user_input = ""
-        door.input_mutex.release()
+            while(door.input_mutex.locked()): 
+                continue 
+            door.input_mutex.acquire()
+            door.user_input = ""
+            door.input_mutex.release()
     
     return
 
