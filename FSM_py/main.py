@@ -18,8 +18,8 @@ class Garage_door():
         self.__action_counter = 0
         self.__door_open_time = 5
         self.__door_close_time = 5
-        self.__user_input = ""
         
+        self.user_input = ""
         self.input_mutex = Lock()
         self.current_time = 0
         self.safety_trigger_activated = False
@@ -83,8 +83,10 @@ class Garage_door():
 
     async def get_console_line(self):
         consoleBuffer = await ainput()
-        await self.input_mutex.acquire()
-        self.__user_input = consoleBuffer
+        while(self.input_mutex.locked()): 
+            continue
+        self.input_mutex.acquire()
+        self.user_input = consoleBuffer
         self.input_mutex.release()
         
 
@@ -95,16 +97,18 @@ async def main():
         door.current_time = time()
         door.timer_compare()
         await door.get_console_line()
-        if(len(door.__user_input)):
-            if(door.__user_input == "exit"): 
+        if(len(door.user_input)):
+            if(door.user_input == "exit"): 
                 break
-            elif(door.__user_input == "safety"):
+            elif(door.user_input == "safety"):
                 door.safety_trigger_activated = True
             else:
                 print("Door triggered at ",door.current_time,"seconds")
             door.doorTriggered()
-        await door.input_mutex.acquire()
-        door.__user_input = ""
+        while(door.input_mutex.locked()): 
+            continue 
+        door.input_mutex.acquire()
+        door.user_input = ""
         door.input_mutex.release()
     
     return
