@@ -1,6 +1,7 @@
 from enum import Enum
 from time import time
 from aioconsole import ainput
+from asyncio import run
 from threading import Lock
 
 class Door_state(Enum):
@@ -80,7 +81,7 @@ class Garage_door():
     def printCurrentState(self):
         print(self.__current_state.name)
 
-    async def getLine(self):
+    async def get_console_line(self):
         consoleBuffer = await ainput(self.shell_prompt)
         await self.__input_mutex.acquire()
         self.__user_input = consoleBuffer
@@ -93,7 +94,7 @@ async def main():
     while True:
         door.current_time = time()
         door.timer_compare()
-        door.getLine()
+        await door.get_console_line()
         if(len(door.__user_input)):
             if(door.__user_input == "exit"): 
                 break
@@ -110,4 +111,4 @@ async def main():
 
 if __name__ == "__main__":
     print("Hello world")
-    main()
+    run(main())
