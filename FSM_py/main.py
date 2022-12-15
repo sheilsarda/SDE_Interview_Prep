@@ -1,7 +1,7 @@
 from enum import Enum
 from time import time
 from aioconsole import ainput
-from threading import Thread, Lock
+from threading import Lock
 
 class Door_state(Enum):
     Closed=0
@@ -15,78 +15,84 @@ class Garage_door():
         self.__current_state = Door_state['Closed']
         self.__prev_state = Door_state['Closed']
         self.__action_counter = 0
-        self.current_time = 0
-        self.safety_trigger_activated = False
         self.__door_open_time = 5
         self.__door_close_time = 5
         self.__user_input = ""
-        self.__inputMutex = Lock()
+        
+        self.input_mutex = Lock()
+        self.current_time = 0
+        self.safety_trigger_activated = False
 
-    def doorTriggered(self): 
+    def door_triggered(self): 
         if(Door_state['Closed'] == self.__current_state):
-            self.__prevState = self.__current_state
+            self.__prev_state = self.__current_state
             self.__current_state = Door_state['Start_Opening']
             self.__action_counter = 0
         elif(Door_state['Open'] == self.__current_state):
-            self.__prevState = self.__current_state
+            self.__prev_state = self.__current_state
             self.__current_state = Door_state['Start_Closing']
             self.__action_counter = 0
         elif(Door_state['Start_Opening'] == self.__current_state):
-            self.__prevState = self.__current_state
+            self.__prev_state = self.__current_state
             self.__current_state = Door_state['Freeze']
             self.__action_counter = 0
         elif(Door_state['Start_Closing'] == self.__current_state):
-            self.__prevState = self.__current_state
-            if(self.safetyTriggerActivated):
+            self.__prev_state = self.__current_state
+            if(self.safety_trigger_activated):
                 self.__current_state = Door_state['Start_Opening']
                 self.__action_counter = time()
             else:
                 self.__current_state = Door_state['Freeze']
                 self.__action_counter = 0
         elif(Door_state['Freeze'] == self.__current_state):
-            if(self.__prevState == Door_state['Start_Opening']):
+            if(self.__prev_state == Door_state['Start_Opening']):
                 self.__current_state = Door_state['Start_Closing']
             else:
                 self.__current_state = Door_state['Start_Opening']
             self.__action_counter = time()
-            self.__prevState = self.__current_state
+            self.__prev_state = self.__current_state
         
-        if(self.safetyTriggerActivated):
-            if(self.__prevState == Door_state['Start_Closing']):
+        if(self.safety_trigger_activated):
+            if(self.__prev_state == Door_state['Start_Closing']):
                 print("Object Detected; Safety Trigger Activated\n")
             else: 
                 print("Safety Trigger Cannot be activated unless door is closing")
-            self.safetyTriggerActivated = False;
+            self.safety_trigger_activated = False;
         
         print(self.__current_state.name)
         return self.__current_state
 
-    def timerCompare(self):
-        if(self.currentState == Door_state['Start_Opening']):
-            timeAfterAction = self.__action_counter + self.__doorOpenTime
-            if(self.currentTime >= timeAfterAction):
+    def timer_compare(self):
+        if(self.__current_state == Door_state['Start_Opening']):
+            time_after_action = self.__action_counter + self.__door_open_time
+            if(self.currentTime >= time_after_action):
                 self.__current_state = Door_state['Open']
                 self.__action_counter = 0
                 print(self.__current_state.name)
+        elif(self.__current_state == Door_state['Start_Closing']):
+            time_after_action = self.__action_counter + self.__door_close_time
+            if(self.currentTime >= time_after_action):
+                self.__current_state = Door_state['Closed']
+                self.__action_counter = 0
+        print(self.__current_state.name)
         return
     
     def printCurrentState(self):
         print(self.__current_state.name)
 
-
     async def getLine(self):
         consoleBuffer = await ainput(self.shell_prompt)
-        await self.__inputMutex.acquire()
+        await self.__input_mutex.acquire()
         self.__user_input = consoleBuffer
-        self.__inputMutex.release()
+        self.__input_mutex.release()
         
 
 async def main():
     print("Please type any keys + \"Enter\" to trigger garage door remote; \"exit\" to quite")
-    door = GarageDoor()
+    door = Garage_door()
     while True:
-        door.currentTime = time()
-        door.timerCompare()
+        door.current_time = time()
+        door.timer_compare()
         door.getLine()
         if(len(door.__user_input)):
             if(door.__user_input == "exit"): 
@@ -96,14 +102,10 @@ async def main():
             else:
                 print("Door triggered at ",door.current_time,"seconds")
             door.doorTriggered()
-        await self.__inputMutex.acquire()
-        self.__user_input = ""
-        self.__inputMutex.release()
+        await door.__input_mutex.acquire()
+        door.__user_input = ""
+        door.__input_mutex.release()
     
-
-        
-
-
     return
 
 if __name__ == "__main__":
