@@ -66,13 +66,13 @@ class Garage_door():
     def timer_compare(self):
         if(self.__current_state == Door_state['Start_Opening']):
             time_after_action = self.__action_counter + self.__door_open_time
-            if(self.currentTime >= time_after_action):
+            if(self.current_time >= time_after_action):
                 self.__current_state = Door_state['Open']
                 self.__action_counter = 0
                 print(self.__current_state.name)
         elif(self.__current_state == Door_state['Start_Closing']):
             time_after_action = self.__action_counter + self.__door_close_time
-            if(self.currentTime >= time_after_action):
+            if(self.current_time >= time_after_action):
                 self.__current_state = Door_state['Closed']
                 self.__action_counter = 0
         print(self.__current_state.name)
@@ -104,7 +104,7 @@ async def main():
                 door.safety_trigger_activated = True
             else:
                 print("Door triggered at ",door.current_time,"seconds")
-            door.doorTriggered()
+            door.door_triggered()
         while(door.input_mutex.locked()): 
             continue 
         door.input_mutex.acquire()
