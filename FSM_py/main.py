@@ -82,10 +82,10 @@ class Garage_door():
         print(self.__current_state.name)
 
     async def get_console_line(self):
-        consoleBuffer = await ainput(self.shell_prompt)
-        await self.__input_mutex.acquire()
+        consoleBuffer = await ainput()
+        await self.input_mutex.acquire()
         self.__user_input = consoleBuffer
-        self.__input_mutex.release()
+        self.input_mutex.release()
         
 
 async def main():
@@ -103,9 +103,9 @@ async def main():
             else:
                 print("Door triggered at ",door.current_time,"seconds")
             door.doorTriggered()
-        await door.__input_mutex.acquire()
+        await door.input_mutex.acquire()
         door.__user_input = ""
-        door.__input_mutex.release()
+        door.input_mutex.release()
     
     return
 
