@@ -1,3 +1,4 @@
+import asyncio
 from enum import Enum
 from time import time
 from aioconsole import ainput
@@ -83,8 +84,8 @@ class Garage_door():
         print(self.__current_state.name)
 
     async def get_console_line(self):
-        # await asyncio.get_event_loop().run_in_executor(None, lambda s=string: sys.stdout.write(s+' '))
-        console_buffer = await asyncio.get_event_loop().run_in_executor(None, sys.stdin.readline)
+        console_buffer = asyncio.run(ainput(""))
+
         while(self.input_mutex.locked()): 
             continue
         self.input_mutex.acquire()
@@ -93,9 +94,6 @@ class Garage_door():
 
         
     
-
-        
-
 async def main():
     print("Please type any keys + \"Enter\" to trigger garage door remote; \"exit\" to quite")
     door = Garage_door()
@@ -103,8 +101,9 @@ async def main():
         door.current_time = time()
         door.timer_compare()
         
-        door.get_console_line()
-        if(len(door.user_input)):
+        await door.get_console_line()
+
+        if(door.user_input != ""):
             if(door.user_input == "exit"): 
                 break
             elif(door.user_input == "safety"):
@@ -122,4 +121,4 @@ async def main():
 
 if __name__ == "__main__":
     print("Hello world")
-    run(main())
+    asyncio.run(main())
