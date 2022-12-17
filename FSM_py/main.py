@@ -84,8 +84,7 @@ class Garage_door():
         print(self.__current_state.name)
 
     async def get_console_line(self):
-        console_buffer = asyncio.run(ainput(""))
-
+        console_buffer = input("")
         while(self.input_mutex.locked()): 
             continue
         self.input_mutex.acquire()
@@ -97,12 +96,13 @@ class Garage_door():
 async def main():
     print("Please type any keys + \"Enter\" to trigger garage door remote; \"exit\" to quite")
     door = Garage_door()
+    input_task = asyncio.create_task(door.get_console_line())
+    await input_task    
+
     while True:
         door.current_time = time()
         door.timer_compare()
         
-        await door.get_console_line()
-
         if(door.user_input != ""):
             if(door.user_input == "exit"): 
                 break
@@ -116,6 +116,7 @@ async def main():
             door.input_mutex.acquire()
             door.user_input = ""
             door.input_mutex.release()
+            await input_task  
     
     return
 
