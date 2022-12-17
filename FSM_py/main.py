@@ -97,12 +97,12 @@ async def main():
     print("Please type any keys + \"Enter\" to trigger garage door remote; \"exit\" to quite")
     door = Garage_door()
     input_task = asyncio.create_task(door.get_console_line())
-    await input_task    
 
     while True:
         door.current_time = time()
         door.timer_compare()
-        
+        await input_task    
+
         if(door.user_input != ""):
             if(door.user_input == "exit"): 
                 break
@@ -116,7 +116,7 @@ async def main():
             door.input_mutex.acquire()
             door.user_input = ""
             door.input_mutex.release()
-            await input_task  
+            # await input_task  
     
     return
 
