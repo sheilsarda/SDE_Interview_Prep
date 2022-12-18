@@ -78,6 +78,11 @@ GarageDoor::GarageDoor(DoorState ds):currentState(ds), prevState(Closed),
 /// @brief update FSM when door is triggered
 /// @return current state after update
 DoorState GarageDoor::doorTriggered(){
+    if(safetyTriggerActivated && (GarageDoor::currentState != Start_Closing)){
+        cout << "Safety Trigger Cannot be activated unless door is closing\r\n";
+        safetyTriggerActivated = false;
+        return GarageDoor::currentState;
+    }
     switch(GarageDoor::currentState){
         case Closed: 
             GarageDoor::prevState       = Closed;
@@ -99,6 +104,8 @@ DoorState GarageDoor::doorTriggered(){
             if(safetyTriggerActivated) {
                 GarageDoor::currentState = Start_Opening;  
                 GarageDoor::actionCounter   = GarageDoor::currentTime;
+                cout << "Object detected; Safety Trigger activated" << "\r\n";
+                safetyTriggerActivated = false;
             } else {
                 GarageDoor::currentState    = Freeze;  
                 GarageDoor::actionCounter   = 0; 
@@ -111,12 +118,7 @@ DoorState GarageDoor::doorTriggered(){
             GarageDoor::actionCounter       = GarageDoor::currentTime;
             GarageDoor::prevState           = Freeze;
     }
-    if(safetyTriggerActivated){
-        if(GarageDoor::prevState == Start_Closing)
-            cout << "Object detected; Safety Trigger activated" << "\r\n";
-        else cout << "Safety Trigger cannot be activated unless door is closing" << "\r\n";
-        safetyTriggerActivated = false;
-    }
+
     cout << printCurrentState() << "\r\n";
     return GarageDoor::currentState;
 }
