@@ -1,3 +1,11 @@
+# CPP Solution Docs
+
+- Compile / build program by running `make all` in the directory containing `main.cpp`; this step assumes you have `C++` build tools installed (`C++17` preferred)
+- Run program `garageDoor` from the command line through `./garageDoor`
+- Input trigger for the garage door remote can be provided by typing any character or sequence on your keyboard and hitting `Enter`
+- Safety function can be triggered by typing `safety` in the command line as the door is closing 
+- Exit loop by typing `exit` in the command line
+
 # Remedy Robotics Technical Screen
 
 We designed these questions to help us understand your proficiency with programming as well as your problem solving abilities.
