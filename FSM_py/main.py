@@ -23,6 +23,14 @@ class Garage_door():
         self.safety_trigger_activated = False
 
     def door_triggered(self): 
+        if(self.safety_trigger_activated):
+            self.safety_trigger_activated = False;
+            if(self.__prev_state == Door_state['Start_Closing']):
+                print("Object Detected; Safety Trigger Activated\n")
+            else: 
+                print("Safety Trigger Cannot be activated unless door is closing")
+                return
+            
         if(Door_state['Closed'] == self.__current_state):
             self.__prev_state = self.__current_state
             self.__current_state = Door_state['Start_Opening']
@@ -51,13 +59,6 @@ class Garage_door():
             self.__action_counter = time()
             self.__prev_state = self.__current_state
         
-        if(self.safety_trigger_activated):
-            if(self.__prev_state == Door_state['Start_Closing']):
-                print("Object Detected; Safety Trigger Activated\n")
-            else: 
-                print("Safety Trigger Cannot be activated unless door is closing")
-            self.safety_trigger_activated = False;
-        
         print(self.__current_state.name)
         return self.__current_state
 
@@ -73,7 +74,7 @@ class Garage_door():
             if(self.current_time >= time_after_action):
                 self.__current_state = Door_state['Closed']
                 self.__action_counter = 0
-            print(self.__current_state.name)
+                print(self.__current_state.name)
         return
     
     def printCurrentState(self):
@@ -81,7 +82,7 @@ class Garage_door():
 
     def get_console_line(self):
         while(1):
-            console_buffer = input("Input")
+            console_buffer = input()
             while(self.input_mutex.locked()): 
                 continue
             self.input_mutex.acquire()
