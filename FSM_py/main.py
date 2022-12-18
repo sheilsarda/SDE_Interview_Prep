@@ -25,7 +25,7 @@ class Garage_door():
     def door_triggered(self): 
         if(self.safety_trigger_activated):
             self.safety_trigger_activated = False;
-            if(self.__prev_state == Door_state['Start_Closing']):
+            if(self.__current_state == Door_state['Start_Closing']):
                 print("Object Detected; Safety Trigger Activated\n")
             else: 
                 print("Safety Trigger Cannot be activated unless door is closing")
