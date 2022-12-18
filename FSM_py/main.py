@@ -1,10 +1,6 @@
-import asyncio
 from enum import Enum
 from time import time
-from aioconsole import ainput
-from asyncio import run
-import sys
-from threading import Lock
+from threading import Lock, Thread
 
 class Door_state(Enum):
     Closed=0
@@ -83,25 +79,27 @@ class Garage_door():
     def printCurrentState(self):
         print(self.__current_state.name)
 
-    async def get_console_line(self):
-        console_buffer = input("")
-        while(self.input_mutex.locked()): 
-            continue
-        self.input_mutex.acquire()
-        self.user_input = console_buffer
-        self.input_mutex.release()
+    def get_console_line(self):
+        while(1):
+            console_buffer = input("Input")
+            while(self.input_mutex.locked()): 
+                continue
+            self.input_mutex.acquire()
+            self.user_input = console_buffer
+            self.input_mutex.release()
+            if(console_buffer == "exit"): break
 
         
     
-async def main():
+def main():
     print("Please type any keys + \"Enter\" to trigger garage door remote; \"exit\" to quite")
     door = Garage_door()
-    input_task = asyncio.create_task(door.get_console_line())
+    async_input_thread = Thread(target=door.get_console_line,daemon=True)
+    async_input_thread.start()
 
     while True:
         door.current_time = time()
         door.timer_compare()
-        await input_task    
 
         if(door.user_input != ""):
             if(door.user_input == "exit"): 
@@ -116,10 +114,12 @@ async def main():
             door.input_mutex.acquire()
             door.user_input = ""
             door.input_mutex.release()
-            # await input_task  
+    
+    async_input_thread.join()
+
     
     return
 
 if __name__ == "__main__":
     print("Hello world")
-    asyncio.run(main())
+    main()
