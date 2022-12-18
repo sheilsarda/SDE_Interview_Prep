@@ -1,3 +1,9 @@
+# Python Solution Docs
+
+- To run program: (i) make sure `python3` is installed; (ii) navigate to the directory containing `main.py`; (iii) execute `python3 main.py`
+- Door starts off in the closed state and by default takes 5 seconds (wall time) to open / close. These times are customizable parameters in the `__init__` method
+- Safety function can be triggered by typing `safety` in the command line as the door is closing (i.e., `door.__current_state == Start_Closing`)
+
 # Remedy Robotics Technical Screen
 
 We designed these questions to help us understand your proficiency with programming as well as your problem solving abilities.

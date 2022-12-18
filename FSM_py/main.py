@@ -78,8 +78,8 @@ class Garage_door():
                 print(self.__current_state.name)
         return
     
-    def printCurrentState(self):
-        print(self.__current_state.name)
+    def print_current_state(self):
+        return self.__current_state.name
 
     def get_console_line(self):
         while(1):
