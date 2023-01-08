@@ -23,3 +23,13 @@ Smaller magnetic fins attached to the main body symmetrically all around its axi
 The solid particle body can range in size from a few nanometers to a few micrometers and exhibit specific and tunable magnetic properties . The adjustable magnetic features are diamagnetic , paramagnetic , superparamagnetic and ferromagnetic , depending on chemical composition , crystalline structure and size of the particles used . 
 
 More specifically , representative examples of particle candidates include neodymium ( ex . , Nd2Fe14B ( “ A magnetic membrane actuator in composite technology utilizing diamagnetic levitation , ” IEEE Sens . J. 13 ( 2013 ) , pages 27862797 ) , carbon - coated Fe ( “ Microfabrication of magnetically actuated PDMS- Iron composite membranes , ” Microelectr .Engineer . 98 ( 2012 ) , pages 607-609 ) , iron ( II / III ) oxides( “ Magnetically - actuated artificial cilia for microfluidics propulsion , ” Lab Chip . 11 ( 2011 ) , pages 2002-2010 ) , cobalt alloy ( s ) ( “ A facile template - free approach to magnetodriven multifunctional artificial cilia , ” Appl . Mater . Interfaces 2( 2010 ) , pages 2226-2230 ) , etc. 
+
+### US20210052330A1
+
+### US20210052855A1
+
+### US20210401526A1
+
+### WO2021126905A1
+
+![](../2.Related_Patents/imgs/WO2021126905A1_12.jpg)
