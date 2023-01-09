@@ -33,3 +33,8 @@ More specifically , representative examples of particle candidates include neody
 ### WO2021126905A1
 
 ![](../2.Related_Patents/imgs/WO2021126905A1_12.jpg)
+
+- Miniature device may be configured such that the magnetic arrangement, within a rotating magnetic field, effects the propulsion of the miniature device within the patient, and, within a magnetic field gradient, effects the performance of the function
+- Drive thread formed on an exterior surface thereof helically about the drive axis, the magnetic arrangement comprising a propulsion magnet rigidly connected to an interior surface thereof and disposed such that the vector of its magnetic moment, i.e., the orientation of its north and south poles, is disposed transverse to the drive axis
+- Rack and pinion drive movement: rotation of the pinion gear about its rotation axis causes linear motion between it and the linear gear
+- 
