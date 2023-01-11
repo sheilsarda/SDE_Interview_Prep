@@ -1,9 +1,3 @@
-## Key Tenets
-
-1. The operational region of the system is based on patient body size, such as for a human or a large animal
-1. In an embodiment of the invention, a control system changes magnetic field amplitude to drive the motion of (micro)mechanical components of the internal device, generating forward, backward, stop-and-go, and complex 3D motion in homogeneous and heterogeneous matrices.
-
-
 ## Prior Art
 
 ### EP 4 082 467 A1
@@ -12,9 +6,9 @@ Describes the magnetic coils that would be used to control the nanobot
 
 ### US20200196995A1
 
-![](../2.Related_Patents/imgs/US20200196995A1_4E.jpg)
+![](imgs/US20200196995A1_4E.jpg)
 
-![](../2.Related_Patents/imgs/US20200196995A1_5A.jpg)
+![](imgs/US20200196995A1_5A.jpg)
 
 ### US20200108227A1
 
@@ -36,7 +30,7 @@ Propelling devices for propelling through a medium, using external magnetic stim
 
 ### [WO2021126905A1](https://patents.google.com/patent/WO2021126905A1/en?assignee=bionaut+labs&oq=bionaut+labs)
 
-![](../2.Related_Patents/imgs/WO2021126905A1_12.jpg)
+![](imgs/WO2021126905A1_12.jpg)
 
 - Miniature device may be configured such that the magnetic arrangement, within a rotating magnetic field, effects the propulsion of the miniature device within the patient, and, within a magnetic field gradient, effects the performance of the function
 - Drive thread formed on an exterior surface thereof helically about the drive axis, the magnetic arrangement comprising a propulsion magnet rigidly connected to an interior surface thereof and disposed such that the vector of its magnetic moment, i.e., the orientation of its north and south poles, is disposed transverse to the drive axis
@@ -52,9 +46,9 @@ Propelling devices for propelling through a medium, using external magnetic stim
 - Biot-Savart law and/or Lorentz equations may be applied with any suitably reasonable approximations and/or analytical forms of the spatial magnetic field distribution
 - System 100 may be configured to monitor the reaction of the miniature device when applying a magnetic field thereto. The monitoring may be visual, for example using image-recognition software on x-ray images, and/or the monitoring may comprise obtaining feedback from the miniature device by inducing a magnetic pulse. Such an approach may be used in real time, i.e., modifying operational parameters of the system 100 based on how closely the miniature device confirmed to the route and/or path, and/or the reactions of the miniature device to a set of operational parameters may be used to train an artificial intelligence (i.e., machine learning) model to train the system 100 to utilize its components to predictably control the miniature device by varying the operational parameters of its components. Any suitable machine learning algorithm may be used, for example using an artificial neural network applying a Deep Q-learning algorithm. Such machine learning approaches may be performed in-vitro, i.e., in a simulated environment not using a live patient, for example in a human or non-human cadaver, in a model of a patient, etc., and/or in-vivo. A trial-and-error approach may include inducing a magnetic field, and varying it when the miniature device deviates from the path by more than o in any direction. It may further include selectively reversing the magnetic in order to maneuver the miniature robot along a path in a reverse direction to that immediately preceding it.
 
-![](../2.Related_Patents/imgs/WO2021097406A1_100.jpg)
+![](imgs/WO2021097406A1_100.jpg)
 
-![](../2.Related_Patents/imgs/WO2021097406A1_300.jpg)
+![](imgs/WO2021097406A1_300.jpg)
 
 ### [US20210407717A1](https://patents.google.com/patent/US20210407717A1/en?assignee=bionaut+labs&oq=bionaut+labs)
 

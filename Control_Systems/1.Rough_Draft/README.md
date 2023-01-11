@@ -17,3 +17,8 @@ Prepare a PPT presentation describing your design of control algorithm, presenti
 - Pros/cons of various approaches considered
 - Key sources of risk and how you are addressing them
 
+## Key Tenets
+
+1. The operational region of the system is based on patient body size, such as for a human or a large animal
+1. In an embodiment of the invention, a control system changes magnetic field amplitude to drive the motion of (micro)mechanical components of the internal device, generating forward, backward, stop-and-go, and complex 3D motion in homogeneous and heterogeneous matrices.
+
