@@ -39,6 +39,37 @@ A few predefined settings must be known in advance and shared between the master
 **Unlike UART** in the master-slave communication model implemented in the SPI, the slaves can never spontaneously initiate SPI communication, as the master is the only device on the bus allowed to transmit a clock. Each SPI transaction is self-contained, and at the end, the slave
 is deselected by turning off the corresponding slave-select signal.
 
+#### C Code
+
+````c
+uint8_t spi1_read(void) {
+    volatile uint32_t reg;
+    do {
+        reg = SPI1_SR;
+    } while ((reg & SPI_SR_RX_NOTEMPTY) == 0);
+    return (uint8_t)SPI1_DR;
+}
+void spi1_write(const char byte) {
+    int i;
+    volatile uint32_t reg;
+    SPI1_DR = byte;
+    do {
+        reg = SPI1_SR;
+    } while ((reg & SPI_SR_TX_EMPTY) == 0);
+}
+
+int main () {
+    slave_on();
+    spi1_write(0x8F);
+    b = spi1_read();
+    spi1_write(0xFF);
+    b = spi1_read();
+    slave_off();
+}
+````
+
+![](imgs/SPI_Transaction.jpg)
+
 ### I2C
 
 ### UART
