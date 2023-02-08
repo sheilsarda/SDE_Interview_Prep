@@ -1,5 +1,7 @@
 ## Overview of communication protocols
 
+![](imgs/Comms_Protocol_Summary.jpg)
+
 ### SPI
 
 #### Overview
@@ -134,4 +136,41 @@ int main () {
 - While returning to the idle state, 1 or 2 stop bits must be used to indicate the end of the symbol
 - A stop bit is transmitted by pulling the signal high for the entire duration of a bit transmission, marking the end of the current symbol, and forcing the receiver to initiate receiving the next one. A 1-stop bit is the most used default; the 1.5- and 2-stop bit settings provide a longer inter-symbol idling interval, which was useful in the past to communicate with slower, less responsive hardware but is rarely used today
 
-### Other GPIO protocols
+#### UART with Interrupts (instead of polling)
+
+To regulate input and output operations, we are interested in particular in two specific events. The interrupt for these two events can be enabled by setting the corresponding bits in `UART_CR1`
+
+- A TX FIFO empty event, allowing more data to be transmitted
+- A RX FIFO not-empty event, signaling the presence of newly received data
+
+#### C Code
+
+````c
+#define UART_CR1_TXEIE (1 << 7)
+#define UART_CR1_RXNEIE (1 << 5)
+static void uart3_tx_interrupt_onoff(int enable) {
+    if (enable)
+        UART3_CR1 |= UART_CR1_TXEIE;
+    else
+        UART3_CR1 &= ~UART_CR1_TXEIE;
+}
+
+static void uart3_rx_interrupt_onoff(int enable) {
+    if (enable)
+        UART3_CR1 |= UART_CR1_RXNEIE;
+    else
+        UART3_CR1 &= ~UART_CR1_RXNEIE;
+}
+
+void isr_uart3(void) {
+    volatile uint32_t reg;
+    reg = UART3_SR;
+
+    if (reg & UART_SR_RX_NOTEMPTY) {
+        /* Receive a new byte */
+    }
+    if ((reg & UART_SR_TX_EMPTY) {
+        /* resume pending transmission */
+    }
+}
+````
