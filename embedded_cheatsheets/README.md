@@ -174,3 +174,14 @@ void isr_uart3(void) {
     }
 }
 ````
+
+## EEPROM & Bootloaders
+
+### Overview
+
+- A bootloader is a program that runs on startup, configuring a computer or device before the main program or task begins
+- It is a little piece of code that allows you to program the flash memory of the Arduino’s atmega328p via serial or USB instead of using an ICSP programmer
+- When the device is reset, the bootloader checks the serial line for a new program to be uploaded. If one is present, the bootloader copies the program into flash memory and then runs whatever program is present there. (Note that a new program need not be present on each reset)
+- After the `avr` compiler compiles everything down to an Intel hex file for downloading to the target board, it uses the `avrdude` command to program the Arduino via USB
+- Most of the commands are from the stk500 module, except the signature reading is slightly different
+
