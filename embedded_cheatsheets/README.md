@@ -103,6 +103,35 @@ int main () {
 
 ![](imgs/I2C_Transaction.jpg)
 
+#### Unique feature of I2C: Clock Stretching
+
+- Even though not all devices support clock stretching, this mechanism is useful to complete transactions when the requested data is slightly late
+- Clock stretching is a very unique feature of I2C, making it a very versatile protocol to communicate with sensors and other input peripherals
+- It enables communication with slower devices that cannot provide the values to complete the transaction in time
+- To enable this feature, SCL line must be bidirectional and the slave should be designed to access it to enforce a pull-down to keep the transaction alive while preparing the transfer of the next frame
+
+![](imgs/I2C_Clockstretching.jpg)
+
 ### UART
+
+#### Overview
+
+![](imgs/UART_Protocol.jpg)
+
+#### Setup
+
+- The bit rate, expressed in bits per second
+- The number of data bits in each symbol (typically 8)
+- The meaning of parity bit, if present (O is odd, E is even, and N is not present)
+- The number of stop bits
+
+#### Operations
+
+- To initiate the transmission, the transceiver pulls the TX line down to the low logic level, for a period of time that is at least half of the bit sampling period depending on the bit rate
+- The bits composing the byte being transferred are then translated into logical 0 or 1 values, which are held on the TX line for the time corresponding to each bit, according to the bit rate. After this start condition is easily recognized by the receiver, the bits composing the symbol follow in a specific order, from the least significant bit up to the most significant one
+- The number of data bits composing the symbol is also configurable. The default data length of 8 bits allows each symbol to be converted into a byte
+- At the end of the data, an optional parity bit can be configured to count the number of active bits, as a very simplistic form of a redundant check. The parity bit, if present, can be configured to indicate whether the number of 1 values in the symbol is odd or even
+- While returning to the idle state, 1 or 2 stop bits must be used to indicate the end of the symbol
+- A stop bit is transmitted by pulling the signal high for the entire duration of a bit transmission, marking the end of the current symbol, and forcing the receiver to initiate receiving the next one. A 1-stop bit is the most used default; the 1.5- and 2-stop bit settings provide a longer inter-symbol idling interval, which was useful in the past to communicate with slower, less responsive hardware but is rarely used today
 
 ### Other GPIO protocols
