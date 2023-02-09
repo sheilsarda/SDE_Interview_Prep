@@ -198,3 +198,10 @@ Three main types of memory:
 registers (0x0060 –0x00FF), and internal SRAM (stack and heap) (0x0100 –0x08FF)
 - EEPROM that can be used for persistent data storage (when the power to the MCU is turned off). EEPROM stands for Electrically Erasable/Programmable Memory
 
+## About Patent
+
+### Image - Guided Robotic Intervention System (“IGRIS”)
+
+![](imgs/IGRIS_Overview.jpg)
+
+![](imgs/IGRIS_FK_IK.jpg)
