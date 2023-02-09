@@ -205,3 +205,14 @@ registers (0x0060 –0x00FF), and internal SRAM (stack and heap) (0x0100 –0x08
 ![](imgs/IGRIS_Overview.jpg)
 
 ![](imgs/IGRIS_FK_IK.jpg)
+
+### Use of Ultrasound in IGRIS
+
+Of the imaging modalities that enable minimally invasive interventions , ultrasound has many attractive characteristics namely:
+
+- portability
+- cost
+- absence of ionizing radiation
+
+**Note** There has been an emerging trend in the development and use of even smaller, less expensive ultrasound systems to enable point - of - care ultrasound ( POCUS ) imaging to diagnose and potentially address medical issues where a patient is being treated rather than having to send or refer that patient to an imaging center and radiologist. While this technology has seen significant adoption for use in diagnostic applications , it has yet to transform ultrasound guided intervention at scale
+
