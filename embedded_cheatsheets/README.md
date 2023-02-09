@@ -185,7 +185,7 @@ void isr_uart3(void) {
 - After the `avr` compiler compiles everything down to an Intel hex file for downloading to the target board, it uses the `avrdude` command to program the Arduino via USB
 - Most of the commands are from the stk500 module, except the signature reading is slightly different
 
-![](imgs/Bootloaders_Sysetem_Diagram.jpg)
+![](imgs/Bootloaders_Diagram.jpg)
 
 ## EEPROM
 
