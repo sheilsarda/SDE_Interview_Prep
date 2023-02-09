@@ -216,3 +216,10 @@ Of the imaging modalities that enable minimally invasive interventions , ultraso
 
 **Note** There has been an emerging trend in the development and use of even smaller, less expensive ultrasound systems to enable point - of - care ultrasound ( POCUS ) imaging to diagnose and potentially address medical issues where a patient is being treated rather than having to send or refer that patient to an imaging center and radiologist. While this technology has seen significant adoption for use in diagnostic applications , it has yet to transform ultrasound guided intervention at scale
 
+### Robotic Manipulator
+
+- IGRIS comprises a robotic manipulator ( e.g. , robotic arm ) coupled to the Imaging Device and an instrument guide
+- The robotic manipulator may be driven by motors and sensors ( encoders ) , which may be used to control the pose ( e.g. , position and orientation ) of the instrument guide , and thus the instrument relative to the Imaging Device
+- Basic Targeting supports multiple modes , including Backdrive and Tap to Target 
+    - Backdrive allows a user to adjust the pose of the instrument guide and / or the robotic manipulator manually , and the updated pose or needle path is represented on the user interface in real - time
+    - Tap to Target automatically adjusts the pose of the instrument guide and / or robotic manipulator by selecting , or " tapping , " an area of interest on the user interface displaying the real - time
