@@ -214,6 +214,8 @@ Of the imaging modalities that enable minimally invasive interventions , ultraso
 - cost
 - absence of ionizing radiation
 
+**3D Reconstruction** refers to the creation of volumetric information based on a plurality of 2D real - time images ( e.g. , ultrasound ) of an object ( e.g. , anatomical region of a body ) and rendering the reconstruction to present a human interpretable view of the anatomy for procedural planning , as well as assisting in automatically planning the procedure . This includes the anatomy of interest as well as surrounding anatomy for detailed trajectory planning .
+
 **Note** There has been an emerging trend in the development and use of even smaller, less expensive ultrasound systems to enable point - of - care ultrasound ( POCUS ) imaging to diagnose and potentially address medical issues where a patient is being treated rather than having to send or refer that patient to an imaging center and radiologist. While this technology has seen significant adoption for use in diagnostic applications , it has yet to transform ultrasound guided intervention at scale
 
 ### Robotic Manipulator
@@ -223,3 +225,4 @@ Of the imaging modalities that enable minimally invasive interventions , ultraso
 - Basic Targeting supports multiple modes , including Backdrive and Tap to Target 
     - Backdrive allows a user to adjust the pose of the instrument guide and / or the robotic manipulator manually , and the updated pose or needle path is represented on the user interface in real - time
     - Tap to Target automatically adjusts the pose of the instrument guide and / or robotic manipulator by selecting , or " tapping , " an area of interest on the user interface displaying the real - time
+
