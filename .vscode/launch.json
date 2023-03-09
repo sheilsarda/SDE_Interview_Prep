@@ -5,7 +5,7 @@
             "name": "(gdb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "/home/sheil/ODrive/Robotics/SDE_Interview_Prep/FSM/garageDoor",
+            "program": "/home/sheil/ODrive/Robotics/SDE_Interview_Prep/Arrays and Strings/",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
