@@ -53,7 +53,10 @@ public:
         while(strIdx <s.length()){
             int lenOfSubstring = 0;
             if(openParaIdx[strIdx]){
-                lenOfSubstring = findClosingPara(strIdx + 1);
+                if(strIdx + 1 < s.length())
+                    lenOfSubstring = findClosingPara(strIdx + 1);
+                else
+                    return 0;
                 longestValidPara = max(longestValidPara, lenOfSubstring);
                 strIdx += max(lenOfSubstring-1,0);
             }
@@ -66,6 +69,6 @@ public:
 
 int main(){
     Solution sol;
-    cout << sol.longestValidParentheses("(()");
+    cout << sol.longestValidParentheses("()(())");
     return 0;
 }
