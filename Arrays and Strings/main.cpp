@@ -1,34 +1,43 @@
 #include <iostream>
 #include <string>
 #include <map>
-
 using namespace std;
-
 
 class Solution {
 private:
 
 public:
     std::map<int, bool> openParaIdx, closeParaIdx;
+    string s;
 
     int findClosingPara(int startSearchIdx){
         if(openParaIdx[startSearchIdx]){
             int recursiveLen =0;
             recursiveLen = findClosingPara(startSearchIdx+1);
-            if(recursiveLen > 0 && closeParaIdx[recursiveLen+startSearchIdx-1]) 
-                return 2+recursiveLen;
+            if(recursiveLen > 0){
+                if(recursiveLen + startSearchIdx + 2 < s.length() && 
+                    closeParaIdx[recursiveLen+startSearchIdx]) 
+                    return 2+recursiveLen;
+                else 
+                    return recursiveLen;
+            }
             else
                 return -1;
         }
         else if(closeParaIdx[startSearchIdx]){
-            if(openParaIdx[startSearchIdx + 1])
+            if(startSearchIdx+1<s.length() && openParaIdx[startSearchIdx + 1]){
                 return 2+findClosingPara(startSearchIdx + 2);
-            return 2;
+                
+            } else
+                return 2;
         }
         return -1;
     }
     
     int longestValidParentheses(string s) {
+        this->s = s;
+        if(s.length() < 2) 
+            return 0;
         for(int strIdx=0; strIdx<s.length(); ++strIdx){
             if(s[strIdx] == '(') 
                 openParaIdx[strIdx] = true;
