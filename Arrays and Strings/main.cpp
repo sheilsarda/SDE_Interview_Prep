@@ -49,7 +49,7 @@ public:
             }  
         }
 
-        int longestValidPara = 0, strIdx = 0;
+        int longestValidPara = 0, endIdx = 0, strIdx = 0;
         while(strIdx <s.length()){
             int lenOfSubstring = 0;
             if(openParaIdx[strIdx]){
@@ -57,7 +57,13 @@ public:
                     lenOfSubstring = findClosingPara(strIdx + 1);
                 else
                     return 0;
-                longestValidPara = max(longestValidPara, lenOfSubstring);
+                
+                if(endIdx + 1 == strIdx)
+                    longestValidPara += lenOfSubstring;
+                else
+                    longestValidPara = max(longestValidPara, lenOfSubstring);
+                
+                endIdx = strIdx + lenOfSubstring;
                 strIdx += max(lenOfSubstring-1,0);
             }
             else
