@@ -29,11 +29,13 @@ Pseudocode
 """
 
 import numpy as np
+import sys
+import itertools
 
 class GridTraversal():
     
     def __init__(self): 
-        self.__infinity__ = 100000000
+        self.__infinity__ = sys.maxsize
 
         with open("test_input.txt") as f:
             self.__maze__ = [list(line.strip()) for line in f]
@@ -50,12 +52,16 @@ class GridTraversal():
 
         self.buildDistanceMatrix()
 
-        print(np.matrix(self.__avocado_positions__).transpose())
-        print("---------------------------")
-        print(np.matrix(self.__distanceMat__))
+        # print(np.matrix(self.__avocado_positions__).transpose())
+        # print("---------------------------")
+        # print(np.matrix(self.__distanceMat__))
 
     
     def bfs(self, start_row, start_col):
+        """
+        Breadth-first search algorithm, which is guaranteed to find the shortest
+        path between arbitrary start and destination points in an unweighted graph
+        """
  
         bfs_depth_tracker = [
             [-1 for i in range(len(self.__maze__[0]))] for j in range(
@@ -109,11 +115,78 @@ class GridTraversal():
         return
     
     def determineBestPath(self):
-        return
-    
+        """
+        Implementation of Held-Karp, an algorithm that solves the Traveling
+        Salesman Problem using dynamic programming with memoization.
+
+        Returns: A tuple, (cost, path).
+        """
+
+        n = len(self.__distanceMat__)
+
+        # Maps each subset of the nodes to the cost to reach that subset, as well
+        # as what node it passed before reaching this subset.
+        # Node subsets are represented as set bits.
+        C = {}
+
+        # Set transition cost from initial state
+        for k in range(1, n):
+            C[(1 << k, k)] = (self.__distanceMat__[0][k], 0)
+
+        # Iterate subsets of increasing length and store intermediate results
+        # in classic dynamic programming manner
+        for subset_size in range(2, n):
+            for subset in itertools.combinations(range(1, n), subset_size):
+                # Set bits for all nodes in this subset
+                bits = 0
+                for bit in subset:
+                    bits |= 1 << bit
+
+                # Find the lowest cost to get to this subset
+                for k in subset:
+                    prev = bits & ~(1 << k)
+
+                    res = []
+                    for m in subset:
+                        if m == 0 or m == k:
+                            continue
+                        res.append((C[(prev, m)][0] + self.__distanceMat__[m][k], m))
+                    C[(bits, k)] = min(res)
+
+        # We're interested in all bits but the least significant (the start state)
+        bits = (2**n - 1) - 1
+
+        # Calculate optimal cost
+        res = []
+        for k in range(1, n):
+            res.append((C[(bits, k)][0] + self.__distanceMat__[k][0], k))
+        opt, parent = min(res)
+
+        # Backtrack to find full path
+        path = []
+        for i in range(n - 1):
+            path.append(parent)
+            new_bits = bits & ~(1 << parent)
+            _, parent = C[(bits, parent)]
+            bits = new_bits
+
+        # Add implicit start state
+        path.append(0)
+
+        return opt, list(reversed(path))
+
+
+
 def main():
     print("Hello world!")
     gt = GridTraversal()
+
+    path_len, path = gt.determineBestPath()
+    print(np.matrix(path))
+    print("---------------------")
+    print(np.matrix([gt.__avocado_positions__[i-1] for i in path[1:]]).transpose())
+    print("---------------------")
+    print("Path length: ", path_len)
 
 if __name__ == "__main__":
     main()

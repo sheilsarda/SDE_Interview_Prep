@@ -72,9 +72,9 @@ for path_permutation in all_permutations:
     
     permutation_path_lengths.append(total_path_length)
 
-for i in range(0, len(all_permutations)):
-    print("Permutation: ", all_permutations[i])
-    print("Path length: ", permutation_path_lengths[i])
+# for i in range(0, len(all_permutations)):
+#     print("Permutation: ", all_permutations[i])
+#     print("Path length: ", permutation_path_lengths[i])
 
 print("------------------------------------")
 print("Min path length found: ", min(permutation_path_lengths))
