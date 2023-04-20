@@ -53,8 +53,8 @@ class GridTraversal():
         self.buildDistanceMatrix()
 
         # print(np.matrix(self.__avocado_positions__).transpose())
-        # print("---------------------------")
-        # print(np.matrix(self.__distanceMat__))
+        print("---------------------------")
+        print(np.matrix(self.__distanceMat__))
 
     
     def bfs(self, start_row, start_col):
@@ -160,6 +160,7 @@ class GridTraversal():
         res = []
         for k in range(1, n):
             res.append((C[(bits, k)][0] + self.__distanceMat__[k][0], k))
+            
         opt, parent = min(res)
 
         # Backtrack to find full path
@@ -171,9 +172,8 @@ class GridTraversal():
             bits = new_bits
 
         # Add implicit start state
-        path.append(0)
 
-        return opt, list(reversed(path))
+        return opt - self.__distanceMat__[path[-1]][0], list(path)
 
 
 
@@ -184,7 +184,7 @@ def main():
     path_len, path = gt.determineBestPath()
     print(np.matrix(path))
     print("---------------------")
-    print(np.matrix([gt.__avocado_positions__[i-1] for i in path[1:]]).transpose())
+    print(np.matrix([gt.__avocado_positions__[i-1] for i in path]).transpose())
     print("---------------------")
     print("Path length: ", path_len)
 
