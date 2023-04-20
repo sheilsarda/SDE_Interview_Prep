@@ -29,6 +29,7 @@ import numpy as np
 import sys
 import itertools
 
+
 class GridTraversal():
     
     def __init__(self): 
@@ -171,6 +172,9 @@ def main():
     gt = GridTraversal()
 
     path_len, path = gt.determineBestPath()
+
+
+
 
     print(np.matrix(gt.__distanceMat__))
     print("---------------------------")
