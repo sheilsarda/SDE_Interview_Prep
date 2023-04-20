@@ -1,4 +1,4 @@
-import itertools
+import numpy as np
 
 """
 Notes after evaluating the sample test case is that the order of avocados to collect is correct, but the 
@@ -19,6 +19,8 @@ with open("test_input.txt") as f:
 # Initialize variables
 start_row, start_col = None, None
 avocado_positions = []
+bfs_depth_tracker = [[-1 for i in range(len(maze[0]))] for j in range(len(maze))]
+
 
 # Find the start position and avocado positions
 for row in range(len(maze)):
@@ -31,13 +33,16 @@ for row in range(len(maze)):
 robot_row, robot_col = start_row, start_col
 
 # Define a function to find the shortest path between two points using BFS
-def bfs(maze, start_row, start_col, dest_row, dest_col):
+def bfs(maze, start_row, start_col):
+    
     queue = [(start_row, start_col, 0)]
     visited = set((start_row, start_col))
+
     while queue:
         row, col, steps = queue.pop(0)
-        if row == dest_row and col == dest_col:
-            return steps
+        if(bfs_depth_tracker[row][col] == -1):
+            bfs_depth_tracker[row][col] = steps
+
         for drow, dcol in [(-1, 0), (0, -1), (1, 0), (0, 1)]:
             new_row, new_col = row + drow, col + dcol
             if 0 <= new_row < len(maze) and 0 <= new_col < len(maze[0]) and \
@@ -45,38 +50,39 @@ def bfs(maze, start_row, start_col, dest_row, dest_col):
                 queue.append((new_row, new_col, steps + 1))
                 visited.add((new_row, new_col))
 
+print(robot_row, robot_col)
 
-# Not all of them are valid; need BFS to tell us where obstacles block traversal
-all_permutations = list(itertools.permutations(avocado_positions))
-# all_permutations = all_permutations[:2]
-permutation_path_lengths = []
+# Find distance to every avocado from start position and find the nearest one
+bfs(maze, robot_row, robot_col)
 
-for path_permutation in all_permutations:
-    # Step 1: determine feasibility
-    # Step 2: determine number of steps
+distance_to_avocados = []
+for avocado in avocado_positions:
+    distance_to_avocados.append(bfs_depth_tracker[avocado[0]][avocado[1]])
 
-    total_path_length = 0
-    start_row, start_col = robot_row, robot_col
+print(np.matrix(bfs_depth_tracker))
 
-    for avocado_position in path_permutation:
-        dest_row, dest_col = avocado_position[0], avocado_position[1]
-        
-        steps_for_segment = bfs(maze, start_row, start_col, dest_row, dest_col)
-        
-        if(steps_for_segment == None):
-            steps_for_segment = -1
-            break
-        
-        total_path_length += steps_for_segment
-        start_row, start_col = avocado_position[0], avocado_position[1]
+print("Avocados with distances: ")
+for i in range(len(avocado_positions)):
+    print(avocado_positions[i], " : ", distance_to_avocados[i])
+
+start_pos = avocado_positions[distance_to_avocados.index(min(distance_to_avocados))]
+start_index = distance_to_avocados.index(min(distance_to_avocados))
+optimal_avocado_path = [start_pos]
+
+last_avocado_pos = start_pos
+last_avocado_index = start_index
+
+# for i in range(len(avocado_positions) - 1):
+for i in range(1):
+    avocado_positions.pop(last_avocado_index)
+    distance_to_avocados = []
+
+    current_depth = bfs_depth_tracker[last_avocado_pos[0]][last_avocado_pos[1]]
     
-    permutation_path_lengths.append(total_path_length)
+    for avocado_pos in avocado_positions:
+        # Calc new distances from this first avocado
+        distance_to_avocados.append(bfs_depth_tracker[avocado_pos[0]][avocado_pos[1]] - current_depth)
 
-for i in range(0, len(all_permutations)):
-    print("Permutation: ", all_permutations[i])
-    print("Path length: ", permutation_path_lengths[i])
+    print(distance_to_avocados)
 
-print("------------------------------------")
-print("Min path length found: ", min(permutation_path_lengths))
-print("Min Path permuation: ", 
-        all_permutations[permutation_path_lengths.index(min(permutation_path_lengths))])
+print(optimal_avocado_path)
