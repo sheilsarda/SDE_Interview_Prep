@@ -1,3 +1,5 @@
+import itertools
+
 """
 Notes after evaluating the sample test case is that the order of avocados to collect is correct, but the 
 total number of steps to get all of them is overstated. 
@@ -26,6 +28,8 @@ for row in range(len(maze)):
         elif maze[row][col] == "@":
             avocado_positions.append((row, col))
 
+robot_row, robot_col = start_row, start_col
+
 # Define a function to find the shortest path between two points using BFS
 def bfs(maze, start_row, start_col, dest_row, dest_col):
     queue = [(start_row, start_col, 0)]
@@ -42,3 +46,34 @@ def bfs(maze, start_row, start_col, dest_row, dest_col):
                 visited.add((new_row, new_col))
 
 
+# Not all of them are valid; need BFS to tell us where obstacles block traversal
+all_permutations = list(itertools.permutations(avocado_positions))
+# all_permutations = all_permutations[:2]
+permutation_path_lengths = []
+
+for path_permutation in all_permutations:
+    # Step 1: determine feasibility
+    # Step 2: determine number of steps
+
+    total_path_length = 0
+    start_row, start_col = robot_row, robot_col
+
+    for avocado_position in path_permutation:
+        dest_row, dest_col = avocado_position[0], avocado_position[1]
+        
+        steps_for_segment = bfs(maze, start_row, start_col, dest_row, dest_col)
+        
+        if(steps_for_segment == None):
+            steps_for_segment = -1
+            break
+        
+        total_path_length += steps_for_segment
+        start_row, start_col = avocado_position[0], avocado_position[1]
+    
+    permutation_path_lengths.append(total_path_length)
+
+for i in range(0, len(all_permutations)):
+    print("Permutation: ", all_permutations[i])
+    print("Path length: ", permutation_path_lengths[i])
+
+print("Min path length found: ", min(permutation_path_lengths))
