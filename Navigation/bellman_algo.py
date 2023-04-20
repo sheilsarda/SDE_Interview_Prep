@@ -23,9 +23,6 @@ Assumptions:
 • The robot does not need to return to the initial starting location 
 • The robot moves at constant speed, so each grid move requires the same amount of time 
 • The robot can revisit the same grid point, and the avocado can be picked up during any of the visits 
-
-Pseudocode
-1) Find distance from starting location to all avocados
 """
 
 import numpy as np
@@ -51,11 +48,6 @@ class GridTraversal():
                     self.__avocado_positions__.append((row, col))
 
         self.buildDistanceMatrix()
-
-        # print(np.matrix(self.__avocado_positions__).transpose())
-        print("---------------------------")
-        print(np.matrix(self.__distanceMat__))
-
     
     def bfs(self, start_row, start_col):
         """
@@ -171,17 +163,17 @@ class GridTraversal():
             _, parent = C[(bits, parent)]
             bits = new_bits
 
-        # Add implicit start state
-
-        return opt - self.__distanceMat__[path[-1]][0], list(path)
-
+        opt -= self.__distanceMat__[path[-1]][0]
+        return opt, list(path)
 
 
 def main():
-    print("Hello world!")
     gt = GridTraversal()
 
     path_len, path = gt.determineBestPath()
+
+    print(np.matrix(gt.__distanceMat__))
+    print("---------------------------")
     print(np.matrix(path))
     print("---------------------")
     print(np.matrix([gt.__avocado_positions__[i-1] for i in path]).transpose())
