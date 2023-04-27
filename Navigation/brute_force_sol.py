@@ -44,11 +44,11 @@ def bfs(maze, start_row, start_col, dest_row, dest_col):
                (new_row, new_col) not in visited and maze[new_row][new_col] != "#":
                 queue.append((new_row, new_col, steps + 1))
                 visited.add((new_row, new_col))
+    return None
 
 
 # Not all of them are valid; need BFS to tell us where obstacles block traversal
 all_permutations = list(itertools.permutations(avocado_positions))
-# all_permutations = all_permutations[:2]
 permutation_path_lengths = []
 
 for path_permutation in all_permutations:
@@ -64,17 +64,16 @@ for path_permutation in all_permutations:
         steps_for_segment = bfs(maze, start_row, start_col, dest_row, dest_col)
         
         if(steps_for_segment == None):
-            steps_for_segment = -1
             break
         
         total_path_length += steps_for_segment
         start_row, start_col = avocado_position[0], avocado_position[1]
     
-    permutation_path_lengths.append(total_path_length)
+    if(steps_for_segment == None):
+        permutation_path_lengths.append(None)
+    else:    
+        permutation_path_lengths.append(total_path_length)
 
-# for i in range(0, len(all_permutations)):
-#     print("Permutation: ", all_permutations[i])
-#     print("Path length: ", permutation_path_lengths[i])
 
 print("------------------------------------")
 print("Min path length found: ", min(permutation_path_lengths))

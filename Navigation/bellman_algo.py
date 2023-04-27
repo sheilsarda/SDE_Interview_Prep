@@ -5,15 +5,6 @@ Input: text file representing the 2D map, where:
 • “@” = avocado 
 • “x”   = starting location
 
-################
-###..#@.....@#.#
-##x....####..#.#
-###.....#...##.#
-#######.#.###..#
-#@#...#..@....##
-#...#...#.###.@#
-################
-
 Output: text file, where: 
 • The first line is the minimum number of grid moves the robot must make 
 • Each following line is a coordinate: [row, col], sorted from first avocado location to the last 
@@ -29,9 +20,7 @@ import numpy as np
 import sys
 import itertools
 
-
-class GridTraversal():
-    
+class GridTraversal():    
     def __init__(self): 
         self.__infinity__ = sys.maxsize
 
@@ -115,36 +104,52 @@ class GridTraversal():
         Returns: A tuple, (cost, path).
         """
 
-        n = len(self.__distanceMat__)
+        # Path length; # of avocados + 1
+        n = len(self.__distanceMat__) # TODO rename to path_len
 
-        # Maps each subset of the nodes to the cost to reach that subset, as well
-        # as what node it passed before reaching this subset.
-        # Node subsets are represented as set bits.
-        C = {}
+        # Hashmap to map each subset of the nodes to a corresponding cost to reach that subset from the start node;
+        # Also tracks which node it passed before reaching this subset. Node subsets are represented as set bits.
+        # Key of costmap is a pair: (binary representation of set of nodes in subset, index of node)
+        # Value of costmap is a pair: (distance from start, node passed to get there)
+
+        C = {} # TODO rename to costmap
 
         # Set transition cost from initial state
         for k in range(1, n):
             C[(1 << k, k)] = (self.__distanceMat__[0][k], 0)
 
+        # TODO delete
+        # for key in C.keys():
+        #     print(bin(key[0]), key, C[key])
+
         # Iterate subsets of increasing length and store intermediate results
-        # in classic dynamic programming manner
         for subset_size in range(2, n):
+            
             for subset in itertools.combinations(range(1, n), subset_size):
+                
                 # Set bits for all nodes in this subset
                 bits = 0
+                
                 for bit in subset:
                     bits |= 1 << bit
+                
+                # TODO delete
+                # print(subset, bin(bits))
 
                 # Find the lowest cost to get to this subset
                 for k in subset:
                     prev = bits & ~(1 << k)
-
                     res = []
+
                     for m in subset:
+                        
                         if m == 0 or m == k:
                             continue
+                        
                         res.append((C[(prev, m)][0] + self.__distanceMat__[m][k], m))
+
                     C[(bits, k)] = min(res)
+                    print(bin(bits), bin(k))
 
         # We're interested in all bits but the least significant (the start state)
         bits = (2**n - 1) - 1
@@ -164,7 +169,7 @@ class GridTraversal():
             _, parent = C[(bits, parent)]
             bits = new_bits
 
-        opt -= self.__distanceMat__[path[-1]][0]
+        # opt -= self.__distanceMat__[0][path[-1]]
         return opt, list(path)
 
 
@@ -172,9 +177,6 @@ def main():
     gt = GridTraversal()
 
     path_len, path = gt.determineBestPath()
-
-
-
 
     print(np.matrix(gt.__distanceMat__))
     print("---------------------------")
