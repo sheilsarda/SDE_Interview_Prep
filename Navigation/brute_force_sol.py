@@ -19,7 +19,7 @@ Assumptions:
 import itertools
 
 # Read the input file
-with open("test_input_3.txt") as f:
+with open("test_input_2.txt") as f:
     maze = [list(line.strip()) for line in f]
 
 # Initialize variables

@@ -24,7 +24,7 @@ class GridTraversal():
     def __init__(self): 
         self.__infinity__ = sys.maxsize
 
-        with open("test_input_3.txt") as f:
+        with open("test_input_4.txt") as f:
             self.__maze__ = [list(line.strip()) for line in f]
 
         self.__avocado_positions__ = []
@@ -167,7 +167,7 @@ class GridTraversal():
         opt, parent = min(res)
 
         # TODO delete
-        print(parent)
+        # print(parent)
 
         # Backtrack to find full path
         path = []
@@ -178,7 +178,7 @@ class GridTraversal():
             bits = new_bits
 
             # TODO delete
-            print(parent)
+            # print(parent)
 
         # opt -= self.__distanceMat__[0][path[-1]]
         return opt, list(path)
@@ -188,10 +188,11 @@ def main():
     gt = GridTraversal()
     path_len, path = gt.determineBestPath()
 
-    print(np.matrix(gt.__distanceMat__))
-    print("---------------------------")
-    print(np.matrix(path))
-    print("---------------------")
+    # TODO Delete
+    # print(np.matrix(gt.__distanceMat__))
+    # print("---------------------------")
+    # print(np.matrix(path))
+    # print("---------------------")
     print(np.matrix([gt.__avocado_positions__[i-1] for i in path]).transpose())
     print("---------------------")
     print("Path length: ", path_len)
