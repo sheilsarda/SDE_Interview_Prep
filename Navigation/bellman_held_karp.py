@@ -20,7 +20,7 @@ import numpy as np
 import sys
 import itertools
 
-input_file_name = "tests/test_input_4.txt"
+input_file_name = "tests/test_input_3.txt"
 
 class GridTraversal():    
     def __init__(self): 
