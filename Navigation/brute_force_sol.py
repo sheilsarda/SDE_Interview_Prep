@@ -1,24 +1,5 @@
-"""
-Input: text file representing the 2D map, where: 
-• “#”   = obstacles 
-• “.”    = open path 
-• “@” = avocado 
-• “x”   = starting location
-
-Output: text file, where: 
-• The first line is the minimum number of grid moves the robot must make 
-• Each following line is a coordinate: [row, col], sorted from first avocado location to the last 
-
-Assumptions: 
-• The robot can only move in four directions: up, down, left, and right 
-• The robot does not need to return to the initial starting location 
-• The robot moves at constant speed, so each grid move requires the same amount of time 
-• The robot can revisit the same grid point, and the avocado can be picked up during any of the visits 
-"""
-
 import itertools
-
-input_file_name = "tests/test_input_4.txt"
+input_file_name = "tests/test_input_1.txt"
 
 # Read the input file
 with open(input_file_name) as f:
@@ -82,8 +63,6 @@ for path_permutation in all_permutations:
     else:    
         permutation_path_lengths.append(total_path_length)
 
-
-print("------------------------------------")
 print("Min path length found: ", min(permutation_path_lengths))
 print("Min Path permuation: ", 
         all_permutations[permutation_path_lengths.index(min(permutation_path_lengths))])
