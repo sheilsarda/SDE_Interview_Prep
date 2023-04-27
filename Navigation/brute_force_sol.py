@@ -1,19 +1,25 @@
+"""
+Input: text file representing the 2D map, where: 
+• “#”   = obstacles 
+• “.”    = open path 
+• “@” = avocado 
+• “x”   = starting location
+
+Output: text file, where: 
+• The first line is the minimum number of grid moves the robot must make 
+• Each following line is a coordinate: [row, col], sorted from first avocado location to the last 
+
+Assumptions: 
+• The robot can only move in four directions: up, down, left, and right 
+• The robot does not need to return to the initial starting location 
+• The robot moves at constant speed, so each grid move requires the same amount of time 
+• The robot can revisit the same grid point, and the avocado can be picked up during any of the visits 
+"""
+
 import itertools
 
-"""
-Notes after evaluating the sample test case is that the order of avocados to collect is correct, but the 
-total number of steps to get all of them is overstated. 
-
-Suspected root cause: it defaults to picking avocados by traversing the matrix from left to right and top 
-to bottom, and then sorts them into the final output list based on the number of steps it takes to go from
-start pos to 1st avo (from matrix order), and then from that avo to the next, etc.
-
-As a potential solution, first determine bfs depth for all avocados, and make the 1st avo the closest bfs
-distance. One downside is that this greedy optimization might not be long term optimal
-"""
-
 # Read the input file
-with open("test_input.txt") as f:
+with open("test_input_3.txt") as f:
     maze = [list(line.strip()) for line in f]
 
 # Initialize variables
