@@ -31,6 +31,14 @@ A text file, where:
 
 ### Approach 1: Brute Force
 
+1. Determine location of avocados and start location by traversing grid in row-major order
+1. Generate all permutations of start location followed by all avocados
+1. Use BFS to determine total path lengths for each permutation generated
+1. Choose minimum path length and print out the corresponding path
+
+Time complexity:
+
+Space complexity:
 
 ### Approach 2: Dynamic Programming / Memoization 
 

@@ -1,26 +1,8 @@
-"""
-Input: text file representing the 2D map, where: 
-• “#”   = obstacles 
-• “.”    = open path 
-• “@” = avocado 
-• “x”   = starting location
-
-Output: text file, where: 
-• The first line is the minimum number of grid moves the robot must make 
-• Each following line is a coordinate: [row, col], sorted from first avocado location to the last 
-
-Assumptions: 
-• The robot can only move in four directions: up, down, left, and right 
-• The robot does not need to return to the initial starting location 
-• The robot moves at constant speed, so each grid move requires the same amount of time 
-• The robot can revisit the same grid point, and the avocado can be picked up during any of the visits 
-"""
-
 import numpy as np
 import sys
 import itertools
 
-input_file_name = "tests/test_input_3.txt"
+input_file_name = "tests/test_input_1.txt"
 
 class GridTraversal():    
     def __init__(self): 
@@ -46,7 +28,6 @@ class GridTraversal():
         Breadth-first search algorithm, which is guaranteed to find the shortest
         path between arbitrary start and destination points in an unweighted graph
         """
- 
         bfs_depth_tracker = [
             [-1 for i in range(len(self.__maze__[0]))] for j in range(
                                                         len(self.__maze__))]
@@ -65,9 +46,7 @@ class GridTraversal():
                 (new_row, new_col) not in visited and self.__maze__[new_row][new_col] != "#":
                     queue.append((new_row, new_col, steps + 1))
                     visited.add((new_row, new_col))
-        
         return bfs_depth_tracker
-
 
     def buildDistanceMatrix(self):
         """ 
@@ -105,7 +84,6 @@ class GridTraversal():
 
         Returns: A tuple, (cost, path).
         """
-
         # Path length; # of avocados + 1
         n = len(self.__distanceMat__) # TODO rename to path_len
 
@@ -120,46 +98,31 @@ class GridTraversal():
         for k in range(1, n):
             C[(1 << k, k)] = (self.__distanceMat__[0][k], 0)
 
-        # TODO delete
-        # for key in C.keys():
-        #     print(bin(key[0]), key, C[key])
-
         # Iterate subsets of increasing length and store intermediate results
         for subset_size in range(2, n):
-            
             for subset in itertools.combinations(range(1, n), subset_size):
                 
                 # Set bits for all nodes in this subset
                 bits = 0
-                
                 for bit in subset:
                     bits |= 1 << bit
-                
-                # TODO delete
-                # print(subset, bin(bits))
-
+  
                 # Find the lowest cost to get to this subset
                 for k in subset:
                     prev = bits & ~(1 << k)
                     res = []
 
-                    for m in subset:
-                        
+                    for m in subset:                        
                         if m == 0 or m == k:
                             continue
                         
                         res.append((C[(prev, m)][0] + self.__distanceMat__[m][k], m))
 
                     C[(bits, k)] = min(res)
-                    
-                    # TODO delete
-                    # print(bin(bits), bin(k))
 
-        # We're interested in all bits but the least significant (the start state)
+
+        # Bit mask with all 1s for all avocados; 0 for start state
         bits = (2**n - 1) - 1
-
-        # TODO delete
-        # print(bin(bits))
 
         # Calculate optimal cost
         res = []
@@ -167,9 +130,6 @@ class GridTraversal():
             res.append((C[(bits, k)][0], k)) # + self.__distanceMat__[k][0],
             
         opt, parent = min(res)
-
-        # TODO delete
-        # print(parent)
 
         # Backtrack to find full path
         path = []
@@ -179,22 +139,12 @@ class GridTraversal():
             _, parent = C[(bits, parent)]
             bits = new_bits
 
-            # TODO delete
-            # print(parent)
-
-        # opt -= self.__distanceMat__[0][path[-1]]
         return opt, list(path)
-
 
 def main():
     gt = GridTraversal()
     path_len, path = gt.determineBestPath()
 
-    # TODO Delete
-    # print(np.matrix(gt.__distanceMat__))
-    # print("---------------------------")
-    # print(np.matrix(path))
-    # print("---------------------")
     print(np.matrix([gt.__avocado_positions__[i-1] for i in path]).transpose())
     print("---------------------")
     print("Path length: ", path_len)
