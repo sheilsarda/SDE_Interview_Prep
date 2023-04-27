@@ -2,13 +2,12 @@ import numpy as np
 import sys
 import itertools
 
-input_file_name = "tests/test_input_1.txt"
-
-class GridTraversal():    
-    def __init__(self): 
+class DPGridTraversal():    
+    def __init__(self, input_filename): 
         self.__infinity__ = sys.maxsize
+        self.__input__ = input_filename
 
-        with open(input_file_name) as f:
+        with open(self.__input__) as f:
             self.__maze__ = [list(line.strip()) for line in f]
 
         self.__avocado_positions__ = []
@@ -21,7 +20,7 @@ class GridTraversal():
                 elif self.__maze__[row][col] == "@":
                     self.__avocado_positions__.append((row, col))
 
-        self.buildDistanceMatrix()
+        self.build_distance_matrix()
     
     def bfs(self, start_row, start_col):
         """
@@ -46,9 +45,10 @@ class GridTraversal():
                 (new_row, new_col) not in visited and self.__maze__[new_row][new_col] != "#":
                     queue.append((new_row, new_col, steps + 1))
                     visited.add((new_row, new_col))
+        
         return bfs_depth_tracker
 
-    def buildDistanceMatrix(self):
+    def build_distance_matrix(self):
         """ 
         Distance matrix = [n + 1][n +1] where n = number of avocados
         0th index on row and column axis represents start position of robot
@@ -77,7 +77,7 @@ class GridTraversal():
                 
         return
     
-    def determineBestPath(self):
+    def determine_best_path(self):
         """
         Implementation of Held-Karp, an algorithm that solves the Traveling
         Salesman Problem using dynamic programming with memoization.
@@ -141,13 +141,3 @@ class GridTraversal():
 
         return opt, list(path)
 
-def main():
-    gt = GridTraversal()
-    path_len, path = gt.determineBestPath()
-
-    print(np.matrix([gt.__avocado_positions__[i-1] for i in path]).transpose())
-    print("---------------------")
-    print("Path length: ", path_len)
-
-if __name__ == "__main__":
-    main()
