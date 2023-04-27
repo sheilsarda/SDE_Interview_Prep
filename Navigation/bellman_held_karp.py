@@ -20,11 +20,13 @@ import numpy as np
 import sys
 import itertools
 
+input_file_name = "tests/test_input_4.txt"
+
 class GridTraversal():    
     def __init__(self): 
         self.__infinity__ = sys.maxsize
 
-        with open("test_input_4.txt") as f:
+        with open(input_file_name) as f:
             self.__maze__ = [list(line.strip()) for line in f]
 
         self.__avocado_positions__ = []
