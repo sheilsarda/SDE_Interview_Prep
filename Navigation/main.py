@@ -1,5 +1,5 @@
 import numpy as np
-from bellman_held_karp import DPGridTraversal
+from dynamic_prog_sol import DPGridTraversal
 from brute_force_sol import BruteForceGridTraversal
 
 input_file = "tests/test_input_1.txt"

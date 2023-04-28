@@ -22,7 +22,6 @@ class BruteForceGridTraversal():
 
         self.__robot_row__, self.__robot_col__ = start_row, start_col
 
-    # Find the shortest path between two points using BFS
     def bfs(self, start_row, start_col, dest_row, dest_col):
         queue = [(start_row, start_col, 0)]
         visited = set((start_row, start_col))
