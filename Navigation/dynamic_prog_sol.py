@@ -131,7 +131,7 @@ class DPGridTraversal():
         for k in range(1, path_size):
             res.append((cost_map[(bits, k)][0], k)) # + self.__distanceMat__[k][0],
             
-        opt, parent = min(res)
+        optimal_path, parent = min(res)
 
         # Backtrack to find full path
         path = []
@@ -141,5 +141,5 @@ class DPGridTraversal():
             _, parent = cost_map[(bits, parent)]
             bits = new_bits
 
-        return opt, list(path)
+        return optimal_path, list(path)
 

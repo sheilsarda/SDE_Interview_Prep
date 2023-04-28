@@ -2,16 +2,17 @@ import itertools
 input_file_name = "tests/test_input_1.txt"
 
 class BruteForceGridTraversal():
-    def __init__(self, input_file_name):    
-
+    def __init__(self, input_filename, output_filename):    
+        
         # Read the input file
-        with open(input_file_name) as f:
+        with open(input_filename) as f:
             self.__maze__ = [list(line.strip()) for line in f]
 
         # Initialize variables
         start_row, start_col = None, None
         self.__avocado_positions__ = []
-
+        self.__output_filename__ = output_filename
+        
         # Find the start position and avocado positions
         for row in range(len(self.__maze__)):
             for col in range(len(self.__maze__[row])):
@@ -64,6 +65,17 @@ class BruteForceGridTraversal():
                 permutation_path_lengths.append(None)
             else:    
                 permutation_path_lengths.append(total_path_length)
+
+        min_path = all_permutations[permutation_path_lengths.index(min(permutation_path_lengths))]
+        min_pathlen = min(permutation_path_lengths) 
+
+        # Open a text file for writing
+        with open(self.__output_filename__, 'w') as file:
+            file.write(str(min_pathlen) + '\n') # Write min path length            
+            
+            # Loop through each avocado in path
+            for avocado_pos in min_path:
+                file.write(str(avocado_pos[0]) + ',' + str(avocado_pos[1]) + '\n')
 
         print("Min path length found: ", min(permutation_path_lengths))
         print("Min Path permuation: ", 
