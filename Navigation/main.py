@@ -7,7 +7,7 @@ tests_to_run = [1]
 input_file_str = "tests/test_input_"
 output_file_str = "tests/test_output_"
 
-approach = "brute_force" # "brute_force" or "dynamic_prog"
+approach = "dynamic_prog" # "brute_force" or "dynamic_prog"
 
 def main():
 

@@ -2,9 +2,10 @@ import sys
 import itertools
 
 class DPGridTraversal():    
-    def __init__(self, input_filename): 
+    def __init__(self, input_filename, output_filename): 
         self.__infinity__ = sys.maxsize
         self.__input__ = input_filename
+        self.__output_filename__ = output_filename
 
         with open(self.__input__) as f:
             self.__maze__ = [list(line.strip()) for line in f]
@@ -131,7 +132,7 @@ class DPGridTraversal():
         for k in range(1, path_size):
             res.append((cost_map[(bits, k)][0], k)) # + self.__distanceMat__[k][0],
             
-        optimal_path, parent = min(res)
+        min_pathlen, parent = min(res)
 
         # Backtrack to find full path
         path = []
@@ -141,5 +142,14 @@ class DPGridTraversal():
             _, parent = cost_map[(bits, parent)]
             bits = new_bits
 
-        return optimal_path, list(path)
+        # Open a text file for writing
+        with open(self.__output_filename__, 'w') as file:
+            file.write(str(min_pathlen) + '\n') # Write min path length            
+            
+            # Loop through each avocado in path
+            for avocado_idx in reversed(list(path)):
+                avocado_pos = self.__avocado_positions__[avocado_idx-1] 
+                file.write(str(avocado_pos[0]) + ',' + str(avocado_pos[1]) + '\n')
+
+        return min_pathlen, list(path)
 
