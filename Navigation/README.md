@@ -29,7 +29,13 @@ A text file, where:
 
 ## Implementation Details
 
-### Approach 1: Brute Force
+**Assumed Terminology**
+
+- `r` is number of rows
+- `c` is number of cols
+- `n` is number of avocados; upper bounded as `r*c`
+
+### **Approach 1: Brute Force**
 
 **Pseudocode / Algorithm description**
 
@@ -39,10 +45,6 @@ A text file, where:
 1. Choose minimum path length and print out the corresponding path
 
 **Time complexity**
-
-`n` is number of avocados; upper bounded as `r*c`
-`r` is number of rows
-`c` is number of cols
 
 1. Time complexity of a single BFS run: `O(V+E)`
     1. Number of vertices and edges both bounded at `r*c`
@@ -55,33 +57,33 @@ A text file, where:
 
 **Total time complexity of brute force approach is `O((r*c + 2)!)`**
 
-### Approach 2: Dynamic Programming / Memoization 
+### **Approach 2: Dynamic Programming / Memoization**
 
 **Pseudocode / Algorithm description**
 
 1. Determine location of avocados and start location by traversing grid in row-major order
-1. Generate all permutations of start location followed by all avocados
-1. Use BFS to determine total path lengths for each permutation generated
-1. Choose minimum path length and print out the corresponding path
+1. Using BFS, construct a symmetric "distance matrix" of dimension `(n+1) * (n+1)` where entry `[i][j]` contains the length of the shortest path from avocado `i` to `j`; `i / j = 0` represents the start location
+1. Generate subsets of increasing lengths: `[2, n]`, where members of subsets are from the range `[1, n]` (indices of various avocados on the map)
+1. Determine the lowest cost to get to each of these subsets and store it in a hashmap for future reference
+1. At the end of this exercise, the cost hashmap contains optimal cost of visiting all avocados from start position, as well as a linked list of "parent" nodes to traceback to obtain path
 
 **Time complexity**
 
-`n` is number of avocados; upper bounded as `r*c`
-`r` is number of rows
-`c` is number of cols
+1. Cost to construct distance matrix is `n` BFS runs
+    1. As proven above, cost of each BFS run is `O(r*c)`
+    1. Total cost is `O(n*r*c)`
+1. `2^n` subsets of size `[1, n]`, since we have 2 choices for each avocado (include / not include)
+    1. For each subset, we do at most `O(n)` work (`n` lookups in the distance matrix, costing `O(1)` in expectation)
+    1. Total cost of evaluating optimal cost path is `O(n * 2^n)`
 
-1. Time complexity of a single BFS run: `O(V+E)`
-    1. Number of vertices and edges both bounded at `r*c`
-    1. Upper bound on BFS run: `O(r*c)`
-1. Time complexity of evaluating each permutation:
-    1. `n!` permutations of paths available since start position is always fixed
-    1. Each permutation requires `n` iterations of BFS to total distance
-    1. Time complexity of total number of permutations: `O(r*c*n*n!) = O(r*c*(n+1)!)`
-    1. Given `n <= r*c`, `O(r*c *(n+1)!) = O((r*c) * (r*c + 1)!) = O((r*c + 2)!)`
-
-**Total time complexity of brute force approach is `O((r*c + 2)!)`**
-
-
+Since `2^n > r*c`, worst-case runtime of Step 2 dominates Step 1. Thus, **total time complexity of dynamic programming approach is `O(n * 2^n)`**
 
 ![](Time_Complexity_Benchmarking.png)
+
+
+## Asymptotic runtime comparison of factorial vs exponential
+
+`x = r*c`
+
+![](Factorial_vs_exponential.png)
 

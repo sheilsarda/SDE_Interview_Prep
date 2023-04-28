@@ -102,6 +102,8 @@ class DPGridTraversal():
 
         # Iterate subsets of increasing length and store intermediate results
         for subset_size in range(2, path_size):
+
+            # Generates subset_size subsets from the list [1, 2, 3..., path_size]
             for subset in itertools.combinations(range(1, path_size), subset_size):
                 
                 # Set bits for all nodes in this subset
