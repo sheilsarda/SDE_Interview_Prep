@@ -1,6 +1,22 @@
 #include "DPSoln.h"
 using namespace std;
 
+struct hashPair {
+    template <class T1, class T2>
+    size_t operator()(const pair<T1, T2>& p) const
+    {
+        auto hash1 = hash<T1>{}(p.first);
+        auto hash2 = hash<T2>{}(p.second);
+ 
+        if (hash1 != hash2) {
+            return hash1 ^ hash2;             
+        }
+         
+        // If hash1 == hash2, their XOR is zero.
+          return hash1;
+    }
+};
+
 
 /// @brief Destructor
 DPGridTraversal::~DPGridTraversal() { }
@@ -124,35 +140,34 @@ void DPGridTraversal::buildDistanceMatrix() {
     return;
 }
 
-// vector<vector<int>> DPGridTraversal::combinations(vector<int> items, int k) {
-//     vector<vector<int>> result;
+vector<vector<int>> DPGridTraversal::combinations(vector<int> items, int k) {
+    vector<vector<int>> result;
 
-//     vector<bool> bitmask(items.size() - k, false);
-//     bitmask.resize(items.size(), true);
+    vector<bool> bitmask(items.size() - k, false);
+    bitmask.resize(items.size(), true);
 
-//     do {
-//         vector<int> combination;
-//         for (int i = 0; i < items.size(); i++) {
-//             if (bitmask[i]) {
-//                 combination.push_back(items[i]);
-//             }
-//         }
-//         result.push_back(combination);
-//     } while (prev_permutation(bitmask.begin(), bitmask.end()));
+    do {
+        vector<int> combination;
+        for (int i = 0; i < items.size(); i++) {
+            if (bitmask[i]) {
+                combination.push_back(items[i]);
+            }
+        }
+        result.push_back(combination);
+    } while (prev_permutation(bitmask.begin(), bitmask.end()));
 
-//     return result;
-// }
+    return result;
+}
 
 
-// pair<int, vector<pair<int, int>>> 
-void DPGridTraversal::findOptimalPath() {
+pair<int, vector<pair<int, int>>> DPGridTraversal::findOptimalPath() {
     
-    // int pathSize = this->distanceMat.size();
-    unordered_map<pair<int, int>, pair<int, int>> costMap;
+    int pathSize = this->distanceMat.size();
+    auto costMap = unordered_map<pair<int, int>, pair<int, int>, hashPair>();
     
-    // for (int i = 1; i < pathSize; i++) {
-    //     costMap[{1 << i, i}] = {distanceMat[0][i], 0};
-    // }
+    for (int i = 1; i < pathSize; i++) {
+        costMap[{1 << i, i}] = {distanceMat[0][i], 0};
+    }
 
     // for (int subsetSize = 2; subsetSize < pathSize; subsetSize++) {
 

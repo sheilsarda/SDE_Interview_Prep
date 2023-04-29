@@ -33,7 +33,7 @@ class DPGridTraversal {
     public:
         DPGridTraversal(string, string);
         ~DPGridTraversal();
-        void findOptimalPath();
+        pair<int, vector<pair<int, int>>> findOptimalPath();
 
 };
 
