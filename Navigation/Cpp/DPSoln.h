@@ -6,7 +6,8 @@
 #include <chrono>
 #include <fstream>
 #include <vector>
-
+#include <queue>
+#include <set>
 
 
 using namespace std;
@@ -21,10 +22,13 @@ class DPGridTraversal {
 
         int robotRow, robotCol;
 
+        void buildDistanceMatrix();
 
     public:
         DPGridTraversal(string, string);
         ~DPGridTraversal();
+
+        vector<vector<int>> bfs(int, int);
 
 
 };
