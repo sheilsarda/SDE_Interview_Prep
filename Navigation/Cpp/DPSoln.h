@@ -8,6 +8,7 @@
 #include <vector>
 #include <queue>
 #include <set>
+#include <tuple>
 
 
 using namespace std;
@@ -23,12 +24,12 @@ class DPGridTraversal {
         int robotRow, robotCol;
 
         void buildDistanceMatrix();
+        vector<vector<int>> bfs(int, int);
 
     public:
         DPGridTraversal(string, string);
         ~DPGridTraversal();
 
-        vector<vector<int>> bfs(int, int);
 
 
 };
