@@ -2,7 +2,6 @@
 using namespace std;
 
 
-
 /// @brief Destructor
 DPGridTraversal::~DPGridTraversal() { }
 
@@ -123,4 +122,100 @@ void DPGridTraversal::buildDistanceMatrix() {
     }
 
     return;
+}
+
+// vector<vector<int>> DPGridTraversal::combinations(vector<int> items, int k) {
+//     vector<vector<int>> result;
+
+//     vector<bool> bitmask(items.size() - k, false);
+//     bitmask.resize(items.size(), true);
+
+//     do {
+//         vector<int> combination;
+//         for (int i = 0; i < items.size(); i++) {
+//             if (bitmask[i]) {
+//                 combination.push_back(items[i]);
+//             }
+//         }
+//         result.push_back(combination);
+//     } while (prev_permutation(bitmask.begin(), bitmask.end()));
+
+//     return result;
+// }
+
+
+// pair<int, vector<pair<int, int>>> 
+void DPGridTraversal::findOptimalPath() {
+    
+    // int pathSize = this->distanceMat.size();
+    unordered_map<pair<int, int>, pair<int, int>> costMap;
+    
+    // for (int i = 1; i < pathSize; i++) {
+    //     costMap[{1 << i, i}] = {distanceMat[0][i], 0};
+    // }
+
+    // for (int subsetSize = 2; subsetSize < pathSize; subsetSize++) {
+
+    //     for (vector<vector<int>> subset : combinations(subsetSize, pathSize)) {
+    //         int bits = 0;
+
+    //         for (vector<int> bit: subset) {
+    //             // TODO delete
+    //             cout << bit << "\r\n";
+
+    //             bits |= 1 << bit[0];
+    //         }
+            
+            // for (vector<int> k: subset) {
+            //     int prev = bits & ~(1 << k);
+            //     vector<pair<int, int>> res;
+            
+            //     for (auto m: subset) {
+            //         if (m == 0 || m == k) {
+            //             continue;
+            //         }
+            //         res.push_back({costMap[{prev, m}].first + distanceMat[m][k], m});
+            //     }
+            
+            //     costMap[{bits, k}] = *min_element(res.begin(), res.end(), 
+            //                     [](const pair<int, int>& p1, const pair<int, int>& p2) {
+            //                         return p1.first < p2.first;
+            //                     });
+            // }
+    //     }
+    // }
+
+    // int bits = (1 << pathSize) - 1;
+    // vector<pair<int, int>> res;
+    // for (int k = 1; k < pathSize; k++) {
+    //     res.push_back({costMap[{bits, k}].first, k});
+    // }
+    // auto it = min_element(res.begin(), res.end(),
+    //             [](const pair<int, int>& p1, const pair<int, int>& p2) {
+    //                 return p1.first < p2.first;
+    //             });
+    // int min_pathlen = it->first, parent = it->second;
+    // vector<int> path;
+    // for (int i = 0; i < pathSize - 1; i++) {
+    //     path.push_back(parent);
+    //     int new_bits = bits & ~(1 << parent);
+    //     parent = costMap[{bits, parent}].second;
+    //     bits = new_bits;
+    // }
+    // reverse(path.begin(), path.end());
+    // vector<pair<int, int>> path_coordinates;
+    // for (auto avocado_idx: path) {
+    //     auto avocado_pos = avocado_positions[avocado_idx-1];
+    //     path_coordinates.push_back(avocado_pos);
+    // }
+
+    // ofstream output_file;
+    // output_file.open(output_filename);
+    // output_file << min_pathlen << '\n';
+    // for (auto coordinate: path_coordinates) {
+    //     output_file << coordinate.first << ',' << coordinate.second << '\n';
+    // }
+    // output_file.close();
+
+    // return make_pair(min_pathlen, path_coordinates);
 }

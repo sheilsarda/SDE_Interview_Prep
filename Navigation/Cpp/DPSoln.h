@@ -9,7 +9,9 @@
 #include <queue>
 #include <set>
 #include <tuple>
-
+#include <unordered_map>
+#include <algorithm>
+#include <utility>
 
 using namespace std;
 
@@ -26,12 +28,12 @@ class DPGridTraversal {
 
         void buildDistanceMatrix();
         vector<vector<int>> bfs(int, int);
+        vector<vector<int>> combinations(vector<int>, int);
 
     public:
         DPGridTraversal(string, string);
         ~DPGridTraversal();
-
-
+        void findOptimalPath();
 
 };
 
