@@ -20,6 +20,7 @@ class DPGridTraversal {
         string inputFileName, outputFileName;
         vector<vector<char>> maze;
         vector<pair<int, int>>  avocadoPositions;
+        vector<vector<int>> distanceMat;
 
         int robotRow, robotCol;
 

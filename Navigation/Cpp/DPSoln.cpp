@@ -88,8 +88,39 @@ vector<vector<int>> DPGridTraversal::bfs(int startRow, int startCol) {
 }
 
 void DPGridTraversal::buildDistanceMatrix() {
+    /* 
+     * Distance matrix = [n + 1][n +1] where n = number of avocados
+     * 0th index on row and column axis represents start position of robot
+     * ith index where i>0 represents the avocado at index i of avocado_positions array
+     *
+     * Value at distanceMat[i][j] = distanceMat[j][i] = shortest path length between ith 
+     * and jth avocado (where start position counts as avocado as well) 
+     */
 
-    
+    this->distanceMat = vector<vector<int>>(this->avocadoPositions.size() + 1, 
+                                             vector<int>(this->avocadoPositions.size() + 1, 0));
 
+    for(int i = 0; i < this->distanceMat.size(); ++i) {
+        int startRow, startCol;
+        if(i == 0) {
+            startRow = this->robotRow;
+            startCol = this->robotCol;
+        } else {
+            startRow = this->avocadoPositions[i - 1].first;
+            startCol = this->avocadoPositions[i - 1].second;
+        }
 
+        vector<vector<int>> bfsDepth = this->bfs(startRow, startCol);
+
+        for(int avoIdx = 0; avoIdx < this->avocadoPositions.size(); ++avoIdx) {
+            if(i == avoIdx + 1) continue;
+
+            pair<int, int> avocadoPos = this->avocadoPositions[avoIdx];
+
+            this->distanceMat[avoIdx + 1][i] = bfsDepth[avocadoPos.first][avocadoPos.second];
+            this->distanceMat[i][avoIdx + 1] = bfsDepth[avocadoPos.first][avocadoPos.second];
+        }
+    }
+
+    return;
 }
