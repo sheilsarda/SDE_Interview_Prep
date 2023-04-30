@@ -7,7 +7,11 @@ int main(){
     string outputFile = "test_output_1.txt";
 
     cout << "Hello world\r\n";
-    DPGridTraversal(inputFile, outputFile);
+    DPGridTraversal dpSoln(inputFile, outputFile);
+
+    dpSoln.findOptimalPath();
+
+
 
 
 }

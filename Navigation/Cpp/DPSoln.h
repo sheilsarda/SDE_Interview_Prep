@@ -12,6 +12,8 @@
 #include <unordered_map>
 #include <algorithm>
 #include <utility>
+#include <numeric>
+#include <bitset>
 
 using namespace std;
 
