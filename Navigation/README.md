@@ -1,5 +1,16 @@
 # Avocado path-finding 
 
+## Instructions to Compile and Run
+
+1. Navigate to `Cpp` directory
+1. Run `make` command (assumes you have a C++ compiler like `gcc` or `g++` installed)
+1. Execute `DPSoln` executable using `./DPSoln`
+1. Test outputs will be automatically be generated in `tests` directory
+
+To also run the Python program: 
+
+`python3 main.py` from the `Python` subdirectory
+
 ## Problem specs 
 
 ### Input
@@ -35,7 +46,7 @@ A text file, where:
 - `c` is number of cols
 - `n` is number of avocados; upper bounded as `r*c`
 
-### **Approach 1: Brute Force**
+### **Approach 1: Brute Force** *(Implemented in Python for prototyping)*
 
 **Pseudocode / Algorithm description**
 
@@ -57,7 +68,7 @@ A text file, where:
 
 **Total time complexity of brute force approach is `O((r*c + 2)!)`**
 
-### **Approach 2: Dynamic Programming / Memoization**
+### **Approach 2: Dynamic Programming / Memoization** *(Implemented in Python and C++)*
 
 **Pseudocode / Algorithm description**
 
@@ -80,6 +91,7 @@ Since `2^n > r*c`, worst-case runtime of Step 2 dominates Step 1. Thus, **total 
 
 ![](Time_Complexity_Benchmarking.png)
 
+**Note:** Runtimes are sampled from Python implementation of the DP solution, but the takeaways from the comparison are implementation agnostic.
 
 ## Asymptotic runtime comparison of factorial vs exponential
 

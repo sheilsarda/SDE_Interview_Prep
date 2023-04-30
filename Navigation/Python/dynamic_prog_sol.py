@@ -119,18 +119,17 @@ class DPGridTraversal():
                     bits |= 1 << bit
   
                 # Find the lowest cost to get to this subset
-                # TODO rename k and m to something more descriptive
-                for k in subset:
-                    prev = bits & ~(1 << k)
+                for node in subset:
+                    prev = bits & ~(1 << node)
                     res = []
 
-                    for m in subset:                        
-                        if m == 0 or m == k:
+                    for prevNode in subset:                        
+                        if prevNode == 0 or prevNode == node:
                             continue
                         
-                        res.append((cost_map[(prev, m)][0] + self.__distanceMat__[m][k], m))
+                        res.append((cost_map[(prev, prevNode)][0] + self.__distanceMat__[prevNode][node], prevNode))
 
-                    cost_map[(bits, k)] = min(res) # Store lowest cost to arrive at subset in cost map
+                    cost_map[(bits, node)] = min(res) # Store lowest cost to arrive at subset in cost map
 
 
         bits = (2**path_size - 1) - 1 # Bit mask with all 1s for all avocados; 0 for start state
