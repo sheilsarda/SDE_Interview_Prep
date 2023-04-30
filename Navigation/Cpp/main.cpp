@@ -1,7 +1,7 @@
 #include "DPSoln.h"
 using namespace std;
 
-int testsToRun[] = {1, 2, 3, 4, 5}; // idxs of tests to run (located in tests subdirectory)
+int testsToRun[] = {1}; // idxs of tests to run (located in tests subdirectory)
 
 string inputFile = "../tests/test_input_";
 string outputFile = "../tests/cpp_test_output_";

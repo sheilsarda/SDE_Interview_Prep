@@ -188,24 +188,28 @@ pair<int, vector<pair<int, int>>> DPGridTraversal::findOptimalPath() {
         // Generates subset_size subsets from the list [1, 2, 3..., path_size-1]
         for (auto subset : combinations(rangeArray, subsetSize)) {
             
+            // Set bits for all nodes in subset
             int bits = 0;
             for (int bit: subset) {
                 bits |= 1 << bit;
             }        
 
-            // TODO rename k and m to something more descriptive
-            for (int k: subset) {
-                int prev = bits & ~(1 << k);
+            // Finding lowest cost to arrive at this subset using DP
+            for (int node: subset) {
+                int prevSubset = bits & ~(1 << node);
                 vector<pair<int, int>> res;
             
-                for (int m: subset) {
-                    if (m == 0 || m == k) {
+                for (int prevNode: subset) {
+                    // want to minimize start->prevNode->node for this particular subset and store in costMap
+                    if (prevNode == 0 || prevNode == node) {
                         continue; // Symbolizes start location or the current node itself
                     }
-                    res.push_back({costMap[{prev, m}].first + this->distanceMat[m][k], m});
+                    res.push_back({ costMap[{prevSubset, prevNode}].first + 
+                                    this->distanceMat[prevNode][node], 
+                                    prevNode});
                 }
             
-                costMap[{bits, k}] = *min_element(res.begin(), res.end(), this->comparePairs);
+                costMap[{bits, node}] = *min_element(res.begin(), res.end(), this->comparePairs);
             }
         }
     }
