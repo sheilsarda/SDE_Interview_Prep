@@ -9,18 +9,16 @@ string outputFile = "../tests/cpp_test_output_";
 int main(){
 
     for(int testCase : testsToRun){
-        cout << "Hello world\r\n";
         string inputFileTest = inputFile + to_string(testCase) + ".txt";
         string outputFileTest = outputFile + to_string(testCase) + ".txt";
 
+        cout << "Starting test " << to_string(testCase) << endl;
         cout << "Input file name: " << inputFileTest << endl;
-
 
         DPGridTraversal dpSoln( inputFileTest, outputFileTest);
         dpSoln.findOptimalPath();
 
+        cout << "Finished running test " << to_string(testCase) << endl;
+
     }
-
-
-
 }

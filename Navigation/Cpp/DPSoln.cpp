@@ -50,11 +50,6 @@ DPGridTraversal::DPGridTraversal(string inputFile, string outputFile) : inputFil
         }
     }
     
-    // TODO delete
-    // for (auto avo : this->avocadoPositions){
-    //     cout << avo.first << "," << avo.second;
-    //     cout << "\r\n";
-    // }
     this->buildDistanceMatrix();
 }
 
@@ -159,9 +154,6 @@ vector<vector<int>> DPGridTraversal::combinations(vector<int> nums, int k) {
     vector<int> current;
     generate_combinations(nums, k, current, 0, result); // Start with first element
     
-    // TODO delete
-    // cout << result.size() << " size of results\r\n";
-    
     return result;
 }
 
@@ -190,19 +182,11 @@ pair<int, vector<pair<int, int>>> DPGridTraversal::findOptimalPath() {
         costMap[{1 << i, i}] = {this->distanceMat[0][i], 0};
     }
 
-    // TODO delete
-    // int numSubsets = 0;
-
     // Iterate subsets of increasing length and store intermediate results
     for (int subsetSize = 2; subsetSize < pathSize; subsetSize++) {
 
         // Generates subset_size subsets from the list [1, 2, 3..., path_size-1]
         for (auto subset : combinations(rangeArray, subsetSize)) {
-
-            // TODO delete
-            // numSubsets++;
-            // for (auto entry : subset) cout << entry << ", ";
-            // cout << "\r\n";
             
             int bits = 0;
             for (int bit: subset) {
@@ -226,18 +210,8 @@ pair<int, vector<pair<int, int>>> DPGridTraversal::findOptimalPath() {
         }
     }
 
-    // TODO delete
-    // cout << costMap.size() << " entries in costMap\r\n";
-    // cout << numSubsets << " subsets evaluated\r\n";
-    // for (const auto& [key, value] : costMap) {
-    //     std::cout << "{" << key.first << ", " << key.second << "}: {" << value.first << ", " << value.second << "}\n";
-    // }
-
     int bits = (1 << pathSize) - 2;
     
-    // TODO delete
-    cout << "bits: " << bitset<8>(bits) << endl;
-
     vector<pair<int, int>> res;
     for (int k = 1; k < pathSize; k++) {
         res.push_back({costMap[{bits, k}].first, k});

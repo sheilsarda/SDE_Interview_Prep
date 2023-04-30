@@ -2,10 +2,10 @@ import numpy as np
 from dynamic_prog_sol import DPGridTraversal
 from brute_force_sol import BruteForceGridTraversal
 
-tests_to_run = [1, 2, 3, 4, 5] # idxs of tests to run (located in tests subdirectory)
+tests_to_run = [1] # idxs of tests to run (located in tests subdirectory)
 
-input_file_str = "tests/test_input_"
-output_file_str = "tests/test_output_"
+input_file_str = "../tests/test_input_"
+output_file_str = "../tests/py_test_output_"
 
 approach = "dynamic_prog" # "brute_force" or "dynamic_prog"
 

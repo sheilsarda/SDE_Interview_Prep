@@ -1,5 +1,6 @@
 import sys
 import itertools
+import numpy as np
 
 class DPGridTraversal():    
     def __init__(self, input_filename, output_filename): 
@@ -81,6 +82,7 @@ class DPGridTraversal():
                 self.__distanceMat__[avo_idx+1][i] = bfs_depth_tracker[avocado_pos[0]][avocado_pos[1]]
                 self.__distanceMat__[i][avo_idx+1] = bfs_depth_tracker[avocado_pos[0]][avocado_pos[1]]
                 
+        
         return
     
     def determine_best_path(self):
@@ -98,21 +100,26 @@ class DPGridTraversal():
         """
         cost_map = {} 
 
+        num_subsets = 0
+
         for k in range(1, path_size):
             cost_map[(1 << k, k)] = (self.__distanceMat__[0][k], 0)  # Set transition cost from initial state
 
         # Iterate subsets of increasing length and store intermediate results
         for subset_size in range(2, path_size):
 
-            # Generates subset_size subsets from the list [1, 2, 3..., path_size]
+            # Generates subset_size subsets from the list [1, 2, 3..., path_size-1]
             for subset in itertools.combinations(range(1, path_size), subset_size):
-                
+                num_subsets += 1
+                # print(subset)
+
                 # Set bits for all nodes in this subset
                 bits = 0
                 for bit in subset:
                     bits |= 1 << bit
   
                 # Find the lowest cost to get to this subset
+                # TODO rename k and m to something more descriptive
                 for k in subset:
                     prev = bits & ~(1 << k)
                     res = []
@@ -125,8 +132,10 @@ class DPGridTraversal():
 
                     cost_map[(bits, k)] = min(res) # Store lowest cost to arrive at subset in cost map
 
+
         bits = (2**path_size - 1) - 1 # Bit mask with all 1s for all avocados; 0 for start state
 
+        
         # Calculate optimal cost
         res = []
         for k in range(1, path_size):
