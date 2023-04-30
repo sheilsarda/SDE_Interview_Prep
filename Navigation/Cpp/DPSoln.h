@@ -31,6 +31,7 @@ class DPGridTraversal {
         void buildDistanceMatrix();
         vector<vector<int>> bfs(int, int);
         vector<vector<int>> combinations(vector<int>, int);
+        static bool comparePairs(const pair<int, int>&, const pair<int, int>&);
 
     public:
         DPGridTraversal(string, string);

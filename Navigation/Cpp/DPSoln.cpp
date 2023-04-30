@@ -51,10 +51,10 @@ DPGridTraversal::DPGridTraversal(string inputFile, string outputFile) : inputFil
     }
     
     // TODO delete
-    for (auto avo : this->avocadoPositions){
-        cout << avo.first << "," << avo.second;
-        cout << "\r\n";
-    }
+    // for (auto avo : this->avocadoPositions){
+    //     cout << avo.first << "," << avo.second;
+    //     cout << "\r\n";
+    // }
     this->buildDistanceMatrix();
 }
 
@@ -141,33 +141,46 @@ void DPGridTraversal::buildDistanceMatrix() {
     return;
 }
 
-vector<vector<int>> DPGridTraversal::combinations(vector<int> items, int k) {
+vector<vector<int>> DPGridTraversal::combinations(vector<int> nums, int k) {
+    
     vector<vector<int>> result;
-
-    vector<bool> bitmask(items.size() - k, false);
-    bitmask.resize(items.size(), true);
-
-    do {
-        vector<int> combination;
-        for (int i = 0; i < items.size(); i++) {
-            if (bitmask[i]) {
-                combination.push_back(items[i]);
-            }
+    vector<int> comb(k, 0);
+    int i = 0;
+    
+    while (i >= 0) {
+        comb[i]++;
+        
+        if (comb[i] > nums.size() - (k - i)) {
+            i--;
+        } else if (i == k - 1) {
+            result.push_back(comb);
+        } else {
+            i++;
+            comb[i] = comb[i-1];
         }
-        result.push_back(combination);
-    } while (prev_permutation(bitmask.begin(), bitmask.end()));
-
+    }
+    
+    for (int j = 0; j < result.size(); j++) {
+        for (int k = 0; k < result[j].size(); k++) {
+            result[j][k] = nums[result[j][k]-1];
+        }
+    }
+    
     return result;
+}
+
+
+bool DPGridTraversal::comparePairs(const pair<int, int>& p1, const pair<int, int>& p2) {
+    return p1.first < p2.first;
 }
 
 
 pair<int, vector<pair<int, int>>> DPGridTraversal::findOptimalPath() {
     
     int pathSize = this->distanceMat.size();
-    cout << "Pathsize: " << pathSize << "\r\n";
     
     vector<int> rangeArray(pathSize - 1); // holds [1, 2, 3, ..., pathSize]
-    iota(rangeArray.begin(), rangeArray.end(), 1); // populates array 
+    iota(rangeArray.begin(), rangeArray.end(), 1); // populates array     
 
     /**
      * Hashmap to map each subset of the nodes to a corresponding cost to reach that subset from the start node;
@@ -178,48 +191,56 @@ pair<int, vector<pair<int, int>>> DPGridTraversal::findOptimalPath() {
     unordered_map<pair<int, int>, pair<int, int>, hashPair> costMap;
     
     for (int i = 1; i < pathSize; i++) {
-        costMap[{1 << i, i}] = {distanceMat[0][i], 0};
+        costMap[{1 << i, i}] = {this->distanceMat[0][i], 0};
     }
-    
+
+    int numSubsets = 0;
+
     // Iterate subsets of increasing length and store intermediate results
     for (int subsetSize = 2; subsetSize < pathSize; subsetSize++) {
 
-        // Generates subset_size subsets from the list [1, 2, 3..., path_size]
+        // Generates subset_size subsets from the list [1, 2, 3..., path_size-1]
         for (auto subset : combinations(rangeArray, subsetSize)) {
+
+            numSubsets++;
+            for (auto entry : subset) cout << entry << ", ";
+            cout << "\r\n";
+            
             int bits = 0;
-
-            for (auto bit: subset) {
-
+            for (int bit: subset) {
                 bits |= 1 << bit;
             }        
 
-            for (auto k: subset) {
+            // TODO rename k and m to something more descriptive
+            for (int k: subset) {
                 int prev = bits & ~(1 << k);
                 vector<pair<int, int>> res;
             
-                for (auto m: subset) {
+                for (int m: subset) {
                     if (m == 0 || m == k) {
-                        continue;
+                        continue; // Symbolizes start location or the current node itself
                     }
-                    res.push_back({costMap[{prev, m}].first + distanceMat[m][k], m});
+                    res.push_back({costMap[{prev, m}].first + this->distanceMat[m][k], m});
                 }
             
-                costMap[{bits, k}] = *min_element(  res.begin(), res.end(), 
-                                                    [](const pair<int, int>& p1, const pair<int, int>& p2) 
-                                                        { return p1.first < p2.first; });
+                costMap[{bits, k}] = *min_element(res.begin(), res.end(), this->comparePairs);
             }
         }
     }
+
+    cout << costMap.size() << " entries in costMap\r\n";
+    cout << numSubsets << " subsets evaluated\r\n";
+    // for (const auto& [key, value] : costMap) {
+    //     std::cout << "{" << key.first << ", " << key.second << "}: {" << value.first << ", " << value.second << "}\n";
+    // }
 
     int bits = (1 << pathSize) - 1;
     vector<pair<int, int>> res;
     for (int k = 1; k < pathSize; k++) {
         res.push_back({costMap[{bits, k}].first, k});
     }
-    auto it = min_element(res.begin(), res.end(),
-                [](const pair<int, int>& p1, const pair<int, int>& p2) {
-                    return p1.first < p2.first;
-                });
+
+    auto it = min_element(res.begin(), res.end(), this->comparePairs);
     
     int minPathLen = it->first, parent = it->second;
     vector<int> path;
