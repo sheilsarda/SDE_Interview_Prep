@@ -191,7 +191,7 @@ pair<int, vector<pair<int, int>>> DPGridTraversal::findOptimalPath() {
     }
 
     // TODO delete
-    int numSubsets = 0;
+    // int numSubsets = 0;
 
     // Iterate subsets of increasing length and store intermediate results
     for (int subsetSize = 2; subsetSize < pathSize; subsetSize++) {
@@ -200,7 +200,7 @@ pair<int, vector<pair<int, int>>> DPGridTraversal::findOptimalPath() {
         for (auto subset : combinations(rangeArray, subsetSize)) {
 
             // TODO delete
-            numSubsets++;
+            // numSubsets++;
             // for (auto entry : subset) cout << entry << ", ";
             // cout << "\r\n";
             
@@ -227,11 +227,11 @@ pair<int, vector<pair<int, int>>> DPGridTraversal::findOptimalPath() {
     }
 
     // TODO delete
-    cout << costMap.size() << " entries in costMap\r\n";
-    cout << numSubsets << " subsets evaluated\r\n";
-    for (const auto& [key, value] : costMap) {
-        std::cout << "{" << key.first << ", " << key.second << "}: {" << value.first << ", " << value.second << "}\n";
-    }
+    // cout << costMap.size() << " entries in costMap\r\n";
+    // cout << numSubsets << " subsets evaluated\r\n";
+    // for (const auto& [key, value] : costMap) {
+    //     std::cout << "{" << key.first << ", " << key.second << "}: {" << value.first << ", " << value.second << "}\n";
+    // }
 
     int bits = (1 << pathSize) - 2;
     
