@@ -141,30 +141,26 @@ void DPGridTraversal::buildDistanceMatrix() {
     return;
 }
 
+void generate_combinations(vector<int>& nums, int k, vector<int>& current, int start, vector<vector<int>>& result) {
+    if (current.size() == k) { // Base case: current combination has k elements
+        result.push_back(current);
+        return;
+    }
+    for (int i = start; i < nums.size(); i++) {
+        current.push_back(nums[i]); // Add current element to current combination
+        generate_combinations(nums, k, current, i + 1, result); // Recursive call for next element
+        current.pop_back(); // Backtrack and remove last element
+    }
+}
+
 vector<vector<int>> DPGridTraversal::combinations(vector<int> nums, int k) {
-    
+
     vector<vector<int>> result;
-    vector<int> comb(k, 0);
-    int i = 0;
+    vector<int> current;
+    generate_combinations(nums, k, current, 0, result); // Start with first element
     
-    while (i >= 0) {
-        comb[i]++;
-        
-        if (comb[i] > nums.size() - (k - i)) {
-            i--;
-        } else if (i == k - 1) {
-            result.push_back(comb);
-        } else {
-            i++;
-            comb[i] = comb[i-1];
-        }
-    }
-    
-    for (int j = 0; j < result.size(); j++) {
-        for (int k = 0; k < result[j].size(); k++) {
-            result[j][k] = nums[result[j][k]-1];
-        }
-    }
+    // TODO delete
+    // cout << result.size() << " size of results\r\n";
     
     return result;
 }
@@ -179,7 +175,7 @@ pair<int, vector<pair<int, int>>> DPGridTraversal::findOptimalPath() {
     
     int pathSize = this->distanceMat.size();
     
-    vector<int> rangeArray(pathSize - 1); // holds [1, 2, 3, ..., pathSize]
+    vector<int> rangeArray(pathSize - 1); // holds [1, 2, 3, ..., pathSize - 1]
     iota(rangeArray.begin(), rangeArray.end(), 1); // populates array     
 
     /**
@@ -194,6 +190,7 @@ pair<int, vector<pair<int, int>>> DPGridTraversal::findOptimalPath() {
         costMap[{1 << i, i}] = {this->distanceMat[0][i], 0};
     }
 
+    // TODO delete
     int numSubsets = 0;
 
     // Iterate subsets of increasing length and store intermediate results
@@ -202,9 +199,10 @@ pair<int, vector<pair<int, int>>> DPGridTraversal::findOptimalPath() {
         // Generates subset_size subsets from the list [1, 2, 3..., path_size-1]
         for (auto subset : combinations(rangeArray, subsetSize)) {
 
+            // TODO delete
             numSubsets++;
-            for (auto entry : subset) cout << entry << ", ";
-            cout << "\r\n";
+            // for (auto entry : subset) cout << entry << ", ";
+            // cout << "\r\n";
             
             int bits = 0;
             for (int bit: subset) {
@@ -228,13 +226,18 @@ pair<int, vector<pair<int, int>>> DPGridTraversal::findOptimalPath() {
         }
     }
 
+    // TODO delete
     cout << costMap.size() << " entries in costMap\r\n";
     cout << numSubsets << " subsets evaluated\r\n";
-    // for (const auto& [key, value] : costMap) {
-    //     std::cout << "{" << key.first << ", " << key.second << "}: {" << value.first << ", " << value.second << "}\n";
-    // }
+    for (const auto& [key, value] : costMap) {
+        std::cout << "{" << key.first << ", " << key.second << "}: {" << value.first << ", " << value.second << "}\n";
+    }
 
-    int bits = (1 << pathSize) - 1;
+    int bits = (1 << pathSize) - 2;
+    
+    // TODO delete
+    cout << "bits: " << bitset<8>(bits) << endl;
+
     vector<pair<int, int>> res;
     for (int k = 1; k < pathSize; k++) {
         res.push_back({costMap[{bits, k}].first, k});
@@ -243,15 +246,20 @@ pair<int, vector<pair<int, int>>> DPGridTraversal::findOptimalPath() {
     auto it = min_element(res.begin(), res.end(), this->comparePairs);
     
     int minPathLen = it->first, parent = it->second;
+    
     vector<int> path;
     for (int i = 0; i < pathSize - 1; i++) {
+
         path.push_back(parent);
-        int new_bits = bits & ~(1 << parent);
+        int new_bits = bits & ~(1 << parent);        
         parent = costMap[{bits, parent}].second;
         bits = new_bits;
     }
+
     reverse(path.begin(), path.end());
+
     vector<pair<int, int>> pathCoords;
+    
     for (auto avocadoIdx: path) {
         auto pos = avocadoPositions[avocadoIdx-1];
         pathCoords.push_back(pos);
