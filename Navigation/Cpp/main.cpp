@@ -1,16 +1,21 @@
 #include "DPSoln.h"
 using namespace std;
 
+int testsToRun[1]; // idxs of tests to run (located in tests subdirectory)
+
+string inputFile = "tests/test_input_";
+string outputFile = "tests/cpp_test_output_";
+
 int main(){
 
-    string inputFile = "../Python/tests/test_input_1.txt";
-    string outputFile = "test_output_1.txt";
-
     cout << "Hello world\r\n";
-    DPGridTraversal dpSoln(inputFile, outputFile);
+    for(int testCase : testsToRun){
 
-    dpSoln.findOptimalPath();
+        DPGridTraversal dpSoln( inputFile + to_string(testCase), 
+                                outputFile + to_string(testCase));
+        dpSoln.findOptimalPath();
 
+    }
 
 
 
