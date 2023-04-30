@@ -191,10 +191,7 @@ pair<int, vector<pair<int, int>>> DPGridTraversal::findOptimalPath() {
             for (auto bit: subset) {
 
                 bits |= 1 << bit;
-            }
-            
-            // TODO delete
-            cout << bitset<8>(bits) << "\r\n";            
+            }        
 
             for (auto k: subset) {
                 int prev = bits & ~(1 << k);
@@ -239,13 +236,13 @@ pair<int, vector<pair<int, int>>> DPGridTraversal::findOptimalPath() {
         pathCoords.push_back(pos);
     }
 
-    // ofstream output_file;
-    // output_file.open(output_filename);
-    // output_file << min_pathlen << '\n';
-    // for (auto coordinate: path_coordinates) {
-    //     output_file << coordinate.first << ',' << coordinate.second << '\n';
-    // }
-    // output_file.close();
+    ofstream file;
+    file.open(this->outputFileName);
+    file << minPathLen << '\n';
+    for (auto coord: pathCoords) {
+        file << coord.first << ',' << coord.second << '\n';
+    }
+    file.close();
 
     return make_pair(minPathLen, pathCoords);
 }
