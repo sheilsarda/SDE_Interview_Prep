@@ -1,23 +1,17 @@
 # 3. Wildcard Matching
 
+Given an array of points where `points[i] = [xi, yi]` represents a point on the X-Y plane, return the maximum number of points that lie on the same straight line.
 
 ## Examples
 
 ````
 Example 1:
-Input: s = "aa", p = "a"
-Output: false
-Explanation: "a" does not match the entire string "aa".
+Input: points = [[1,1],[2,2],[3,3]]
+Output: 3
 
 Example 2:
-Input: s = "aa", p = "*"
-Output: true
-Explanation: '*' matches any sequence.
-
-Example 3:
-Input: s = "cb", p = "?a"
-Output: false
-Explanation: '?' matches 'c', but the second letter is 'a', which does not match 'b'.
+Input: points = [[1,1],[3,2],[5,3],[4,1],[2,3],[1,4]]
+Output: 4
 ````
 
 ## Code
@@ -25,27 +19,35 @@ Explanation: '?' matches 'c', but the second letter is 'a', which does not match
 ````cpp
 class Solution {
 public:
-    bool isMatch(string s, string p) {
-        vector<vector<bool>> dp(s.size() + 1, vector(p.size() + 1, false));
-        dp[0][0] = true;
-        for (int j = 0; j < p.size() && p[j] == '*'; ++j) {
-            dp[0][j + 1] = true;
-        }
+    int maxPoints(vector<vector<int>>& points) {
         
-        for (int i = 1; i <= s.size(); ++i) {
-            for (int j = 1; j <= p.size(); ++j) {
-                if (p[j - 1] == '*') {
-                    dp[i][j] = dp[i - 1][j] || dp[i][j - 1];
-                } else {
-                    dp[i][j] = (s[i - 1] == p[j - 1] || p[j - 1] == '?') && dp[i - 1][j - 1];
+        if(points.size() <= 2)
+            return points.size();
+        
+        int mx = 0;
+        
+        for(int i=0; i < points.size(); i++){
+            unordered_map<float,int> mp;
+
+            for(int j=i+1;j<points.size();j++){
+                
+                // slope = infinity || vertical line
+                if((points[j][0]-points[i][0]) == 0){
+                    
+                    mp[INT_MAX]++;
+                    mx = max(mx,mp[INT_MAX]+1);
+                
+                } else{
+                    
+                    float slope=((points[j][1]-points[i][1])*1.0/(points[j][0]-points[i][0]));
+                    mp[slope]++;
+                    mx = max(mx,mp[slope]+1);
                 }
             }
         }
+        
+        return mx;
 
-        return dp[s.size()][p.size()];
     }
 };
-````
-
-### Code Walkthrough
 
