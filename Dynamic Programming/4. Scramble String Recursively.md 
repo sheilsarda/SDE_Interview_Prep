@@ -1,0 +1,102 @@
+# 87. Scramble String
+
+Hard difficulty
+
+We can scramble a string s to get a string t using the following algorithm:
+
+If the length of the string is 1, stop.
+If the length of the string is > 1, do the following:
+Split the string into two non-empty substrings at a random index, i.e., if the string is s, divide it to x and y where s = x + y.
+Randomly decide to swap the two substrings or to keep them in the same order. i.e., after this step, s may become s = x + y or s = y + x.
+Apply step 1 recursively on each of the two substrings x and y.
+Given two strings s1 and s2 of the same length, return true if s2 is a scrambled string of s1, otherwise, return false.
+
+ 
+
+```rust
+use std::collections::HashMap;
+
+impl Solution {
+    pub fn is_scramble(s1: String, s2: String) -> bool {
+        let s1_bytes = s1.as_bytes();
+        let s2_bytes = s2.as_bytes();
+        let mut memo = HashMap::new();
+        Self::helper(s1_bytes, s2_bytes, 0, 0, s1.len(), &mut memo)
+    }
+    
+    fn helper(
+        s1: &[u8],
+        s2: &[u8],
+        i1: usize,
+        i2: usize,
+        len: usize,
+        memo: &mut HashMap<(usize, usize, usize), bool>
+    ) -> bool {
+        // Check memoization
+        let key = (i1, i2, len);
+        if let Some(&result) = memo.get(&key) {
+            return result;
+        }
+        
+        // Base case: if substrings are equal, they're scrambles
+        if s1[i1..i1+len] == s2[i2..i2+len] {
+            memo.insert(key, true);
+            return true;
+        }
+        
+        // Quick pruning: if character frequencies don't match, not scrambles
+        let mut chars1: Vec<u8> = s1[i1..i1+len].to_vec();
+        let mut chars2: Vec<u8> = s2[i2..i2+len].to_vec();
+        chars1.sort_unstable();
+        chars2.sort_unstable();
+        if chars1 != chars2 {
+            memo.insert(key, false);
+            return false;
+        }
+        
+        // Try all possible split points
+        for split in 1..len {
+            // Case 1: No swap - left matches left, right matches right
+            // s1[i1..i1+split] with s2[i2..i2+split]
+            // s1[i1+split..i1+len] with s2[i2+split..i2+len]
+            if Self::helper(s1, s2, i1, i2, split, memo)
+                && Self::helper(s1, s2, i1 + split, i2 + split, len - split, memo) {
+                memo.insert(key, true);
+                return true;
+            }
+            
+            // Case 2: Swap - left matches right, right matches left
+            // s1[i1..i1+split] with s2[i2+len-split..i2+len]
+            // s1[i1+split..i1+len] with s2[i2..i2+len-split]
+            if Self::helper(s1, s2, i1, i2 + len - split, split, memo)
+                && Self::helper(s1, s2, i1 + split, i2, len - split, memo) {
+                memo.insert(key, true);
+                return true;
+            }
+        }
+        
+        memo.insert(key, false);
+        false
+    }
+}
+
+// Test code
+fn main() {
+    // Example 1
+    let s1 = "great".to_string();
+    let s2 = "rgeat".to_string();
+    println!("Example 1: {}", Solution::is_scramble(s1, s2)); // true
+    
+    // Example 2
+    let s1 = "abcde".to_string();
+    let s2 = "caebd".to_string();
+    println!("Example 2: {}", Solution::is_scramble(s1, s2)); // false
+    
+    // Example 3
+    let s1 = "a".to_string();
+    let s2 = "a".to_string();
+    println!("Example 3: {}", Solution::is_scramble(s1, s2)); // true
+}
+
+struct Solution;
+```
