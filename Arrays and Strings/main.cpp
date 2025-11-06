@@ -1,4 +1,5 @@
 #include <vector>
+#include <stack>
 #include <string>
 #include <algorithm>
 using namespace std;
@@ -19,65 +20,34 @@ public:
         }
         delimited_string.push_back(last_num);
 
-        std::cout << "delimited_string: ";
-        for(auto &str : delimited_string){
-            std::cout << str << "|";
+        std::stack<int> math_stack;
+        for(int i = 0; i < delimited_string.size(); i++) {
+            if (delimited_string[i] == "*") {
+                auto int_result = math_stack.top() * stoi(delimited_string[i + 1]);
+                math_stack.pop();
+                math_stack.push(int_result);
+                ++i;
+            } else if (delimited_string[i] == "/") {
+                auto int_result = math_stack.top() / stoi(delimited_string[i + 1]);
+                math_stack.pop();
+                math_stack.push(int_result);
+                ++i;
+            } else if (delimited_string[i] == "+") {
+                math_stack.push(stoi(delimited_string[i + 1]));
+                ++i;
+            } else if (delimited_string[i] == "-") {
+                math_stack.push(-1 * stoi(delimited_string[i + 1]));
+                ++i;
+            } else {
+                math_stack.push(stoi(delimited_string[i]));
+            }
         }
-        std::cout << std::endl;
-        std::vector<std::vector<char>> operator_list = { {'*', '/'}, {'+', '-'} };
-        auto operator_idx = 0;
 
-
-        while(operator_idx != operator_list.size()){          
-            auto equal_precedence_operators = operator_list[operator_idx]; 
-            std::cout << "equal_precedence_operators: ";
-            for(auto &op : equal_precedence_operators){
-                std::cout << op << "|";
-            }
-            std::cout << std::endl;
-            auto equal_precedence_operator_itr = std::for_each(equal_precedence_operators.begin(), equal_precedence_operators.end(), [&](char op){
-                return std::find(
-                    delimited_string.begin(), 
-                    delimited_string.end(), 
-                    std::string(1, op));
-            });
-            auto operator_itr = std::min_element(equal_precedence_operator_itr.begin(), equal_precedence_operator_itr.end());
-            std::cout << "operator_itr: " << operator_itr << std::endl;
-
-            std::string result = "";
-            auto int_result = 0;
-            switch (operator_itr){
-                case '*': 
-                    int_result = stoi(delimited_string[operator_itr - 1]) * stoi(delimited_string[operator_itr + 1]);    
-                    result = std::to_string(int_result);
-                    break;
-                case '/':
-                    int_result = stoi(delimited_string[operator_itr - 1]) / stoi(delimited_string[operator_itr + 1]);    
-                    result = std::to_string(int_result);
-                    break;
-                case '+':
-                    int_result = stoi(delimited_string[operator_itr - 1]) + stoi(delimited_string[operator_itr + 1]);    
-                    result = std::to_string(int_result);
-                    break;
-                case '-':
-                    int_result = stoi(delimited_string[operator_itr - 1]) - stoi(delimited_string[operator_itr + 1]);    
-                    result = std::to_string(int_result);
-                    break;                    
-            }
-            
-            // Build a new vector with the result replacing the operand-operator-operand sequence
-            std::vector<string> new_problem(delimited_string.begin(), delimited_string.begin() + operator_itr - 1);
-            new_problem.push_back(result);
-            new_problem.insert(new_problem.end(), delimited_string.begin() + operator_itr + 2, delimited_string.end());
-            std::cout << "new_problem: ";
-            for(auto &str : new_problem){
-                std::cout << str << "|";
-            }
-            std::cout << std::endl;
-            
-            // Replace the current delimited_string with the new one and continue
-            delimited_string = new_problem;
+        auto to_return = 0;
+        while(!math_stack.empty()) {
+            to_return += math_stack.top();
+            math_stack.pop();
         }
-        return stoi(delimited_string[0]);
+        return to_return;
     }
 };
