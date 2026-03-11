@@ -36,10 +36,18 @@ This folder contains a minimal, interview-friendly implementation of the core id
 
 ## Run Tests
 
-From this directory:
+This repo uses the parent virtual environment at `SDE_Interview_Prep/.venv`.
+
+From this directory (`Robotics/tf_tree_foote2013`):
 
 ```bash
-python -m unittest -q
+..\..\..\.venv\Scripts\python.exe -m unittest -q
+```
+
+From `SDE_Interview_Prep` root:
+
+```bash
+.\.venv\Scripts\python.exe -m unittest discover -s Robotics\tf_tree_foote2013 -p "test_*.py" -q
 ```
 
 ## Why This Is a Good Staff-Level Interview Skeleton
