@@ -1,7 +1,7 @@
 import math
 import unittest
 
-from tf_tree import SE2Transform, TFTree, TransformLookupError
+from two_dimensional_tf_tree import SE2Transform, TFTree, TransformLookupError
 
 
 class TestTFTree(unittest.TestCase):
